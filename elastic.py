@@ -1,4 +1,5 @@
 from elasticsearch import Elasticsearch
+from elasticsearch.helpers import bulk
 import time
 
 client = Elasticsearch("http://localhost:9200")
@@ -33,6 +34,18 @@ def delete_index(index_name):
 def insert_document(index_name, doc_id, document):
     client.index(index=index_name, id=doc_id, body=document)
     print(f"Document with ID '{doc_id}' inserted into index '{index_name}'.")
+
+def bulk(index_name, documents):
+    actions = [
+        {
+            "_index": index_name,
+            "_id": doc_id,
+            "_source": doc
+        }
+        for doc_id, doc in documents.items()
+    ]
+    bulk(client, actions)
+    print(f"Bulk inserted {len(documents)} documents into index '{index_name}'.")
 
 def update_document(index_name, doc_id, document):
     client.update(index=index_name, id=doc_id, body={"doc": document})
