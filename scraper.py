@@ -1,14 +1,23 @@
+import json
 from unidecode import unidecode
 import re
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
-from elastic import client, create_index, insert_document, wait_for_elasticsearch, search_documents
+from elastic import client, create_index, insert_document, wait_for_elasticsearch, search_documents, delete_index
 
 # Wait for Elasticsearch to be ready
 wait_for_elasticsearch()
 
 INDEX_NAME = "demonstration-1"
+CONFIG_JSON = "index-config.json"
+
+delete_index(INDEX_NAME)
+
+with open(CONFIG_JSON, 'r', encoding='utf-8') as f:
+    index_settings = json.load(f)
+
+create_index(INDEX_NAME, index_settings)
 
 def slugify(text):
     text = unidecode(text).lower()
