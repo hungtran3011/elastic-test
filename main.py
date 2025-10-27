@@ -30,7 +30,7 @@ query = {
   "bool": {
     "must": [
       {"match": {"content": "bách khoa"}},
-      # {"term": {"content": "Sinh viên"}}
+      {"match": {"content": "chiến binh"}}
     ]
   }
 }

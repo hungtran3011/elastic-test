@@ -1,0 +1,101 @@
+{
+  "took": 2,
+  "timed_out": false,
+  "_shards": {
+    "total": 1,
+    "successful": 1,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 5,
+      "relation": "eq"
+    },
+    "max_score": 2.9079363,
+    "hits": [
+      {
+        "_index": "demonstration-1",
+        "_id": "1",
+        "_score": 2.9079363,
+        "_source": {
+          "title": "Ký ức gửi lại từ chiến trường: Những kỷ vật của người lính sinh viên Bách khoa",
+          "content": "Một chiếc ăng-gô nhôm đã xỉn màu theo năm tháng, một chiếc máy ảnh cũ, cuốn “Nhật ký Hàm Rồng” ố vàng cùng những trang viết tay đã sờn mép... Đó là những kỷ vật mà cựu chiến binh – cựu sinh viên Trần Minh Chính (sinh năm 1952, khóa 14 khoa Vô tuyến điện, Đại học Bách khoa Hà Nội) trân trọng gửi tặng Trung tâm Truyền thông và Tri thức số, Đại học Bách khoa Hà Nội ngày 26/8/2025, nhân kỷ niệm 55 năm ngày ông nhập ngũ."
+        },
+        "highlight": {
+          "content": [
+            "Đó là những kỷ vật mà cựu <em>chiến</em> <em>binh</em> – cựu sinh viên Trần Minh Chính (sinh năm 1952, <em>khóa</em> 14 <em>khoa</em> Vô",
+            "tuyến điện, Đại học <em>Bách</em> <em>khoa</em> Hà Nội) trân trọng gửi tặng Trung tâm Truyền thông và Tri thức số, Đại",
+            "học <em>Bách</em> <em>khoa</em> Hà Nội ngày 26/8/2025, nhân kỷ niệm 55 năm ngày ông nhập ngũ."
+          ]
+        }
+      },
+      {
+        "_index": "demonstration-1",
+        "_id": "5",
+        "_score": 2.006854,
+        "_source": {
+          "title": "Phân hiệu Đại học Bách khoa Hà Nội tại Hưng Yên: Mảnh ghép quan trọng cho khát vọng lớn",
+          "content": "Ngày 25/3/2025, Thủ tướng Chính phủ đã ban hành Quyết định số 663/QĐ-TTg, phê duyệt Đề án Phát triển Đại học Bách khoa Hà Nội thuộc nhóm cơ sở giáo dục đại học hàng đầu châu Á. Trong bức tranh chiến lược này, dự án Cơ sở 2 - Phân hiệu Đại học Bách khoa Hà Nội tại Hưng Yên được xác định là một mảnh ghép quan trọng - như một hạ tầng chiến lược nhằm mở rộng không gian đào tạo, nghiên cứu và đổi mới sáng tạo của Đại học."
+        },
+        "highlight": {
+          "content": [
+            "2025, Thủ tướng Chính phủ đã ban hành Quyết định số 663/QĐ-TTg, phê duyệt Đề án Phát triển Đại học <em>Bách</em>",
+            "<em>khoa</em> Hà Nội thuộc nhóm cơ sở giáo dục đại học hàng đầu châu Á.",
+            "Trong bức tranh <em>chiến</em> lược này, dự án Cơ sở 2 - Phân hiệu Đại học <em>Bách</em> <em>khoa</em> Hà Nội tại Hưng Yên được",
+            "xác định là một mảnh ghép quan trọng - như một hạ tầng <em>chiến</em> lược nhằm mở rộng không gian đào tạo, nghiên"
+          ]
+        }
+      },
+      {
+        "_index": "demonstration-1",
+        "_id": "7",
+        "_score": 1.8422136,
+        "_source": {
+          "title": "Bách khoa Hà Nội tập huấn ứng dụng AI cho hơn 300 cán bộ, giáo viên Ninh Bình",
+          "content": "Ngày 10/10, theo đề nghị của Sở Giáo dục và Đào tạo tỉnh Ninh Bình, đoàn chuyên gia Đại học Bách khoa Hà Nội đã tham gia chương trình Tập huấn Ứng dụng trí tuệ nhân tạo (AI) trong công tác quản lý, điều hành và dạy học cho hơn 300 cán bộ quản lý giáo dục, giáo viên của ngành Giáo dục Ninh Bình. \nĐoàn chuyên gia Đại học Bách khoa Hà Nội gồm đại diện lãnh đạo Ban Tuyển sinh – Hướng nghiệp (TSHN): PGS. TS. Vũ Duy Hải – Trưởng ban, TS. Hà Mạnh Tuấn – Phó Trưởng ban, các giảng viên khoa Khoa học và Công nghệ giáo dục: TS. Vũ Đình Minh, TS. Nguyễn Thị Huyền, cùng đội ngũ cán bộ, trợ giảng,… của 2 đơn vị."
+        },
+        "highlight": {
+          "content": [
+            "Ngày 10/10, theo đề nghị của Sở Giáo dục và Đào tạo tỉnh Ninh <em>Bình</em>, đoàn chuyên gia Đại học <em>Bách</em> <em>khoa</em>",
+            "quản lý, điều hành và dạy học cho hơn 300 cán bộ quản lý giáo dục, giáo viên của ngành Giáo dục Ninh <em>Bình</em>",
+            "Đoàn chuyên gia Đại học <em>Bách</em> <em>khoa</em> Hà Nội gồm đại diện lãnh đạo Ban Tuyển sinh – Hướng nghiệp (TSHN):",
+            "Hà Mạnh Tuấn – Phó Trưởng ban, các giảng viên <em>khoa</em> <em>Khoa</em> học và Công nghệ giáo dục: TS."
+          ]
+        }
+      },
+      {
+        "_index": "demonstration-1",
+        "_id": "8",
+        "_score": 1.4354962,
+        "_source": {
+          "title": "Đại học Bách khoa Hà Nội với Ngày Giải phóng Thủ đô",
+          "content": "Ngày Giải phóng Thủ đô 10/10/1954 đánh dấu bước ngoặt quan trọng, khẳng định thắng lợi hoàn toàn của quân và dân ta trong cuộc kháng chiến chống thực dân Pháp, mở ra một giai đoạn mới trong lịch sử ngàn năm văn hiến của Thăng Long-Đông Đô-Hà Nội. Nhân Kỷ niệm 71 năm Ngày Giải phóng Thủ đô, Đại học Bách khoa Hà Nội trân trọng giới thiệu bài viết 'Đại học Bách khoa Hà Nội với Ngày Giải phóng Thủ đô' của PGS. Huỳnh Quyết Thắng - Giám đốc Đại học, như một góc nhìn tri ân thế hệ đi trước, khẳng định tinh thần người Bách khoa tiếp nối truyền thống dựng xây đất nước bằng tri thức và khát vọng đổi mới."
+        },
+        "highlight": {
+          "content": [
+            "đánh dấu bước ngoặt quan trọng, khẳng định thắng lợi hoàn toàn của quân và dân ta trong cuộc kháng <em>chiến</em>",
+            "Nhân Kỷ niệm 71 năm Ngày Giải phóng Thủ đô, Đại học <em>Bách</em> <em>khoa</em> Hà Nội trân trọng giới thiệu bài viết '",
+            "Đại học <em>Bách</em> <em>khoa</em> Hà Nội với Ngày Giải phóng Thủ đô' của PGS.",
+            "Quyết Thắng - Giám đốc Đại học, như một góc nhìn tri ân thế hệ đi trước, khẳng định tinh thần người <em>Bách</em>",
+            "<em>khoa</em> tiếp nối truyền thống dựng xây đất nước bằng tri thức và khát vọng đổi mới."
+          ]
+        }
+      },
+      {
+        "_index": "demonstration-1",
+        "_id": "2",
+        "_score": 0.9177964,
+        "_source": {
+          "title": "Thông báo về kế hoạch dạy và học trong thời gian ảnh hưởng của Bão Matmo (Bão số 11)",
+          "content": "Do ảnh hưởng của bão Matmo (bão số 11), dự báo khu vực Hà Nội sẽ có mưa lớn trong hai ngày 06–07/10/2025. Để hạn chế gián đoạn hoạt động giảng dạy và đảm bảo an toàn cho cán bộ, giảng viên và người học, ĐHBK Hà Nội thông báo kế hoạch như sau:\n•   Kế hoạch dạy và học sẽ được cập nhật linh hoạt theo từng buổi học, tùy theo diễn biến thời tiết thực tế. Đề nghị toàn thể cán bộ và người học theo dõi sát các thông báo chính thức từ Đại học qua cổng thông tin, email và các kênh lớp học.\n•    Buổi sáng thứ Hai, ngày 06/10/2025: Dạy và học trực tiếp bình thường theo thời khóa biểu.\nChú ý: Trong trường hợp thời tiết diễn biến nhanh, gây khó khăn di chuyển: Giảng viên có thể linh hoạt chuyển sang hình thức học trực tuyến và thông báo cho sinh viên; Người học chủ động liên hệ giảng viên để được hỗ trợ.\n•    Buổi chiều thứ Hai (06/10) và cả ngày thứ Ba (07/10): Kế hoạch cụ thể sẽ được cập nhật và thông báo trước mỗi buổi học, căn cứ tình hình thực tế.\nChúc toàn thể thầy/cô, sinh viên, học viên và NCS một tuần mới an toàn – chủ động – học tập hiệu quả.\n"
+        },
+        "highlight": {
+          "content": [
+            ".\n•    Buổi sáng thứ Hai, ngày 06/10/2025: Dạy và học trực tiếp <em>bình</em> thường theo thời <em>khóa</em> biểu."
+          ]
+        }
+      }
+    ]
+  }
+}
