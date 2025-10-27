@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   elasticsearch:
     build:
@@ -17,7 +15,7 @@ services:
     volumes:
       - es_data:/usr/share/elasticsearch/data
     ports:
-      - "9200:8080"
+      - "9200:9200"
 
   kibana:
     image: docker.elastic.co/kibana/kibana:9.1.4

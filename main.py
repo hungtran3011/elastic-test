@@ -53,3 +53,17 @@ for hit in response['hits']['hits']:
             for highlight in highlights:  
                 print(f"  {field}: {highlight}")
     print("---")
+
+# Tokenizer test
+print("\n--- Tokenizer Test ---")
+tokenizer_test_response = client.indices.analyze(
+  index=INDEX_NAME,
+  body={
+    "analyzer": "vietnamese_text",
+    "text": "Đại học Bách khoa Hà Nội"
+  }
+)
+print("Tokens for 'Đại học Bách khoa Hà Nội':")
+for token in tokenizer_test_response['tokens']:
+    print(f"- {token['token']}")
+print("---")

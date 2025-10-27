@@ -4,11 +4,21 @@
       "analyzer": {
         "vietnamese_text": {
           "tokenizer": "icu_tokenizer",
-          "filter": ["lowercase", "icu_folding"]
+          "filter": [
+            "lowercase"
+          ]
         },
         "autocomplete": {
           "tokenizer": "edge_ngram_tokenizer",
-          "filter": ["lowercase"]
+          "filter": [
+            "lowercase"
+          ]
+        }
+      },
+      "filter": {
+        "icu_folding": {
+          "type": "icu_folding",
+          "unicode_set_filter": "[áàảãạăắằẳẵặâấầẩẫậđéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵ]"
         }
       },
       "tokenizer": {
@@ -16,13 +26,19 @@
           "type": "edge_ngram",
           "min_gram": 2,
           "max_gram": 15,
-          "token_chars": ["letter", "digit"]
+          "token_chars": [
+            "letter",
+            "digit"
+          ]
         }
       },
       "normalizer": {
         "lowercase_normalizer": {
           "type": "custom",
-          "filter": ["lowercase", "icu_folding"]
+          "filter": [
+            "lowercase",
+            "icu_folding"
+          ]
         }
       }
     }
@@ -45,8 +61,12 @@
         "type": "text",
         "analyzer": "vietnamese_text"
       },
-      "popularity": { "type": "integer" },
-      "last_updated": { "type": "date" }
+      "popularity": {
+        "type": "integer"
+      },
+      "last_updated": {
+        "type": "date"
+      }
     }
   }
 }
