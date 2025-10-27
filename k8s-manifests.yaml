@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: elasticsearch
-        image: hungtran3011/custom-elasticsearch:latest
+        image: gcr.io/${PROJECT_ID}/custom-elasticsearch:${COMMIT_SHA}
         ports:
         - containerPort: 9200
         env:

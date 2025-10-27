@@ -1,0 +1,74 @@
+name: Deploy to GKE
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - staging
+          - prod
+
+env:
+  PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+  REGION: us-central1
+  CLUSTER_NAME: elasticsearch-cluster
+  GAR_LOCATION: us-central1
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy to GKE
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Configure Docker to use gcloud as a credential helper
+        run: gcloud auth configure-docker ${{ env.GAR_LOCATION }}-docker.pkg.dev
+
+      - name: Build and push Docker image
+        run: |
+          docker build -t ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/custom-elastic/custom-elasticsearch:${{ github.sha }} ./custom-elastic
+          docker build -t ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/custom-elastic/custom-elasticsearch:latest ./custom-elastic
+          docker push ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/custom-elastic/custom-elasticsearch:${{ github.sha }}
+          docker push ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/custom-elastic/custom-elasticsearch:latest
+
+      - name: Update Kubernetes manifest
+        run: |
+          sed -i 's|gcr.io/${PROJECT_ID}/custom-elasticsearch:.*|${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/custom-elastic/custom-elasticsearch:${{ github.sha }}|g' k8s-manifests.yaml
+
+      - name: Get GKE credentials
+        run: gcloud container clusters get-credentials ${{ env.CLUSTER_NAME }} --region ${{ env.REGION }}
+
+      - name: Deploy to GKE
+        run: kubectl apply -f k8s-manifests.yaml
+
+      - name: Wait for deployments
+        run: |
+          kubectl wait --for=condition=available --timeout=600s deployment/elasticsearch
+          kubectl wait --for=condition=available --timeout=300s deployment/kibana
+
+      - name: Get service URLs
+        run: |
+          echo "Elasticsearch internal URL: http://elasticsearch-service:9200"
+          echo "Kibana external URL: $(kubectl get services kibana-service -o jsonpath='{.status.loadBalancer.ingress[0].ip}'):5601"
