@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elasticsearch Search</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        form { margin-bottom: 20px; }
+        input[type="text"] { width: 300px; padding: 8px; }
+        button { padding: 8px 16px; }
+        .result { margin-bottom: 20px; border: 1px solid #ccc; padding: 10px; }
+        em { background-color: yellow; }
+    </style>
+</head>
+<body>
+    <h1>Elasticsearch Search</h1>
+    <form action="/search" method="get">
+        <input type="text" name="query" placeholder="Enter search query" required>
+        <button type="submit">Search</button>
+    </form>
+    {% if results %}
+        <h2>Search Results</h2>
+        {% for hit in results %}
+        <div class="result">
+            <h3>Document ID: {{ hit._id }}</h3>
+            <p>Score: {{ hit._score }}</p>
+            <p>Title: {{ hit._source.title }}</p>
+            {% if hit.highlight %}
+                <p>Content: 
+                    {% for fragment in hit.highlight.content %}
+                        <span class="highlight">{{ fragment | safe }}</span>
+                    {% endfor %}
+                </p>
+            {% else %}
+                <p>Content: {{ hit._source.content }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

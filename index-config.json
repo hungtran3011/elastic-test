@@ -1,24 +1,18 @@
 {
   "settings": {
+    "index": {
+      "max_ngram_diff": 15
+    },
     "analysis": {
-      "analyzer": {
-        "vietnamese_text": {
-          "tokenizer": "icu_tokenizer",
-          "filter": [
-            "lowercase"
-          ]
-        },
-        "autocomplete": {
-          "tokenizer": "edge_ngram_tokenizer",
-          "filter": [
-            "lowercase"
-          ]
-        }
-      },
       "filter": {
+        "vietnamese_ngram": {
+          "type": "ngram",
+          "min_gram": 2,
+          "max_gram": 15
+        },
         "icu_folding": {
           "type": "icu_folding",
-          "unicode_set_filter": "[áàảãạăắằẳẵặâấầẩẫậđéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵ]"
+          "unicode_set_filter": "[^áàảãạăắằẳẵặâấầẩẫậđéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵ]"
         }
       },
       "tokenizer": {
@@ -29,6 +23,30 @@
           "token_chars": [
             "letter",
             "digit"
+          ]
+        }
+      },
+      "analyzer": {
+        "vietnamese_text": {
+          "tokenizer": "icu_tokenizer",
+          "filter": [
+            "lowercase",
+            "icu_folding"
+          ]
+        },
+        "vietnamese_text_with_diacritics": {
+          "tokenizer": "icu_tokenizer",
+          "filter": [
+            "lowercase",
+            "vietnamese_ngram"
+          ]
+        },
+        "vietnamese_autocomplete": {
+          "tokenizer": "icu_tokenizer",
+          "filter": [
+            "lowercase",
+            "icu_folding",
+            "vietnamese_ngram"
           ]
         }
       },
@@ -50,16 +68,29 @@
         "analyzer": "vietnamese_text",
         "search_analyzer": "vietnamese_text",
         "fields": {
+          "with_diacritics": {
+            "type": "text",
+            "analyzer": "vietnamese_text_with_diacritics",
+            "search_analyzer": "vietnamese_text_with_diacritics"
+          },
           "autocomplete": {
             "type": "text",
-            "analyzer": "autocomplete",
-            "search_analyzer": "standard"
+            "analyzer": "vietnamese_autocomplete",
+            "search_analyzer": "vietnamese_text"
           }
         }
       },
       "content": {
         "type": "text",
-        "analyzer": "vietnamese_text"
+        "analyzer": "vietnamese_text",
+        "search_analyzer": "vietnamese_text",
+        "fields": {
+          "with_diacritics": {
+            "type": "text",
+            "analyzer": "vietnamese_text_with_diacritics",
+            "search_analyzer": "vietnamese_text_with_diacritics"
+          }
+        }
       },
       "popularity": {
         "type": "integer"

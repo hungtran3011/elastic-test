@@ -149,6 +149,7 @@ def store_chapter_in_elasticsearch(chapter_data, story_id, chapter_number):
 
     # Store chapter as a separate document
     doc = {
+        'story_id': story_id,
         'title': chapter_data['chapter_title'],
         'author': f"Chapter {chapter_number} of {story_id}",
         'description': f"Chapter {chapter_number}",
@@ -215,8 +216,11 @@ def crawl_and_store_story(url, start_chapter=1, end_chapter=10):
 
 # Test the adapted scraper
 if __name__ == "__main__":
-    test_url = "https://truyenfull.vision/nhat-niem-vinh-hang"
-    result = crawl_and_store_story(test_url, start_chapter=1, end_chapter=11)  # Crawl first 10 chapters
+    with open("list.txt", "r", encoding="utf-8") as f:
+        story_list = [line.strip() for line in f if line.strip()]
+    for story_id in story_list:
+        url = f"https://truyenfull.vision/{story_id}"
+        result = crawl_and_store_story(url, start_chapter=1, end_chapter=11)  # Crawl first 10 chapters
 
     if result:
         print(f"\nCrawl finished for story: {result['id']}")
