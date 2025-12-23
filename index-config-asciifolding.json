@@ -10,8 +10,9 @@
           "min_gram": 2,
           "max_gram": 15
         },
-        "icu_folding": {
-          "type": "icu_folding"
+        "ascii_folding": {
+          "type": "asciifolding",
+          "preserve_original": false
         }
       },
       "tokenizer": {
@@ -27,24 +28,23 @@
       },
       "analyzer": {
         "vietnamese_text": {
-          "tokenizer": "icu_tokenizer",
+          "tokenizer": "standard",
           "filter": [
             "lowercase",
-            "icu_folding"
+            "ascii_folding"
           ]
         },
         "vietnamese_text_with_diacritics": {
-          "tokenizer": "icu_tokenizer",
+          "tokenizer": "standard",
           "filter": [
-            "lowercase",
-            "vietnamese_ngram"
+            "lowercase"
           ]
         },
         "vietnamese_autocomplete": {
-          "tokenizer": "icu_tokenizer",
+          "tokenizer": "standard",
           "filter": [
             "lowercase",
-            "icu_folding",
+            "ascii_folding",
             "vietnamese_ngram"
           ]
         }
@@ -54,7 +54,7 @@
           "type": "custom",
           "filter": [
             "lowercase",
-            "icu_folding"
+            "ascii_folding"
           ]
         }
       }

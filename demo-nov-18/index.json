@@ -1,0 +1,14 @@
+{
+  "settings": {
+    "number_of_shards": 1,
+    "index" : {
+        "similarity" : {
+          "default" : {
+            "type" : "BM25",
+            "b": 1,
+            "k1": 1
+          }
+        }
+    }
+  }
+}

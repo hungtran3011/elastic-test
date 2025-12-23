@@ -7,23 +7,22 @@ INDEX_NAME = "demonstration-1"
 
 word_query = "dao duc"
 query = {
-  "bool": {
-            "must": [
-                {"match": {"content": {"query": word_query}}},
-            ],
+        "bool": {
             "should": [
-                # Regular matching (without diacritics)
+                # Phrase matches get highest priority (whole phrase together)
+                {"match_phrase": {"content": {"query": word_query, "boost": 10.0}}},
+                {"match_phrase": {"title": {"query": word_query, "boost": 15.0}}},
+                {"match_phrase": {"content.with_diacritics": {"query": word_query, "boost": 12.0}}},
+                {"match_phrase": {"title.with_diacritics": {"query": word_query, "boost": 18.0}}},
+                # Individual word matches (lower priority, scattered words)
+                {"match": {"content": {"query": word_query, "boost": 1.0}}},
                 {"match": {"title": {"query": word_query, "boost": 2.0}}},
-                {"match_phrase": {"content": {"query": word_query, "boost": 3.0}}},
-                {"match_phrase": {"title": {"query": word_query, "boost": 5.0}}},
-                # Exact diacritic matching (higher boost for precision)
-                {"match": {"content.with_diacritics": {"query": word_query, "boost": 4.0}}},
-                {"match": {"title.with_diacritics": {"query": word_query, "boost": 6.0}}},
-                {"match_phrase": {"content.with_diacritics": {"query": word_query, "boost": 8.0}}},
-                {"match_phrase": {"title.with_diacritics": {"query": word_query, "boost": 10.0}}},
-            ]
+                {"match": {"content.with_diacritics": {"query": word_query, "boost": 1.5}}},
+                {"match": {"title.with_diacritics": {"query": word_query, "boost": 3.0}}},
+            ],
+            "minimum_should_match": 1
         }
-}
+    }
 
 response = search_documents(INDEX_NAME, query, highlight_fields=["content"])
 print(response)

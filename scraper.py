@@ -9,7 +9,7 @@ from elastic import client, create_index, insert_document, wait_for_elasticsearc
 # Wait for Elasticsearch to be ready
 wait_for_elasticsearch()
 
-INDEX_NAME = "demonstration-1"
+INDEX_NAME = "demonstration-2"
 CONFIG_JSON = "index-config.json"
 
 delete_index(INDEX_NAME)
@@ -220,7 +220,7 @@ if __name__ == "__main__":
         story_list = [line.strip() for line in f if line.strip()]
     for story_id in story_list:
         url = f"https://truyenfull.vision/{story_id}"
-        result = crawl_and_store_story(url, start_chapter=1, end_chapter=11)  # Crawl first 10 chapters
+        result = crawl_and_store_story(url, start_chapter=1, end_chapter=1000)  # Crawl first 10 chapters
 
     if result:
         print(f"\nCrawl finished for story: {result['id']}")
