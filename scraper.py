@@ -1,23 +1,31 @@
+from __future__ import annotations
+
 import json
-from unidecode import unidecode
 import re
+from datetime import datetime
+from typing import Optional
+
 import requests
 from bs4 import BeautifulSoup
-from datetime import datetime
-from elastic import client, create_index, insert_document, wait_for_elasticsearch, search_documents, delete_index
+from unidecode import unidecode
 
-# Wait for Elasticsearch to be ready
-wait_for_elasticsearch()
+from elastic import ensure_index, insert_document, wait_for_elasticsearch
+from settings import (
+    INDEX_CONFIG_JSON,
+    INDEX_NAME,
+    SCRAPE_BASE_URL,
+    SCRAPE_LIST_FILE,
+    SUPABASE_CHAPTERS_TABLE,
+    SUPABASE_STORIES_TABLE,
+)
+from supabase import get_story_state, upsert_chapter, upsert_story
 
-INDEX_NAME = "demonstration-2"
-CONFIG_JSON = "index-config.json"
 
-delete_index(INDEX_NAME)
-
-with open(CONFIG_JSON, 'r', encoding='utf-8') as f:
-    index_settings = json.load(f)
-
-create_index(INDEX_NAME, index_settings)
+def init_index() -> None:
+    wait_for_elasticsearch()
+    with open(INDEX_CONFIG_JSON, "r", encoding="utf-8") as f:
+        index_settings = json.load(f)
+    ensure_index(INDEX_NAME, index_settings)
 
 def slugify(text):
     text = unidecode(text).lower()
@@ -26,7 +34,7 @@ def slugify(text):
     text = text.strip('-')
     return text if text else 'default-slug'
 
-def crawl_story_metadata(url):
+def crawl_story_metadata(url: str) -> Optional[dict]:
     """
     Crawls story metadata from the webpage.
     """
@@ -84,12 +92,11 @@ def crawl_story_metadata(url):
         print(f"Error crawling story metadata: {e}")
         return None
 
-def crawl_chapter(story_slug, chapter_number):
+def crawl_chapter(story_slug: str, chapter_number: int) -> Optional[dict]:
     """
     Crawls a single chapter content.
     """
-    base_url = "https://truyenfull.vision"
-    url = f"{base_url}/{story_slug}/chuong-{chapter_number}/"
+    url = f"{SCRAPE_BASE_URL}/{story_slug}/chuong-{chapter_number}/"
 
     try:
         response = requests.get(url, timeout=10)
@@ -115,6 +122,7 @@ def crawl_chapter(story_slug, chapter_number):
             'chapter_title': chapter_title.strip(),
             'chapter_number': chapter_number,
             'content': content,
+            'source_url': url,
             'last_updated': datetime.now()
         }
 
@@ -122,12 +130,14 @@ def crawl_chapter(story_slug, chapter_number):
         print(f"Error crawling chapter {chapter_number}: {e}")
         return None
 
-def store_story_in_elasticsearch(story_data, story_id):
+def store_story_in_elasticsearch(story_data: dict, story_id: str) -> None:
     """
     Stores story data in Elasticsearch using our elastic.py functions.
     """
     # Convert to our document format
     doc = {
+        'doc_type': 'story',
+        'story_id': story_id,
         'title': story_data['title'],
         'author': story_data['author'],
         'description': story_data['description'],
@@ -137,11 +147,25 @@ def store_story_in_elasticsearch(story_data, story_id):
         'last_updated': story_data['last_updated']
     }
 
+    # client.index() acts as upsert.
     insert_document(INDEX_NAME, story_id, doc)
-    print(f"Successfully stored story: {story_data['title']}")
-    return True
 
-def store_chapter_in_elasticsearch(chapter_data, story_id, chapter_number):
+
+def store_story_in_supabase(story_data: dict, story_id: str) -> None:
+    story_row = {
+        "id": story_id,
+        "title": story_data.get("title"),
+        "author": story_data.get("author"),
+        "description": story_data.get("description"),
+        "image_url": story_data.get("image_url"),
+        "genres": story_data.get("genres"),
+        "source_url": story_data.get("source_url"),
+        "last_updated": story_data.get("last_updated").isoformat() if story_data.get("last_updated") else None,
+        "last_crawled_at": datetime.utcnow().isoformat(),
+    }
+    upsert_story(SUPABASE_STORIES_TABLE, story_row)
+
+def store_chapter_in_elasticsearch(chapter_data: dict, story_id: str, chapter_number: int) -> None:
     """
     Stores chapter data in Elasticsearch.
     """
@@ -149,6 +173,7 @@ def store_chapter_in_elasticsearch(chapter_data, story_id, chapter_number):
 
     # Store chapter as a separate document
     doc = {
+        'doc_type': 'chapter',
         'story_id': story_id,
         'title': chapter_data['chapter_title'],
         'author': f"Chapter {chapter_number} of {story_id}",
@@ -156,74 +181,99 @@ def store_chapter_in_elasticsearch(chapter_data, story_id, chapter_number):
         'content': chapter_data['content'],
         'tags': ['chapter'],
         'popularity': chapter_number,  # Use chapter number as popularity indicator
-        'last_updated': chapter_data['last_updated']
+        'last_updated': chapter_data['last_updated'],
+        'chapter_number': chapter_number,
+        'source_url': chapter_data.get('source_url'),
     }
-
     insert_document(INDEX_NAME, chapter_id, doc)
-    print(f"Successfully stored chapter {chapter_number}: {chapter_data['chapter_title']}")
-    return True
 
-def crawl_and_store_story(url, start_chapter=1, end_chapter=10):
+
+def store_chapter_in_supabase(chapter_data: dict, story_id: str, chapter_number: int) -> None:
+    chapter_id = f"{story_id}_chapter_{chapter_number}"
+    row = {
+        "id": chapter_id,
+        "story_id": story_id,
+        "chapter_number": chapter_number,
+        "title": chapter_data.get("chapter_title"),
+        "content": chapter_data.get("content"),
+        "source_url": chapter_data.get("source_url"),
+        "last_updated": chapter_data.get("last_updated").isoformat() if chapter_data.get("last_updated") else None,
+    }
+    upsert_chapter(SUPABASE_CHAPTERS_TABLE, row)
+
+def sync_story(story_id: str, start_chapter: Optional[int] = None, end_chapter: int = 10_000) -> dict:
     """
-    Main function to crawl story and chapters, adapted for our Elasticsearch setup.
+    Syncs one story:
+    - Ensures index exists
+    - Crawls metadata (always)
+    - Crawls chapters starting from last crawled chapter (if Supabase has state)
+    - Upserts to Supabase (optional) + Elasticsearch
+
+    end_chapter is an upper bound; crawl stops at first missing chapter.
     """
-    # Get story ID from URL
-    try:
-        story_slug = [part for part in url.split('/') if part][-1]
-    except IndexError:
-        print(f"Invalid URL format: {url}")
-        return None
+    init_index()
 
-    story_id = story_slug
-    print(f"Processing story ID: {story_id}")
+    story_slug = story_id
+    url = f"{SCRAPE_BASE_URL}/{story_slug}"
 
-    # Check if story already exists
-    try:
-        # Try to search for existing story
-        query = {"match": {"title": story_slug}}
-        response = search_documents(INDEX_NAME, query)
-        if response['hits']['total']['value'] > 0:
-            print(f"Story '{story_slug}' already exists. Checking for new chapters...")
+    # Determine start chapter from DB state if not provided.
+    if start_chapter is None:
+        state = get_story_state(SUPABASE_STORIES_TABLE, story_id)
+        if state and state.get("last_crawled_chapter"):
+            try:
+                start_chapter = int(state["last_crawled_chapter"]) + 1
+            except Exception:
+                start_chapter = 1
         else:
-            # Crawl and store story metadata
-            print(f"Story ID {story_id} not found. Crawling new story...")
-            story_data = crawl_story_metadata(url)
-            if story_data:
-                store_story_in_elasticsearch(story_data, story_id)
-            else:
-                print("Failed to crawl story metadata")
-                return None
-    except Exception as e:
-        print(f"Error checking existing story: {e}")
+            start_chapter = 1
 
-    # Crawl chapters
-    print(f"Starting crawl from chapter {start_chapter} to {end_chapter - 1}...")
+    story_data = crawl_story_metadata(url)
+    if story_data:
+        store_story_in_elasticsearch(story_data, story_id)
+        store_story_in_supabase(story_data, story_id)
 
-    for chapter_number in range(start_chapter, end_chapter):
+    chapters_added = 0
+    last_ok = start_chapter - 1
+    for chapter_number in range(start_chapter, end_chapter + 1):
         chapter_data = crawl_chapter(story_slug, chapter_number)
-        if chapter_data:
-            store_chapter_in_elasticsearch(chapter_data, story_id, chapter_number)
-            print(f"Successfully crawled chapter {chapter_number}")
-        else:
-            print(f"Stopping crawl at chapter {chapter_number} (likely end of story or error).")
+        if not chapter_data:
             break
+        store_chapter_in_elasticsearch(chapter_data, story_id, chapter_number)
+        store_chapter_in_supabase(chapter_data, story_id, chapter_number)
+        chapters_added += 1
+        last_ok = chapter_number
+
+    # Persist crawl state to stories table (if present)
+    upsert_story(
+        SUPABASE_STORIES_TABLE,
+        {
+            "id": story_id,
+            "last_crawled_chapter": last_ok if last_ok >= 1 else None,
+            "last_crawled_at": datetime.utcnow().isoformat(),
+        },
+    )
 
     return {
-        'id': story_id,
-        'url': url,
-        'chapters_crawled': range(start_chapter, chapter_number)
+        "id": story_id,
+        "url": url,
+        "start_chapter": start_chapter,
+        "last_crawled_chapter": last_ok,
+        "chapters_added": chapters_added,
     }
 
-# Test the adapted scraper
-if __name__ == "__main__":
-    with open("list.txt", "r", encoding="utf-8") as f:
-        story_list = [line.strip() for line in f if line.strip()]
-    for story_id in story_list:
-        url = f"https://truyenfull.vision/{story_id}"
-        result = crawl_and_store_story(url, start_chapter=1, end_chapter=1000)  # Crawl first 10 chapters
 
-    if result:
-        print(f"\nCrawl finished for story: {result['id']}")
-        print(f"URL: {result['url']}")
-    else:
-        print("\nFailed to crawl story.")
+def sync_from_list(list_file: str = SCRAPE_LIST_FILE, end_chapter: int = 10_000) -> list[dict]:
+    results: list[dict] = []
+    with open(list_file, "r", encoding="utf-8") as f:
+        story_ids = [line.strip() for line in f if line.strip()]
+    for story_id in story_ids:
+        results.append(sync_story(story_id, start_chapter=None, end_chapter=end_chapter))
+    return results
+
+if __name__ == "__main__":
+    # CLI run: sync all stories in list.txt
+    for item in sync_from_list():
+        print(
+            f"Synced {item['id']}: +{item['chapters_added']} chapters "
+            f"(from {item['start_chapter']} to {item['last_crawled_chapter']})"
+        )

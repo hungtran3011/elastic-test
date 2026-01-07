@@ -1,8 +1,23 @@
-from elasticsearch import Elasticsearch
-from elasticsearch.helpers import bulk
+import os
 import time
+from elasticsearch import Elasticsearch
+from elasticsearch.helpers import bulk as es_bulk
 
-client = Elasticsearch("http://localhost:9200")
+
+def get_elasticsearch_url() -> str:
+    # Prefer explicit env var, otherwise follow settings default (localhost:9201).
+    env_url = os.getenv("ELASTICSEARCH_URL")
+    if env_url:
+        return env_url
+    try:
+        from settings import ELASTICSEARCH_URL as settings_url
+
+        return settings_url
+    except Exception:
+        return "http://localhost:9201"
+
+
+client = Elasticsearch(get_elasticsearch_url())
 
 def wait_for_elasticsearch():
     for _ in range(60):  # wait up to 60 seconds
@@ -24,6 +39,10 @@ def create_index(index_name, settings=None):
     else:
         print(f"Index '{index_name}' already exists.")
 
+
+def ensure_index(index_name: str, settings=None):
+    create_index(index_name, settings)
+
 def delete_index(index_name):
     if client.indices.exists(index=index_name):
         client.indices.delete(index=index_name)
@@ -35,7 +54,7 @@ def insert_document(index_name, doc_id, document):
     client.index(index=index_name, id=doc_id, body=document)
     print(f"Document with ID '{doc_id}' inserted into index '{index_name}'.")
 
-def bulk(index_name, documents):
+def bulk_insert(index_name, documents):
     actions = [
         {
             "_index": index_name,
@@ -44,7 +63,7 @@ def bulk(index_name, documents):
         }
         for doc_id, doc in documents.items()
     ]
-    bulk(client, actions)
+    es_bulk(client, actions)
     print(f"Bulk inserted {len(documents)} documents into index '{index_name}'.")
 
 def update_document(index_name, doc_id, document):

@@ -16,7 +16,7 @@
 <body>
     <h1>Elasticsearch Search</h1>
     <form action="/search" method="get">
-        <input type="text" name="query" placeholder="Enter search query" required>
+        <input type="text" name="query" placeholder="Enter search query" value="{{ query or '' }}" required>
         <button type="submit">Search</button>
     </form>
     {% if results %}
@@ -25,16 +25,32 @@
         <div class="result">
             <h3>Document ID: {{ hit._id }}</h3>
             <p>Score: {{ hit._score }}</p>
-            <p>Title: {{ hit._source.title }}</p>
-            {% if hit.highlight %}
-                <p>Content: 
+            {% if hit._source.doc_type %}
+                <p>Type: {{ hit._source.doc_type }}</p>
+            {% endif %}
+            {% if hit._source.story_id %}
+                <p>Story: {{ hit._source.story_id }}{% if hit._source.chapter_number %} (Chapter {{ hit._source.chapter_number }}){% endif %}</p>
+            {% endif %}
+
+            <p>Title:
+                {% if hit.highlight and hit.highlight.title %}
+                    {% for fragment in hit.highlight.title %}
+                        <span class="highlight">{{ fragment | safe }}</span>
+                    {% endfor %}
+                {% else %}
+                    {{ hit._source.title }}
+                {% endif %}
+            </p>
+
+            <p>Content:
+                {% if hit.highlight and hit.highlight.content %}
                     {% for fragment in hit.highlight.content %}
                         <span class="highlight">{{ fragment | safe }}</span>
                     {% endfor %}
-                </p>
-            {% else %}
-                <p>Content: {{ hit._source.content }}</p>
-            {% endif %}
+                {% else %}
+                    {{ hit._source.content }}
+                {% endif %}
+            </p>
         </div>
         {% endfor %}
     {% endif %}

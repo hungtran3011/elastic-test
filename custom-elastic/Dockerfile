@@ -2,6 +2,6 @@
 # It's best to specify an exact version for consistency
 FROM docker.elastic.co/elasticsearch/elasticsearch:9.1.4
 
-# Use the RUN command to execute the plugin installation script
-# This command is run when you build the image
-RUN bin/elasticsearch-plugin install analysis-icu
+# Install ICU analysis plugin (required for icu_tokenizer + icu_folding).
+# --batch makes it non-interactive during docker build.
+RUN bin/elasticsearch-plugin install --batch analysis-icu

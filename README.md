@@ -11,6 +11,53 @@ This project deploys a custom Elasticsearch instance with Vietnamese text analys
 
 ## Quick Start
 
+### Run the full app (Windows / PowerShell)
+
+- Starts/uses local venv in `.venv`
+- Installs Python deps from `requirement.txt`
+- Starts Elasticsearch + Kibana via `docker-compose.yml`
+- Runs the FastAPI web facade (with background sync scheduler)
+
+```powershell
+./start.ps1
+```
+
+Optional:
+
+```powershell
+./start.ps1 -SkipDocker
+./start.ps1 -Port 8001
+```
+
+### Run crawler as a separate process
+
+If you want crawling to run independently from the web server (recommended for production-like setup):
+
+1) Disable the web app scheduler via `.env`:
+
+```env
+ENABLE_WEB_SCHEDULER=false
+SCRAPE_INTERVAL_MINUTES=60
+```
+
+1) Run the crawler service:
+
+```powershell
+./start-crawler.ps1
+```
+
+1) Run the web app:
+
+```powershell
+./start.ps1 -SkipDocker
+```
+
+### One-time manual sync
+
+```powershell
+./sync.ps1
+```
+
 ### 1. Prerequisites
 
 - Google Cloud Project with billing enabled
