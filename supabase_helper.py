@@ -5,7 +5,8 @@ from typing import Any, Optional
 
 from dotenv import load_dotenv
 
-load_dotenv()
+# Ensure .env overrides any inherited environment variables
+load_dotenv(override=True)
 
 try:
 	from supabase import Client, create_client
@@ -15,11 +16,16 @@ except Exception:  # pragma: no cover
 
 
 def get_supabase_client() -> Optional[Client]:
-	url = os.getenv("SUPABASE_URL")
-	key = os.getenv("SUPABASE_KEY")
+	url = os.environ.get("SUPABASE_URL")
+	key = os.environ.get("SUPABASE_KEY")
 	if not url or not key or create_client is None:
 		return None
-	return create_client(url, key)
+	try:
+		return create_client(url, key)
+	except Exception:
+		# MCP-style keys or invalid keys won't work with standard client
+		# Return None and let callers use REST API fallback
+		return None
 
 
 supabase = get_supabase_client()

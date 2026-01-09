@@ -36,8 +36,7 @@
         "vietnamese_text_with_diacritics": {
           "tokenizer": "icu_tokenizer",
           "filter": [
-            "lowercase",
-            "vietnamese_ngram"
+            "lowercase" 
           ]
         },
         "vietnamese_autocomplete": {
@@ -46,15 +45,6 @@
             "lowercase",
             "icu_folding",
             "vietnamese_ngram"
-          ]
-        }
-      },
-      "normalizer": {
-        "lowercase_normalizer": {
-          "type": "custom",
-          "filter": [
-            "lowercase",
-            "icu_folding"
           ]
         }
       }

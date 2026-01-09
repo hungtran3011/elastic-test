@@ -18,7 +18,7 @@ from settings import (
     SUPABASE_CHAPTERS_TABLE,
     SUPABASE_STORIES_TABLE,
 )
-from supabase import get_story_state, upsert_chapter, upsert_story
+from supabase_helper import get_story_state, upsert_chapter, upsert_story
 
 
 def init_index() -> None:

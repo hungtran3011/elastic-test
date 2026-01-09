@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import unicodedata
+
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
@@ -9,13 +11,18 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from elastic import client, search_documents, wait_for_elasticsearch
 from scraper import init_index, sync_from_list
 from settings import INDEX_NAME, SCRAPE_INTERVAL_MINUTES
-from supabase import supabase
+from supabase_helper import supabase
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
 
 _scheduler: BackgroundScheduler | None = None
+
+
+def _has_diacritics(text: str) -> bool:
+    normalized = unicodedata.normalize("NFD", text)
+    return any(unicodedata.combining(ch) for ch in normalized)
 
 
 def _run_sync_job() -> None:
@@ -55,73 +62,90 @@ async def home(request: Request):
 
 @app.get("/search", response_class=HTMLResponse)
 async def search(request: Request, query: str):
-    # Improved Query Processing
+    has_diacritics = _has_diacritics(query)
+    should: list[dict] = []
+
+    # Prefer exact diacritics matches when the user types diacritics.
+    if has_diacritics:
+        should.append(
+            {
+                "multi_match": {
+                    "query": query,
+                    "fields": [
+                        "title.with_diacritics^60",
+                        "content.with_diacritics^30",
+                    ],
+                    "type": "phrase",
+                    "slop": 1,
+                }
+            }
+        )
+
+    # Accent-insensitive phrase match (folding) as a general fallback.
+    should.append(
+        {
+            "multi_match": {
+                "query": query,
+                "fields": [
+                    "title^10",
+                    "content^5",
+                ],
+                "type": "phrase",
+                "slop": 3,
+            }
+        }
+    )
+
+    # Require all query terms to appear, even if split across title/content.
+    if has_diacritics:
+        should.append(
+            {
+                "multi_match": {
+                    "query": query,
+                    "fields": [
+                        "title.with_diacritics^12",
+                        "content.with_diacritics^6",
+                    ],
+                    "type": "cross_fields",
+                    "operator": "and",
+                    "boost": 3,
+                }
+            }
+        )
+
+    should.append(
+        {
+            "multi_match": {
+                "query": query,
+                "fields": [
+                    "title^4",
+                    "content^2",
+                ],
+                "type": "cross_fields",
+                "operator": "and",
+                "boost": 2,
+            }
+        }
+    )
+
+    # Fuzzy fallback for typos, but still require all terms.
+    should.append(
+        {
+            "multi_match": {
+                "query": query,
+                "fields": ["title", "content"],
+                "fuzziness": "AUTO",
+                "prefix_length": 1,
+                "operator": "and",
+                "boost": 0.3,
+            }
+        }
+    )
+
     search_query = {
         "bool": {
-            "should": [
-                # 1. HIGH PRIORITY: Phrase Match with Slop
-                # Matches "kinh tế" or "kinh tế học" when user types "kinh tế"
-                {
-                    "multi_match": {
-                        "query": query,
-                        "fields": [
-                            "title^10", 
-                            "title.with_diacritics^10", 
-                            "content^5", 
-                            "content.with_diacritics^5"
-                        ],
-                        "type": "phrase",
-                        "slop": 3
-                    }
-                },
-                
-                # 2. MEDIUM PRIORITY: All Terms Present (AND)
-                # Matches documents containing ALL words, even if scattered
-                {
-                    "multi_match": {
-                        "query": query,
-                        "fields": [
-                            "title^4", 
-                            "title.with_diacritics^4", 
-                            "content^2", 
-                            "content.with_diacritics^2"
-                        ],
-                        "type": "best_fields",
-                        "operator": "and", 
-                        "boost": 2
-                    }
-                },
-                
-                # 3. LOW PRIORITY: Partial Match (Recall Fallback)
-                # Catches documents with at least 75% of the words
-                {
-                    "multi_match": {
-                        "query": query,
-                        "fields": [
-                            "title", 
-                            "title.with_diacritics", 
-                            "content", 
-                            "content.with_diacritics"
-                        ],
-                        "type": "best_fields",
-                        "minimum_should_match": "75%"
-                    }
-                },
-
-                # 4. LOWEST PRIORITY: Fuzzy Match (Typo Tolerance)
-                # Catches "elstic" -> "elastic" or "viet nam" -> "viet nam"
-                {
-                    "multi_match": {
-                        "query": query,
-                        # Target only the base fields (folded/no-accents) for best fuzzy performance
-                        "fields": ["title", "content"], 
-                        "fuzziness": "AUTO",
-                        "prefix_length": 1,  # Assume the first letter is correct for speed
-                        "boost": 0.5         # Very low boost; only changes ranking if nothing else matches well
-                    }
-                }
-            ],
-            "minimum_should_match": 1
+            "should": should,
+            "minimum_should_match": 1,
         }
     }
     

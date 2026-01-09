@@ -2,52 +2,118 @@ from __future__ import annotations
 
 import sys
 from typing import Any, Dict, Iterable, List
+import os
+import requests
 
-from supabase import supabase
 from scraper import init_index
 from elastic import bulk_insert
 from settings import INDEX_NAME
 
 
-def _get_data_from_resp(res: Any) -> List[dict]:
-    # supabase client may return object with .data or a dict
-    if res is None:
-        return []
-    data = None
-    try:
-        data = getattr(res, "data", None)
-    except Exception:
-        data = None
-    if data is None:
-        try:
-            data = res["data"]
-        except Exception:
-            data = res
-    return data or []
-
-
 def fetch_stories(limit: int | None = None) -> List[dict]:
-    if supabase is None:
+    url = os.getenv("SUPABASE_URL")
+    key = os.getenv("SUPABASE_KEY")
+    if not url or not key:
         raise RuntimeError("Supabase client not configured; set SUPABASE_URL and SUPABASE_KEY in .env")
-    q = supabase.table("stories").select("*")
+    
+    # Use REST API directly with pagination
+    endpoint = f"{url}/rest/v1/stories"
+    headers = {
+        "apikey": key,
+        "Authorization": f"Bearer {key}",
+        "Prefer": "count=exact",
+    }
+    
+    all_data = []
+    offset = 0
+    page_size = 1000
+    
+    while True:
+        params = {"select": "*", "offset": str(offset), "limit": str(page_size)}
+        if limit and len(all_data) >= limit:
+            break
+            
+        resp = requests.get(endpoint, headers=headers, params=params)
+        resp.raise_for_status()
+        batch = resp.json()
+        
+        if not batch:
+            break
+            
+        all_data.extend(batch)
+        print(f"Fetched {len(batch)} stories (total: {len(all_data)})")
+        
+        if len(batch) < page_size:
+            break
+        offset += page_size
+    
     if limit:
-        q = q.limit(limit)
-    res = q.execute()
-    return _get_data_from_resp(res)
+        return all_data[:limit]
+    return all_data
 
 
 def fetch_chapters(limit: int | None = None) -> List[dict]:
-    if supabase is None:
+    url = os.getenv("SUPABASE_URL")
+    key = os.getenv("SUPABASE_KEY")
+    if not url or not key:
         raise RuntimeError("Supabase client not configured; set SUPABASE_URL and SUPABASE_KEY in .env")
-    q = supabase.table("chapters").select("*")
+    
+    endpoint = f"{url}/rest/v1/chapters"
+    headers = {
+        "apikey": key,
+        "Authorization": f"Bearer {key}",
+        "Prefer": "count=exact",
+    }
+    
+    all_data = []
+    offset = 0
+    page_size = 1000
+    
+    while True:
+        params = {"select": "*", "offset": str(offset), "limit": str(page_size)}
+        if limit and len(all_data) >= limit:
+            break
+            
+        resp = requests.get(endpoint, headers=headers, params=params)
+        resp.raise_for_status()
+        batch = resp.json()
+        
+        if not batch:
+            break
+            
+        all_data.extend(batch)
+        print(f"Fetched {len(batch)} chapters (total: {len(all_data)})")
+        
+        if len(batch) < page_size:
+            break
+        offset += page_size
+    
     if limit:
-        q = q.limit(limit)
-    res = q.execute()
-    return _get_data_from_resp(res)
+        return all_data[:limit]
+    return all_data
+
+
+def extract_id_from_url(source_url: str) -> str:
+    """Extract document ID from source_url.
+    E.g. https://truyenfull.vision/su-phu-mang-thai-con-cua-ai/chuong-3/ 
+    becomes su-phu-mang-thai-con-cua-ai_chuong-3
+    """
+    if not source_url:
+        return "unknown"
+    
+    # Remove https://truyenfull.vision/ prefix
+    path = source_url.replace("https://truyenfull.vision/", "")
+    # Remove trailing slash
+    path = path.rstrip("/")
+    # Replace remaining slashes with underscores
+    doc_id = path.replace("/", "_")
+    return doc_id if doc_id else "unknown"
 
 
 def transform_story(row: dict) -> Dict[str, dict]:
-    story_id = str(row.get("id") or row.get("story_id") or row.get("slug"))
+    source_url = row.get("source_url") or ""
+    doc_id = extract_id_from_url(source_url)
+    story_id =  doc_id
     doc = {
         "doc_type": "story",
         "story_id": story_id,
@@ -60,14 +126,15 @@ def transform_story(row: dict) -> Dict[str, dict]:
         "last_updated": row.get("last_updated"),
         "source_url": row.get("source_url"),
     }
-    return {story_id: doc}
+    return {doc_id: doc}
 
 
 def transform_chapter(row: dict) -> Dict[str, dict]:
+    source_url = row.get("source_url") or ""
+    doc_id = extract_id_from_url(source_url)
     story_id = str(row.get("story_id") or row.get("story") or row.get("parent_id") or "unknown")
     chapter_number = row.get("chapter_number") or row.get("chapter") or row.get("num")
     chapter_number = int(chapter_number) if chapter_number is not None else 0
-    doc_id = f"{story_id}_chapter_{chapter_number}"
     doc = {
         "doc_type": "chapter",
         "story_id": story_id,
