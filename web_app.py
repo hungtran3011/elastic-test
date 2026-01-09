@@ -55,24 +55,76 @@ async def home(request: Request):
 
 @app.get("/search", response_class=HTMLResponse)
 async def search(request: Request, query: str):
-    # Heavily prioritize phrase matches, individual words have minimal impact
+    # Improved Query Processing
     search_query = {
         "bool": {
             "should": [
-                # Phrase matches get very high priority (whole phrase together)
-                {"match_phrase": {"content": {"query": query, "boost": 20.0}}},
-                {"match_phrase": {"title": {"query": query, "boost": 30.0}}},
-                {"match_phrase": {"content.with_diacritics": {"query": query, "boost": 25.0}}},
-                {"match_phrase": {"title.with_diacritics": {"query": query, "boost": 35.0}}},
-                # Individual word matches (very low priority, scattered words)
-                {"match": {"content": {"query": query, "boost": 0.1}}},
-                {"match": {"title": {"query": query, "boost": 0.3}}},
-                {"match": {"content.with_diacritics": {"query": query, "boost": 0.15}}},
-                {"match": {"title.with_diacritics": {"query": query, "boost": 0.4}}},
+                # 1. HIGH PRIORITY: Phrase Match with Slop
+                # Matches "kinh tế" or "kinh tế học" when user types "kinh tế"
+                {
+                    "multi_match": {
+                        "query": query,
+                        "fields": [
+                            "title^10", 
+                            "title.with_diacritics^10", 
+                            "content^5", 
+                            "content.with_diacritics^5"
+                        ],
+                        "type": "phrase",
+                        "slop": 3
+                    }
+                },
+                
+                # 2. MEDIUM PRIORITY: All Terms Present (AND)
+                # Matches documents containing ALL words, even if scattered
+                {
+                    "multi_match": {
+                        "query": query,
+                        "fields": [
+                            "title^4", 
+                            "title.with_diacritics^4", 
+                            "content^2", 
+                            "content.with_diacritics^2"
+                        ],
+                        "type": "best_fields",
+                        "operator": "and", 
+                        "boost": 2
+                    }
+                },
+                
+                # 3. LOW PRIORITY: Partial Match (Recall Fallback)
+                # Catches documents with at least 75% of the words
+                {
+                    "multi_match": {
+                        "query": query,
+                        "fields": [
+                            "title", 
+                            "title.with_diacritics", 
+                            "content", 
+                            "content.with_diacritics"
+                        ],
+                        "type": "best_fields",
+                        "minimum_should_match": "75%"
+                    }
+                },
+
+                # 4. LOWEST PRIORITY: Fuzzy Match (Typo Tolerance)
+                # Catches "elstic" -> "elastic" or "viet nam" -> "viet nam"
+                {
+                    "multi_match": {
+                        "query": query,
+                        # Target only the base fields (folded/no-accents) for best fuzzy performance
+                        "fields": ["title", "content"], 
+                        "fuzziness": "AUTO",
+                        "prefix_length": 1,  # Assume the first letter is correct for speed
+                        "boost": 0.5         # Very low boost; only changes ranking if nothing else matches well
+                    }
+                }
             ],
             "minimum_should_match": 1
         }
     }
+    
     response = search_documents(INDEX_NAME, search_query, highlight_fields=["content", "title"])
     results = response.body['hits']['hits']
     return templates.TemplateResponse("index.html", {"request": request, "results": results, "query": query})
