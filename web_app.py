@@ -45,7 +45,13 @@ def _startup() -> None:
 
     global _scheduler
     _scheduler = BackgroundScheduler(daemon=True)
-    _scheduler.add_job(_run_sync_job, "interval", minutes=SCRAPE_INTERVAL_MINUTES, id="scrape_sync", replace_existing=True)
+    _scheduler.add_job(
+        _run_sync_job,
+        "interval",
+        minutes=SCRAPE_INTERVAL_MINUTES,
+        id="scrape_sync",
+        replace_existing=True,
+    )
     _scheduler.start()
 
 
@@ -56,12 +62,29 @@ def _shutdown() -> None:
         _scheduler.shutdown(wait=False)
         _scheduler = None
 
+
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request, "results": None, "query": ""})
+    return templates.TemplateResponse(
+        "index.html",
+        {
+            "request": request,
+            "results": None,
+            "query": "",
+            "page": 1,
+            "total_pages": 0,
+            "total_hits": 0,
+            "pages": [],
+        },
+    )
+
 
 @app.get("/search", response_class=HTMLResponse)
-async def search(request: Request, query: str):
+async def search(request: Request, query: str, page: int = 1):
+    per_page = 10
+    page = max(1, int(page))
+    offset = (page - 1) * per_page
+
     has_diacritics = _has_diacritics(query)
     should: list[dict] = []
 
@@ -148,10 +171,43 @@ async def search(request: Request, query: str):
             "minimum_should_match": 1,
         }
     }
-    
-    response = search_documents(INDEX_NAME, search_query, highlight_fields=["content", "title"])
-    results = response.body['hits']['hits']
-    return templates.TemplateResponse("index.html", {"request": request, "results": results, "query": query})
+
+    response = search_documents(
+        INDEX_NAME,
+        search_query,
+        highlight_fields=["content", "title"],
+        from_=offset,
+        size=per_page,
+    )
+
+    body = getattr(response, "body", response)
+    hits_obj = body.get("hits", {}) if isinstance(body, dict) else {}
+    total_obj = hits_obj.get("total", 0)
+    if isinstance(total_obj, dict):
+        total_hits = int(total_obj.get("value", 0))
+    else:
+        total_hits = int(total_obj or 0)
+    results = hits_obj.get("hits", [])
+
+    total_pages = (total_hits + per_page - 1) // per_page if total_hits else 0
+    window = 10
+    start_page = max(1, page - window // 2)
+    end_page = min(total_pages, start_page + window - 1)
+    start_page = max(1, end_page - window + 1)
+    pages = list(range(start_page, end_page + 1)) if total_pages else []
+
+    return templates.TemplateResponse(
+        "index.html",
+        {
+            "request": request,
+            "results": results,
+            "query": query,
+            "page": page,
+            "total_pages": total_pages,
+            "total_hits": total_hits,
+            "pages": pages,
+        },
+    )
 
 
 @app.get("/healthz")
