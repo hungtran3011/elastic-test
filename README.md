@@ -209,3 +209,47 @@ gcloud artifacts repositories delete custom-elastic --location=us-central1
 # Delete service account
 gcloud iam service-accounts delete gke-deployer@YOUR_PROJECT_ID.iam.gserviceaccount.com
 ```
+
+## Crawler — local quick run
+
+Follow these steps to run the crawler locally and import sample data to Supabase (Windows / PowerShell).
+
+1) Create & activate virtualenv:
+
+```powershell
+python -m venv .venv
+. .\.venv\Scripts\Activate.ps1
+```
+
+2) Upgrade packaging tools and install requirements:
+
+```powershell
+python -m pip install --upgrade pip setuptools wheel
+pip install -r requirement.txt
+# Optional useful packages for Supabase import
+pip install supabase python-dotenv
+```
+
+3) (Optional) Create a `.env` in project root with your Supabase credentials:
+
+```
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_KEY=your-service-role-key
+```
+
+4) Run the scraper for a single category (example: `trinh-tham`, 4 listing pages, up to 200 chapters per story):
+
+```powershell
+python scraper.py --category trinh-tham --max-pages 4 --chapters 200 --delay 0.2 --resume --job-id trinh-tham
+```
+
+5) Import the crawled JSON files for a category into Supabase (uploads stories and chapters):
+
+```powershell
+python import-to-supabase.py data/ngon-tinh
+```
+
+Notes:
+- Use the Service Role key from Supabase for write/upsert operations (Settings → API → Service Role).  
+- If you only want to demo a single category, point the import script at that category folder (e.g. `data/kiem-hiep`).  
+- Make sure `.env` is NOT committed to git (add `.env` to `.gitignore`).
