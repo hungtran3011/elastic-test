@@ -53,7 +53,7 @@
                 Chương {{ doc.chapter_number }}{% if total_chapters %}/{{ total_chapters }}{% endif %}
             </p>
             {% endif %}
-            {% if doc.author %}
+            {% if doc.author and doc.doc_type != 'chapter' %}
             <p style="color: var(--text-muted);">Tác giả: {{ doc.author }}</p>
             {% endif %}
 
