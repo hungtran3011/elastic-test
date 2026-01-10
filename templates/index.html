@@ -1,99 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elasticsearch Search</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        form { margin-bottom: 20px; }
-        input[type="text"] { width: 300px; padding: 8px; }
-        button { padding: 8px 16px; }
-        .result { margin-bottom: 20px; border: 1px solid #ccc; padding: 10px; }
-        em { background-color: yellow; }
-        .pagination { margin-top: 20px; }
-        .pagination a, .pagination span {
-            display: inline-block;
-            padding: 6px 10px;
-            margin-right: 6px;
-            border: 1px solid #ccc;
-            text-decoration: none;
-            color: inherit;
-        }
-        .pagination .current {
-            font-weight: bold;
-            border-color: #666;
-        }
-        .muted { color: #666; }
-    </style>
+    <title>Elastic Search - Thư Viện Truyện</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
-<body>
-    <h1>Elasticsearch Search</h1>
-    <form action="/search" method="get">
-        <input type="text" name="query" placeholder="Enter search query" value="{{ query or '' }}" required>
-        <button type="submit">Search</button>
-    </form>
-    {% if results %}
-        <h2>Search Results</h2>
-        {% if total_hits is not none %}
-            <p class="muted">About {{ total_hits }} results</p>
-        {% endif %}
+
+<body data-theme="dark">
+    <header>
+        <div class="container" style="padding: 0;">
+            <h1 style="font-size: 3rem; margin-bottom: 1rem;">Elastic Search</h1>
+            <p style="opacity: 0.9;">Khám phá hàng triệu chương truyện với tốc độ ánh sáng</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <form action="/search" method="get" class="search-box">
+            <input type="text" name="query" placeholder="Tìm kiếm tên truyện, tác giả hoặc nội dung..."
+                value="{{ query or '' }}" required autofocus>
+            <button type="submit">Tìm Kiếm</button>
+        </form>
+
+        {% if results is not none %}
+        <div class="stats">
+            Tìm thấy khoảng <strong>{{ total_hits }}</strong> kết quả
+        </div>
+
         {% for hit in results %}
-        <div class="result">
-            <h3>Document ID: {{ hit._id }}</h3>
-            <p>Score: {{ hit._score }}</p>
-            {% if hit._source.doc_type %}
-                <p>Type: {{ hit._source.doc_type }}</p>
-            {% endif %}
-            {% if hit._source.story_id %}
-                <p>Story: {{ hit._source.story_id }}{% if hit._source.chapter_number %} (Chapter {{ hit._source.chapter_number }}){% endif %}</p>
-            {% endif %}
-
-            <p>Title:
-                {% if hit.highlight and hit.highlight.title %}
+        <div class="result-card">
+            <h3>
+                {% if hit._source.doc_type == 'chapter' %}
+                {% if hit.story_title %}
+                <a href="/document/{{ hit.story_slug }}" style="color: var(--primary); text-decoration: none;">{{
+                    hit.story_title }}</a>
+                <span style="color: var(--text-muted); margin: 0 8px; font-weight: 400; font-size: 0.9em;">&gt;</span>
+                {% endif %}
+                <a href="/document/{{ hit._id }}" style="color: inherit; text-decoration: none;">
+                    Chương {{ hit._source.chapter_number }}{% if hit.total_chapters %}/{{ hit.total_chapters }}{% endif
+                    %}
+                </a>
+                {% else %}
+                <a href="/document/{{ hit._id }}" style="color: inherit; text-decoration: none;">
+                    {% if hit.highlight and hit.highlight.title %}
                     {% for fragment in hit.highlight.title %}
-                        <span class="highlight">{{ fragment | safe }}</span>
+                    {{ fragment | safe }}
                     {% endfor %}
-                {% else %}
+                    {% else %}
                     {{ hit._source.title }}
+                    {% endif %}
+                </a>
                 {% endif %}
-            </p>
+            </h3>
 
-            <p>Content:
-                {% if hit.highlight and hit.highlight.content %}
+            <!-- Tech Metadata -->
+            <div
+                style="font-size: 0.7rem; color: var(--text-muted); margin-bottom: 0.8rem; display: flex; gap: 15px; opacity: 0.7;">
+                <span><strong>ID:</strong> {{ hit._id }}</span>
+                <span><strong>Score:</strong> {{ "%.4f"|format(hit._score) }}</span>
+            </div>
+
+            <div class="snippet">
+                <a href="/document/{{ hit._id }}" style="text-decoration: none; color: inherit;">
+                    {% if hit.highlight and hit.highlight.content %}
                     {% for fragment in hit.highlight.content %}
-                        <span class="highlight">{{ fragment | safe }}</span>
+                    ... {{ fragment | safe }} ...
                     {% endfor %}
-                {% else %}
-                    {{ hit._source.content }}
-                {% endif %}
-            </p>
+                    {% else %}
+                    {{ (hit._source.content[:300] if hit._source.content else '') | replace('&lt;br&gt;', '<br>') | safe
+                    }}...
+                    {% endif %}
+                </a>
+            </div>
         </div>
         {% endfor %}
 
+        {% if not results %}
+        <div style="text-align: center; padding: 4rem; opacity: 0.5;">
+            <p>Không tìm thấy kết quả nào cho "{{ query }}"</p>
+        </div>
+        {% endif %}
+
         {% if total_pages and total_pages > 1 %}
-        <div class="pagination" aria-label="Pagination">
+        <div class="pagination">
             {% if page > 1 %}
-                <a href="/search?query={{ query|urlencode }}&page={{ page - 1 }}">Prev</a>
-            {% else %}
-                <span class="muted">Prev</span>
+            <a href="/search?query={{ query|urlencode }}&page={{ page - 1 }}">Trước</a>
             {% endif %}
 
             {% for p in pages %}
-                {% if p == page %}
-                    <span class="current">{{ p }}</span>
-                {% else %}
-                    <a href="/search?query={{ query|urlencode }}&page={{ p }}">{{ p }}</a>
-                {% endif %}
+            {% if p == page %}
+            <span class="current">{{ p }}</span>
+            {% else %}
+            <a href="/search?query={{ query|urlencode }}&page={{ p }}">{{ p }}</a>
+            {% endif %}
             {% endfor %}
 
-            {% if page < total_pages %}
-                <a href="/search?query={{ query|urlencode }}&page={{ page + 1 }}">Next</a>
-            {% else %}
-                <span class="muted">Next</span>
-            {% endif %}
+            {% if page < total_pages %} <a href="/search?query={{ query|urlencode }}&page={{ page + 1 }}">Sau</a>
+                {% endif %}
         </div>
         {% endif %}
-    {% endif %}
+        {% else %}
+        <!-- Landing suggestions or categories would go here -->
+        <div style="text-align: center; padding: 4rem; opacity: 0.5;">
+            <p>Nhập từ khóa để bắt đầu khám phá</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <footer style="text-align: center; padding: 4rem; color: var(--text-muted); font-size: 0.8rem;">
+        &copy; 2026 Powered by Elasticsearch & FastAPI
+    </footer>
+
+    <script>
+        // Optional: Theme toggler can be added here
+    </script>
 </body>
+
 </html>

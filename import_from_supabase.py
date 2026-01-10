@@ -14,7 +14,7 @@ def fetch_stories(limit: int | None = None) -> List[dict]:
     key = os.getenv("SUPABASE_KEY")
     if not url or not key:
         raise RuntimeError("Supabase client not configured; set SUPABASE_URL and SUPABASE_KEY in .env")
-    
+
     # Use REST API directly with pagination
     endpoint = f"{url}/rest/v1/stories"
     headers = {
@@ -22,30 +22,30 @@ def fetch_stories(limit: int | None = None) -> List[dict]:
         "Authorization": f"Bearer {key}",
         "Prefer": "count=exact",
     }
-    
+
     all_data = []
     offset = 0
     page_size = 1000
-    
+
     while True:
         params = {"select": "*", "offset": str(offset), "limit": str(page_size)}
         if limit and len(all_data) >= limit:
             break
-            
+
         resp = requests.get(endpoint, headers=headers, params=params)
         resp.raise_for_status()
         batch = resp.json()
-        
+
         if not batch:
             break
-            
+
         all_data.extend(batch)
         print(f"Fetched {len(batch)} stories (total: {len(all_data)})")
-        
+
         if len(batch) < page_size:
             break
         offset += page_size
-    
+
     if limit:
         return all_data[:limit]
     return all_data
@@ -56,37 +56,37 @@ def fetch_chapters(limit: int | None = None) -> List[dict]:
     key = os.getenv("SUPABASE_KEY")
     if not url or not key:
         raise RuntimeError("Supabase client not configured; set SUPABASE_URL and SUPABASE_KEY in .env")
-    
+
     endpoint = f"{url}/rest/v1/chapters"
     headers = {
         "apikey": key,
         "Authorization": f"Bearer {key}",
         "Prefer": "count=exact",
     }
-    
+
     all_data = []
     offset = 0
     page_size = 1000
-    
+
     while True:
         params = {"select": "*", "offset": str(offset), "limit": str(page_size)}
         if limit and len(all_data) >= limit:
             break
-            
+
         resp = requests.get(endpoint, headers=headers, params=params)
         resp.raise_for_status()
         batch = resp.json()
-        
+
         if not batch:
             break
-            
+
         all_data.extend(batch)
         print(f"Fetched {len(batch)} chapters (total: {len(all_data)})")
-        
+
         if len(batch) < page_size:
             break
         offset += page_size
-    
+
     if limit:
         return all_data[:limit]
     return all_data
@@ -94,12 +94,12 @@ def fetch_chapters(limit: int | None = None) -> List[dict]:
 
 def extract_id_from_url(source_url: str) -> str:
     """Extract document ID from source_url.
-    E.g. https://truyenfull.vision/su-phu-mang-thai-con-cua-ai/chuong-3/ 
+    E.g. https://truyenfull.vision/su-phu-mang-thai-con-cua-ai/chuong-3/
     becomes su-phu-mang-thai-con-cua-ai_chuong-3
     """
     if not source_url:
         return "unknown"
-    
+
     # Remove https://truyenfull.vision/ prefix
     path = source_url.replace("https://truyenfull.vision/", "")
     # Remove trailing slash
@@ -112,7 +112,7 @@ def extract_id_from_url(source_url: str) -> str:
 def transform_story(row: dict) -> Dict[str, dict]:
     source_url = row.get("source_url") or ""
     doc_id = extract_id_from_url(source_url)
-    story_id =  doc_id
+    story_id = doc_id
     doc = {
         "doc_type": "story",
         "story_id": story_id,
@@ -161,8 +161,9 @@ def batch_iter(items: Iterable, batch_size: int):
         yield batch
 
 
-def import_all(story_limit: int | None = None, chapter_limit: int | None = None, batch_size: int = 500, dry_run: bool = False):
-    ensure_index()
+def import_all(story_limit: int | None = None, chapter_limit: int | None = None, batch_size: int = 500,
+               dry_run: bool = False):
+    ensure_index(INDEX_NAME)
 
     stories = fetch_stories(limit=story_limit)
     print(f"Fetched {len(stories)} stories from Supabase")
