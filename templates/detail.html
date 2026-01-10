@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ doc.title }} - Reader Lounge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        body {
+            background-color: var(--bg);
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 8px 16px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 0.9rem;
+            z-index: 100;
+        }
+
+        .reader-hdr {
+            text-align: center;
+            margin-bottom: 3rem;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 2rem;
+        }
+    </style>
+</head>
+
+<body data-theme="dark">
+    <a href="javascript:history.back()" class="back-btn">← Quay lại</a>
+
+    <div class="reader-container">
+        <div class="reader-hdr">
+            <h1 style="font-family: 'Merriweather', serif; color: var(--primary);">{{ doc.title }}</h1>
+            {% if doc.doc_type == 'chapter' %}
+            <p style="color: var(--text-muted); margin-top: 10px;">
+                Chương {{ doc.chapter_number }}{% if total_chapters %}/{{ total_chapters }}{% endif %}
+                • ID Truyện: {{ doc.story_id }}
+            </p>
+            {% endif %}
+            {% if doc.author %}
+            <p style="color: var(--text-muted);">Tác giả: {{ doc.author }}</p>
+            {% endif %}
+        </div>
+
+        <div class="content">
+            {{ doc.content | replace('\n', '<br>') | replace('&lt;br&gt;', '<br>') | replace('<br>', '<br>') | safe }}
+        </div>
+
+        <div class="nav-sticky">
+            {% if prev_id %}
+            <a href="/document/{{ prev_id }}" style="text-decoration: none; color: var(--primary); font-weight: 600;">←
+                Chương Trước</a>
+            {% else %}
+            <span style="opacity: 0.3;">← Chương Trước</span>
+            {% endif %}
+
+            <a href="/" style="text-decoration: none; color: var(--text-muted);">Trang Chủ</a>
+
+            {% if next_id %}
+            <a href="/document/{{ next_id }}"
+                style="text-decoration: none; color: var(--primary); font-weight: 600;">Chương Sau →</a>
+            {% else %}
+            <span style="opacity: 0.3;">Chương Sau →</span>
+            {% endif %}
+        </div>
+    </div>
+
+    <footer style="text-align: center; padding: 4rem; color: var(--text-muted); font-size: 0.8rem;">
+        Reader Lounge &copy; 2026
+    </footer>
+</body>
+
+</html>

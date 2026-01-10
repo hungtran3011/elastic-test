@@ -81,8 +81,39 @@ def search_documents(index_name, query, highlight_fields=None, *, from_: int = 0
         "size": max(1, int(size)),
         "track_total_hits": True,
         "highlight": {
+            "pre_tags": ["<em>"],
+            "post_tags": ["</em>"],
             "fields": {field: {} for field in highlight_fields} if highlight_fields else {"content": {}}
         },
     }
     response = client.search(index=index_name, body=body)
     return response
+
+
+def get_document_by_id(index_name: str, doc_id: str):
+    """Fetch a single document by its ID."""
+    try:
+        response = client.get(index=index_name, id=doc_id)
+        return response.body if hasattr(response, "body") else response
+    except Exception as e:
+        print(f"Error fetching document {doc_id}: {e}")
+        return None
+
+
+def get_chapter_count(index_name: str, story_id: str) -> int:
+    """Get the total number of chapters for a given story."""
+    try:
+        query = {
+            "bool": {
+                "must": [
+                    {"term": {"story_id.keyword": story_id}},
+                    {"term": {"doc_type.keyword": "chapter"}}
+                ]
+            }
+        }
+        # Using body for count in older versions, or count(query=...)
+        response = client.count(index=index_name, body={"query": query})
+        return getattr(response, "body", response).get("count", 0)
+    except Exception as e:
+        print(f"Error counting chapters for {story_id}: {e}")
+        return 0

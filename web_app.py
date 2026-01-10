@@ -4,12 +4,13 @@ import json
 import unicodedata
 
 from fastapi import FastAPI, Request
+from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 
 from apscheduler.schedulers.background import BackgroundScheduler
 
-from elastic import client, search_documents, wait_for_elasticsearch, ensure_index
+from elastic import client, search_documents, wait_for_elasticsearch, ensure_index, get_document_by_id, get_chapter_count
 # from scraper import init_index, sync_from_list
 from import_from_supabase import import_all
 from settings import INDEX_NAME, SCRAPE_INTERVAL_MINUTES, INDEX_CONFIG_JSON
@@ -18,6 +19,7 @@ import os
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
 _scheduler: BackgroundScheduler | None = None
@@ -201,6 +203,19 @@ async def search(request: Request, query: str, page: int = 1):
         total_hits = int(total_obj or 0)
     results = hits_obj.get("hits", [])
 
+    # Enrichment: Total chapters for UI
+    story_counts = {}
+    for hit in results:
+        s = hit.get("_source", {})
+        sid = s.get("story_id")
+        if sid and sid not in story_counts:
+            story_counts[sid] = get_chapter_count(INDEX_NAME, sid)
+
+    for hit in results:
+        sid = hit.get("_source", {}).get("story_id")
+        if sid:
+            hit["total_chapters"] = story_counts.get(sid, 0)
+
     total_pages = (total_hits + per_page - 1) // per_page if total_hits else 0
     window = 10
     start_page = max(1, page - window // 2)
@@ -219,6 +234,85 @@ async def search(request: Request, query: str, page: int = 1):
             "total_hits": total_hits,
             "pages": pages,
         },
+    )
+
+
+@app.get("/document/{doc_id}", response_class=HTMLResponse)
+async def document_detail(request: Request, doc_id: str):
+    doc = get_document_by_id(INDEX_NAME, doc_id)
+    if not doc:
+        return templates.TemplateResponse("404.html", {"request": request}, status_code=404)
+
+    source = doc.get("_source", {})
+
+    # Simple logic for Prev/Next (based on chapter number if available)
+    prev_id = None
+    next_id = None
+
+    if source.get("doc_type") == "chapter":
+        story_id = source.get("story_id")
+        chapter_num = source.get("chapter_number")
+
+        if chapter_num is not None:
+             # Look for prev/next by searching ES
+             try:
+                 # Search for Prev
+                 prev_q = {
+                     "bool": {
+                         "must": [
+                             {"term": {"story_id.keyword": story_id}},
+                             {"term": {"chapter_number": chapter_num - 1}},
+                             {"term": {"doc_type.keyword": "chapter"}}
+                         ]
+                     }
+                 }
+                 p_resp = search_documents(INDEX_NAME, prev_q, size=1)
+                 p_hits = getattr(p_resp, "body", p_resp).get("hits", {}).get("hits", [])
+                 if p_hits:
+                     prev_id = p_hits[0]["_id"]
+
+                 # Search for Next
+                 next_q = {
+                     "bool": {
+                         "must": [
+                             {"term": {"story_id.keyword": story_id}},
+                             {"term": {"chapter_number": chapter_num + 1}},
+                             {"term": {"doc_type.keyword": "chapter"}}
+                         ]
+                     }
+                 }
+                 n_resp = search_documents(INDEX_NAME, next_q, size=1)
+                 n_hits = getattr(n_resp, "body", n_resp).get("hits", {}).get("hits", [])
+                 if n_hits:
+                     next_id = n_hits[0]["_id"]
+             except Exception:
+                 pass
+
+    # Process content to handle <br> and \n
+    content = source.get("content", "")
+    if content:
+        # Normalize: turn escaped <br> or literal <br> strings into real newlines
+        content = content.replace("<br>", "\n").replace("<br/>", "\n").replace("<br />", "\n")
+        content = content.replace("&lt;br&gt;", "\n").replace("&lt;br/&gt;", "\n")
+        # Then convert double newlines to paragraphs or single to <br> for clean mapping
+        content = content.replace("\n\n", "</p><p>").replace("\n", "<br>")
+        source["content"] = content
+
+    # Enrichment: Total chapters
+    total_chapters = 0
+    if source.get("story_id"):
+        total_chapters = get_chapter_count(INDEX_NAME, source.get("story_id"))
+
+    return templates.TemplateResponse(
+        "detail.html",
+        {
+            "request": request,
+            "doc": source,
+            "doc_id": doc_id,
+            "prev_id": prev_id,
+            "next_id": next_id,
+            "total_chapters": total_chapters
+        }
     )
 
 
