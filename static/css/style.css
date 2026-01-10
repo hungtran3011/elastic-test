@@ -155,9 +155,11 @@ em {
 /* Pagination */
 .pagination {
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
     justify-content: center;
     margin-top: 3rem;
+    max-width: 100%;
 }
 
 .pagination a,
@@ -174,6 +176,25 @@ em {
     background: var(--primary);
     color: white;
     border-color: var(--primary);
+}
+
+/* Mobile: prevent pagination row overflow */
+@media (max-width: 480px) {
+    .pagination {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 8px;
+    }
+
+    .pagination a,
+    .pagination span {
+        flex: 0 0 auto;
+        padding: 6px 10px;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
 }
 
 /* Reader Lounge */
