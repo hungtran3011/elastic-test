@@ -3,6 +3,13 @@
     "index": {
       "max_ngram_diff": 15
     },
+    "similarity": {
+      "vi_bm25": {
+        "type": "BM25",
+        "k1": 1.2,
+        "b": 0.75
+      }
+    },
     "analysis": {
       "filter": {
         "vietnamese_ngram": {
@@ -64,16 +71,19 @@
     "properties": {
       "title": {
         "type": "text",
+        "similarity": "vi_bm25",
         "analyzer": "vietnamese_text",
         "search_analyzer": "vietnamese_text",
         "fields": {
           "with_diacritics": {
             "type": "text",
+            "similarity": "vi_bm25",
             "analyzer": "vietnamese_text_with_diacritics",
             "search_analyzer": "vietnamese_text_with_diacritics"
           },
           "autocomplete": {
             "type": "text",
+            "similarity": "vi_bm25",
             "analyzer": "vietnamese_autocomplete",
             "search_analyzer": "vietnamese_text"
           }
@@ -81,11 +91,13 @@
       },
       "content": {
         "type": "text",
+        "similarity": "vi_bm25",
         "analyzer": "vietnamese_text",
         "search_analyzer": "vietnamese_text",
         "fields": {
           "with_diacritics": {
             "type": "text",
+            "similarity": "vi_bm25",
             "analyzer": "vietnamese_text_with_diacritics",
             "search_analyzer": "vietnamese_text_with_diacritics"
           }

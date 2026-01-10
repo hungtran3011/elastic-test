@@ -1,0 +1,32 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Import from Supabase (once)",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-Command",
+        "Set-Location -LiteralPath \"${workspaceFolder}\"; if (Test-Path \".\\.venv\\Scripts\\Activate.ps1\") { . \".\\.venv\\Scripts\\Activate.ps1\" }; python .\\import_from_supabase.py"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Import from Supabase (every 3 hours)",
+      "type": "process",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-Command",
+        "Set-Location -LiteralPath \"${workspaceFolder}\"; if (Test-Path \".\\.venv\\Scripts\\Activate.ps1\") { . \".\\.venv\\Scripts\\Activate.ps1\" }; while ($true) { Write-Host (\"[{0}] import_from_supabase...\" -f (Get-Date -Format s)); python .\\import_from_supabase.py; Write-Host (\"[{0}] done; sleeping 3h\" -f (Get-Date -Format s)); Start-Sleep -Seconds 10800 }"
+      ],
+      "isBackground": true,
+      "problemMatcher": []
+    }
+  ]
+}
