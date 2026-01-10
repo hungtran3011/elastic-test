@@ -57,6 +57,22 @@ header {
     gap: 10px;
 }
 
+.search-box select {
+    padding: 1rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card-bg);
+    color: var(--text);
+    font-size: 1rem;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+}
+
+.search-input-wrap {
+    position: relative;
+    width: 500px;
+}
+
 input[type="text"] {
     width: 500px;
     padding: 1rem 1.5rem;
@@ -66,6 +82,40 @@ input[type="text"] {
     color: var(--text);
     font-size: 1rem;
     box-shadow: var(--shadow);
+}
+
+.search-input-wrap input[type="text"] {
+    width: 100%;
+}
+
+.autocomplete-list {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    max-height: 320px;
+    overflow: auto;
+    z-index: 50;
+}
+
+.autocomplete-item {
+    padding: 10px 14px;
+    cursor: pointer;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+}
+
+.autocomplete-item:last-child {
+    border-bottom: none;
+}
+
+.autocomplete-item:hover,
+.autocomplete-item.active {
+    background: rgba(79, 70, 229, 0.14);
 }
 
 button {

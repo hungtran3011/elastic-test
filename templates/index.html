@@ -22,8 +22,16 @@
 
     <div class="container">
         <form action="/search" method="get" class="search-box">
-            <input type="text" name="query" placeholder="Tìm kiếm tên truyện, tác giả hoặc nội dung..."
-                value="{{ query or '' }}" required autofocus>
+            <div class="search-input-wrap">
+                <input id="searchInput" type="text" name="query" placeholder="Tìm kiếm tên truyện, tác giả hoặc nội dung..."
+                    value="{{ query or '' }}" required autocomplete="off" spellcheck="false" autofocus>
+                <div id="autocomplete" class="autocomplete-list" role="listbox" aria-label="Gợi ý tìm kiếm" hidden></div>
+            </div>
+            <select id="scopeSelect" name="scope" aria-label="Tìm trong">
+                <option value="all" {% if scope == 'all' %}selected{% endif %}>Tất cả</option>
+                <option value="title" {% if scope == 'title' %}selected{% endif %}>Tên truyện</option>
+                <option value="content" {% if scope == 'content' %}selected{% endif %}>Nội dung</option>
+            </select>
             <button type="submit">Tìm Kiếm</button>
         </form>
 
@@ -89,18 +97,18 @@
         {% if total_pages and total_pages > 1 %}
         <div class="pagination">
             {% if page > 1 %}
-            <a href="/search?query={{ query|urlencode }}&page={{ page - 1 }}">Trước</a>
+            <a href="/search?query={{ query|urlencode }}&scope={{ scope|urlencode }}&page={{ page - 1 }}">Trước</a>
             {% endif %}
 
             {% for p in pages %}
             {% if p == page %}
             <span class="current">{{ p }}</span>
             {% else %}
-            <a href="/search?query={{ query|urlencode }}&page={{ p }}">{{ p }}</a>
+            <a href="/search?query={{ query|urlencode }}&scope={{ scope|urlencode }}&page={{ p }}">{{ p }}</a>
             {% endif %}
             {% endfor %}
 
-            {% if page < total_pages %} <a href="/search?query={{ query|urlencode }}&page={{ page + 1 }}">Sau</a>
+            {% if page < total_pages %} <a href="/search?query={{ query|urlencode }}&scope={{ scope|urlencode }}&page={{ page + 1 }}">Sau</a>
                 {% endif %}
         </div>
         {% endif %}
@@ -117,7 +125,158 @@
     </footer>
 
     <script>
-        // Optional: Theme toggler can be added here
+        (function () {
+            const input = document.getElementById('searchInput');
+            const list = document.getElementById('autocomplete');
+            const scopeSelect = document.getElementById('scopeSelect');
+            if (!input || !list) return;
+
+            let debounceTimer = null;
+            let activeIndex = -1;
+            let items = [];
+            let lastQuery = '';
+
+            function hide() {
+                list.hidden = true;
+                list.innerHTML = '';
+                activeIndex = -1;
+                items = [];
+            }
+
+            function autocompleteEnabled() {
+                return !scopeSelect || scopeSelect.value !== 'content';
+            }
+
+            function show() {
+                list.hidden = false;
+            }
+
+            function render(suggestions) {
+                items = suggestions || [];
+                activeIndex = -1;
+                if (!items.length) {
+                    hide();
+                    return;
+                }
+
+                list.innerHTML = items.map((s, idx) => (
+                    `<div class="autocomplete-item" role="option" data-idx="${idx}">${escapeHtml(s.title)}</div>`
+                )).join('');
+                show();
+            }
+
+            function escapeHtml(str) {
+                return (str || '')
+                    .replaceAll('&', '&amp;')
+                    .replaceAll('<', '&lt;')
+                    .replaceAll('>', '&gt;')
+                    .replaceAll('"', '&quot;')
+                    .replaceAll("'", '&#39;');
+            }
+
+            function setActive(nextIdx) {
+                const children = Array.from(list.querySelectorAll('.autocomplete-item'));
+                children.forEach(el => el.classList.remove('active'));
+                activeIndex = nextIdx;
+                if (activeIndex >= 0 && activeIndex < children.length) {
+                    const el = children[activeIndex];
+                    el.classList.add('active');
+                    el.scrollIntoView({ block: 'nearest' });
+                }
+            }
+
+            function select(idx, submit = false) {
+                if (idx < 0 || idx >= items.length) return;
+                input.value = items[idx].title;
+                hide();
+                if (submit) {
+                    input.form && input.form.requestSubmit ? input.form.requestSubmit() : input.form && input.form.submit();
+                }
+            }
+
+            async function fetchSuggestions(q) {
+                const url = `/autocomplete?query=${encodeURIComponent(q)}&limit=8`;
+                const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+                if (!res.ok) return [];
+                const data = await res.json();
+                return data && data.suggestions ? data.suggestions : [];
+            }
+
+            input.addEventListener('input', () => {
+                const q = input.value.trim();
+                lastQuery = q;
+
+                if (debounceTimer) clearTimeout(debounceTimer);
+                if (!autocompleteEnabled()) {
+                    hide();
+                    return;
+                }
+                if (q.length < 2) {
+                    hide();
+                    return;
+                }
+
+                debounceTimer = setTimeout(async () => {
+                    try {
+                        if (!autocompleteEnabled()) {
+                            hide();
+                            return;
+                        }
+                        const current = input.value.trim();
+                        if (current.length < 2) {
+                            hide();
+                            return;
+                        }
+                        const suggestions = await fetchSuggestions(current);
+                        // Ignore late responses.
+                        if (input.value.trim() !== current) return;
+                        render(suggestions);
+                    } catch (_) {
+                        hide();
+                    }
+                }, 180);
+            });
+
+            if (scopeSelect) {
+                scopeSelect.addEventListener('change', () => {
+                    hide();
+                });
+            }
+
+            input.addEventListener('keydown', (e) => {
+                if (list.hidden) return;
+
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    setActive(Math.min(items.length - 1, activeIndex + 1));
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    setActive(Math.max(0, activeIndex - 1));
+                } else if (e.key === 'Enter') {
+                    if (activeIndex >= 0) {
+                        e.preventDefault();
+                        select(activeIndex, true);
+                    }
+                } else if (e.key === 'Escape') {
+                    hide();
+                }
+            });
+
+            list.addEventListener('mousedown', (e) => {
+                // mousedown (not click) so the input doesn't lose focus before we read target.
+                const item = e.target.closest('.autocomplete-item');
+                if (!item) return;
+                const idx = parseInt(item.getAttribute('data-idx') || '-1', 10);
+                if (!Number.isFinite(idx)) return;
+                select(idx, true);
+            });
+
+            document.addEventListener('click', (e) => {
+                if (e.target === input) return;
+                if (e.target.closest('.search-input-wrap')) return;
+                hide();
+            });
+        })();
     </script>
 </body>
 
