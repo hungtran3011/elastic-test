@@ -5,8 +5,7 @@ from typing import Any, Dict, Iterable, List
 import os
 import requests
 
-from scraper import init_index
-from elastic import bulk_insert
+from elastic import bulk_insert, ensure_index
 from settings import INDEX_NAME
 
 
@@ -163,7 +162,7 @@ def batch_iter(items: Iterable, batch_size: int):
 
 
 def import_all(story_limit: int | None = None, chapter_limit: int | None = None, batch_size: int = 500, dry_run: bool = False):
-    init_index()
+    ensure_index()
 
     stories = fetch_stories(limit=story_limit)
     print(f"Fetched {len(stories)} stories from Supabase")

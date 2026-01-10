@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import unicodedata
 
 from fastapi import FastAPI, Request
@@ -8,10 +9,12 @@ from fastapi.templating import Jinja2Templates
 
 from apscheduler.schedulers.background import BackgroundScheduler
 
-from elastic import client, search_documents, wait_for_elasticsearch
-from scraper import init_index, sync_from_list
-from settings import INDEX_NAME, SCRAPE_INTERVAL_MINUTES
+from elastic import client, search_documents, wait_for_elasticsearch, ensure_index
+# from scraper import init_index, sync_from_list
+from import_from_supabase import import_all
+from settings import INDEX_NAME, SCRAPE_INTERVAL_MINUTES, INDEX_CONFIG_JSON
 from supabase_helper import supabase
+import os
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
@@ -19,10 +22,19 @@ templates = Jinja2Templates(directory="templates")
 
 _scheduler: BackgroundScheduler | None = None
 
+def init_index() -> None:
+    wait_for_elasticsearch()
+    with open(INDEX_CONFIG_JSON, "r", encoding="utf-8") as f:
+        index_settings = json.load(f)
+    ensure_index(INDEX_NAME, index_settings)
+
 
 def _has_diacritics(text: str) -> bool:
     normalized = unicodedata.normalize("NFD", text)
     return any(unicodedata.combining(ch) for ch in normalized)
+
+def sync_from_list():
+    import_all()
 
 
 def _run_sync_job() -> None:
