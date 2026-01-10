@@ -74,12 +74,15 @@ def delete_document(index_name, doc_id):
     client.delete(index=index_name, id=doc_id)
     print(f"Document with ID '{doc_id}' deleted from index '{index_name}'.")
 
-def search_documents(index_name, query, highlight_fields=None):
+def search_documents(index_name, query, highlight_fields=None, *, from_: int = 0, size: int = 10):
     body = {
         "query": query,
+        "from": max(0, int(from_)),
+        "size": max(1, int(size)),
+        "track_total_hits": True,
         "highlight": {
             "fields": {field: {} for field in highlight_fields} if highlight_fields else {"content": {}}
-        }
+        },
     }
     response = client.search(index=index_name, body=body)
     return response

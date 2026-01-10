@@ -24,7 +24,7 @@ query = {
         }
     }
 
-response = search_documents(INDEX_NAME, query, highlight_fields=["content"])
+response = search_documents(INDEX_NAME, query, highlight_fields=["content"], from_=0, size=10)
 print(response)
 
 with open("search-results.json", "w", encoding="utf-8") as f:

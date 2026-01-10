@@ -4,7 +4,7 @@ import time
 
 from apscheduler.schedulers.blocking import BlockingScheduler
 
-from scraper import init_index, sync_from_list
+from scraper_tool import init_index, sync_from_list
 from settings import SCRAPE_INTERVAL_MINUTES
 
 

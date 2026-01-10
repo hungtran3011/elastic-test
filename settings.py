@@ -31,7 +31,7 @@ def getenv_bool(name: str, default: bool) -> bool:
 ELASTICSEARCH_URL = os.getenv("ELASTICSEARCH_URL", "http://localhost:9201")
 
 # Single source of truth for the index used by both scraper + web app.
-INDEX_NAME = os.getenv("INDEX_NAME", "demonstration-1")
+INDEX_NAME = os.getenv("INDEX_NAME", "demonstration-2")
 INDEX_CONFIG_JSON = os.getenv("INDEX_CONFIG_JSON", "index-config.json")
 
 SCRAPE_BASE_URL = os.getenv("SCRAPE_BASE_URL", "https://truyenfull.vision")

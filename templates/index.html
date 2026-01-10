@@ -11,6 +11,20 @@
         button { padding: 8px 16px; }
         .result { margin-bottom: 20px; border: 1px solid #ccc; padding: 10px; }
         em { background-color: yellow; }
+        .pagination { margin-top: 20px; }
+        .pagination a, .pagination span {
+            display: inline-block;
+            padding: 6px 10px;
+            margin-right: 6px;
+            border: 1px solid #ccc;
+            text-decoration: none;
+            color: inherit;
+        }
+        .pagination .current {
+            font-weight: bold;
+            border-color: #666;
+        }
+        .muted { color: #666; }
     </style>
 </head>
 <body>
@@ -21,6 +35,9 @@
     </form>
     {% if results %}
         <h2>Search Results</h2>
+        {% if total_hits is not none %}
+            <p class="muted">About {{ total_hits }} results</p>
+        {% endif %}
         {% for hit in results %}
         <div class="result">
             <h3>Document ID: {{ hit._id }}</h3>
@@ -53,6 +70,30 @@
             </p>
         </div>
         {% endfor %}
+
+        {% if total_pages and total_pages > 1 %}
+        <div class="pagination" aria-label="Pagination">
+            {% if page > 1 %}
+                <a href="/search?query={{ query|urlencode }}&page={{ page - 1 }}">Prev</a>
+            {% else %}
+                <span class="muted">Prev</span>
+            {% endif %}
+
+            {% for p in pages %}
+                {% if p == page %}
+                    <span class="current">{{ p }}</span>
+                {% else %}
+                    <a href="/search?query={{ query|urlencode }}&page={{ p }}">{{ p }}</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if page < total_pages %}
+                <a href="/search?query={{ query|urlencode }}&page={{ page + 1 }}">Next</a>
+            {% else %}
+                <span class="muted">Next</span>
+            {% endif %}
+        </div>
+        {% endif %}
     {% endif %}
 </body>
 </html>
