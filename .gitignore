@@ -1,3 +1,10 @@
 __pycache__/
 .env
 .venv/
+env/
+.idea/
+
+/data/*
+
+!/data/kiem-hiep/
+!/data/kiem-hiep/**
