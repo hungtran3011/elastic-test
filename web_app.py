@@ -203,18 +203,50 @@ async def search(request: Request, query: str, page: int = 1):
         total_hits = int(total_obj or 0)
     results = hits_obj.get("hits", [])
 
-    # Enrichment: Total chapters for UI
-    story_counts = {}
+    # Enrichment: Total chapters and Story Titles for UI
+    story_info = {}
     for hit in results:
         s = hit.get("_source", {})
-        sid = s.get("story_id")
-        if sid and sid not in story_counts:
-            story_counts[sid] = get_chapter_count(INDEX_NAME, sid)
+        hit_id = hit.get("_id", "")
+
+        # Determine the story slug ID for fetching metadata
+        if s.get("doc_type") == "chapter":
+            # Extract slug from hit_id (e.g., 'story-slug_chuong-1')
+            if "_chuong-" in hit_id:
+                sid = hit_id.split("_chuong-")[0]
+            else:
+                sid = s.get("story_id")
+        else:
+            sid = hit_id
+
+        if sid and (sid not in story_info or story_info[sid]["title"] is None):
+            if sid not in story_info:
+                story_info[sid] = {"count": 0, "title": None, "id": sid}
+
+            # Fetch count and title
+            if story_info[sid]["count"] == 0:
+                story_info[sid]["count"] = get_chapter_count(INDEX_NAME, sid)
+
+            try:
+                story_doc = get_document_by_id(INDEX_NAME, sid)
+                if story_doc:
+                    story_info[sid]["title"] = story_doc.get("_source", {}).get("title")
+            except Exception:
+                pass
 
     for hit in results:
-        sid = hit.get("_source", {}).get("story_id")
-        if sid:
-            hit["total_chapters"] = story_counts.get(sid, 0)
+        s = hit.get("_source", {})
+        hit_id = hit.get("_id", "")
+        sid = (hit_id.split("_chuong-")[0] if "_chuong-" in hit_id else s.get("story_id")) if s.get("doc_type") == "chapter" else hit_id
+
+        if sid and sid in story_info:
+            hit["total_chapters"] = story_info[sid]["count"]
+            hit["story_title"] = story_info[sid]["title"]
+            hit["story_slug"] = story_info[sid]["id"]
+
+            # Fallback for stories
+            if not hit["story_title"] and s.get("doc_type") == "story":
+                 hit["story_title"] = s.get("title")
 
     total_pages = (total_hits + per_page - 1) // per_page if total_hits else 0
     window = 10
@@ -298,10 +330,89 @@ async def document_detail(request: Request, doc_id: str):
         content = content.replace("\n\n", "</p><p>").replace("\n", "<br>")
         source["content"] = content
 
-    # Enrichment: Total chapters
+    # Enrichment: Total chapters and Story Title
     total_chapters = 0
-    if source.get("story_id"):
-        total_chapters = get_chapter_count(INDEX_NAME, source.get("story_id"))
+    story_title = None
+
+    # Extract story slug for lookup
+    if source.get("doc_type") == "chapter":
+        sid = doc_id.split("_chuong-")[0] if "_chuong-" in doc_id else source.get("story_id")
+    else:
+        sid = doc_id
+
+    if sid:
+        total_chapters = get_chapter_count(INDEX_NAME, sid)
+        # Fetch story title
+        try:
+            story_doc = get_document_by_id(INDEX_NAME, sid)
+            if story_doc:
+                story_title = story_doc.get("_source", {}).get("title")
+            elif source.get("doc_type") == "story":
+                story_title = source.get("title")
+        except Exception:
+            pass
+
+    # If it's a story, find the first chapter
+    first_chapter_id = None
+    if source.get("doc_type") == "story":
+        # Strategy 1: Direct ID guess (common pattern)
+        lookups = [f"{doc_id}_chuong-1", f"{doc_id}_chuong-0", f"{doc_id}_chuong-01", f"{doc_id}_chuong-1-1"]
+        try:
+            res_ids = client.search(index=INDEX_NAME, body={"query": {"ids": {"values": lookups}}})
+            hits_ids = getattr(res_ids, "body", res_ids).get("hits", {}).get("hits", [])
+            if hits_ids:
+                hits_ids.sort(key=lambda x: x["_source"].get("chapter_number", 999))
+                first_chapter_id = hits_ids[0]["_id"]
+        except Exception:
+            pass
+
+        # Strategy 2: Search by part of URL (slug) using wildcard for keyword
+        if not first_chapter_id:
+            try:
+                res_url = client.search(
+                    index=INDEX_NAME,
+                    body={
+                        "query": {
+                            "bool": {
+                                "must": [
+                                    {"wildcard": {"source_url.keyword": f"*{doc_id}*"}},
+                                    {"term": {"doc_type.keyword": "chapter"}}
+                                ]
+                            }
+                        }
+                    },
+                    size=1,
+                    sort=[{"chapter_number": {"order": "asc"}}]
+                )
+                hits_url = getattr(res_url, "body", res_url).get("hits", {}).get("hits", [])
+                if hits_url:
+                    first_chapter_id = hits_url[0]["_id"]
+            except Exception:
+                pass
+
+        # Strategy 3: Query String search on ID
+        if not first_chapter_id:
+            try:
+                res_qs = client.search(
+                    index=INDEX_NAME,
+                    body={
+                        "query": {
+                            "bool": {
+                                "must": [
+                                    {"query_string": {"query": f"{doc_id}*", "default_field": "_id"}},
+                                    {"term": {"doc_type.keyword": "chapter"}}
+                                ]
+                            }
+                        }
+                    },
+                    size=1,
+                    sort=[{"chapter_number": {"order": "asc"}}]
+                )
+                hits_qs = getattr(res_qs, "body", res_qs).get("hits", {}).get("hits", [])
+                if hits_qs:
+                    first_chapter_id = hits_qs[0]["_id"]
+            except Exception:
+                pass
 
     return templates.TemplateResponse(
         "detail.html",
@@ -311,7 +422,9 @@ async def document_detail(request: Request, doc_id: str):
             "doc_id": doc_id,
             "prev_id": prev_id,
             "next_id": next_id,
-            "total_chapters": total_chapters
+            "total_chapters": total_chapters,
+            "story_title": story_title,
+            "first_id": first_chapter_id
         }
     )
 

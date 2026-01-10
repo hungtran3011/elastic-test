@@ -45,18 +45,45 @@
         <div class="reader-hdr">
             <h1 style="font-family: 'Merriweather', serif; color: var(--primary);">{{ doc.title }}</h1>
             {% if doc.doc_type == 'chapter' %}
-            <p style="color: var(--text-muted); margin-top: 10px;">
+            <p style="color: var(--text-muted); margin-top: 10px; font-weight: 700;">
+                {% if story_title %}
+                <a href="/document/{{ doc.story_id if '_' not in doc_id else doc_id.split('_chuong-')[0] }}"
+                    style="text-decoration: underline; color: var(--primary);">{{ story_title }}</a> >
+                {% endif %}
                 Chương {{ doc.chapter_number }}{% if total_chapters %}/{{ total_chapters }}{% endif %}
-                • ID Truyện: {{ doc.story_id }}
             </p>
             {% endif %}
             {% if doc.author %}
             <p style="color: var(--text-muted);">Tác giả: {{ doc.author }}</p>
             {% endif %}
+
+            {% if first_id %}
+            <div style="margin-top: 25px;">
+                <a href="/document/{{ first_id }}" class="read-now-btn" style="
+                    display: inline-block;
+                    padding: 14px 40px;
+                    background: linear-gradient(135deg, var(--primary), #a855f7);
+                    color: white;
+                    text-decoration: none;
+                    border-radius: 50px;
+                    font-weight: 700;
+                    font-size: 1.1rem;
+                    box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3);
+                    transition: all 0.3s ease;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                ">Bắt đầu đọc</a>
+            </div>
+            {% endif %}
         </div>
 
         <div class="content">
+            {% if doc.doc_type == 'story' %}
+            {{ doc.content | replace('Tác giả:', '') | replace('Thể loại:', '') | replace('Trạng thái:', '') |
+            replace('Nguồn:', '') | replace('\n', '<br>') | safe }}
+            {% else %}
             {{ doc.content | replace('\n', '<br>') | replace('&lt;br&gt;', '<br>') | replace('<br>', '<br>') | safe }}
+            {% endif %}
         </div>
 
         <div class="nav-sticky">

@@ -33,45 +33,51 @@
         </div>
 
         {% for hit in results %}
-        <a href="/document/{{ hit._id }}" class="result-card">
-            <span class="tag {{ hit._source.doc_type }}">
-                {{ 'Truyện' if hit._source.doc_type == 'story' else 'Chương' }}
-            </span>
-
+        <div class="result-card">
             <h3>
-                {% if hit.highlight and hit.highlight.title %}
-                {% for fragment in hit.highlight.title %}
-                {{ fragment | safe }}
-                {% endfor %}
+                {% if hit._source.doc_type == 'chapter' %}
+                {% if hit.story_title %}
+                <a href="/document/{{ hit.story_slug }}" style="color: var(--primary); text-decoration: none;">{{
+                    hit.story_title }}</a>
+                <span style="color: var(--text-muted); margin: 0 8px; font-weight: 400; font-size: 0.9em;">&gt;</span>
+                {% endif %}
+                <a href="/document/{{ hit._id }}" style="color: inherit; text-decoration: none;">
+                    Chương {{ hit._source.chapter_number }}{% if hit.total_chapters %}/{{ hit.total_chapters }}{% endif
+                    %}
+                </a>
                 {% else %}
-                {{ hit._source.title }}
+                <a href="/document/{{ hit._id }}" style="color: inherit; text-decoration: none;">
+                    {% if hit.highlight and hit.highlight.title %}
+                    {% for fragment in hit.highlight.title %}
+                    {{ fragment | safe }}
+                    {% endfor %}
+                    {% else %}
+                    {{ hit._source.title }}
+                    {% endif %}
+                </a>
                 {% endif %}
             </h3>
 
             <!-- Tech Metadata -->
-            <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem; display: flex; gap: 15px;">
+            <div
+                style="font-size: 0.7rem; color: var(--text-muted); margin-bottom: 0.8rem; display: flex; gap: 15px; opacity: 0.7;">
                 <span><strong>ID:</strong> {{ hit._id }}</span>
                 <span><strong>Score:</strong> {{ "%.4f"|format(hit._score) }}</span>
             </div>
 
-            {% if hit._source.story_id and hit._source.doc_type == 'chapter' %}
-            <p style="font-size: 0.85rem; margin-bottom: 0.5rem; color: var(--primary);">
-                Chương {{ hit._source.chapter_number }}{% if hit.total_chapters %}/{{ hit.total_chapters }}{% endif %}
-                • Thuộc ID: {{ hit._source.story_id }}
-            </p>
-            {% endif %}
-
             <div class="snippet">
-                {% if hit.highlight and hit.highlight.content %}
-                {% for fragment in hit.highlight.content %}
-                ... {{ fragment | safe }} ...
-                {% endfor %}
-                {% else %}
-                {{ (hit._source.content[:300] if hit._source.content else '') | replace('&lt;br&gt;', '<br>') | safe
-                }}...
-                {% endif %}
+                <a href="/document/{{ hit._id }}" style="text-decoration: none; color: inherit;">
+                    {% if hit.highlight and hit.highlight.content %}
+                    {% for fragment in hit.highlight.content %}
+                    ... {{ fragment | safe }} ...
+                    {% endfor %}
+                    {% else %}
+                    {{ (hit._source.content[:300] if hit._source.content else '') | replace('&lt;br&gt;', '<br>') | safe
+                    }}...
+                    {% endif %}
+                </a>
             </div>
-        </a>
+        </div>
         {% endfor %}
 
         {% if not results %}
