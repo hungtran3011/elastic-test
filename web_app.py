@@ -112,52 +112,17 @@ async def search(request: Request, query: str, page: int = 1, scope: str = "all"
     tokens = [t for t in (query or "").strip().split() if t]
     min_token_len = min((len(t) for t in tokens), default=0)
 
-    # Prefer title matches when title is in scope.
-    if search_title:
-        should.append(
-            {
-                "match_phrase": {
-                    "title": {
-                        "query": query,
-                        "slop": 1,
-                        "boost": 30,
-                    }
-                }
-            }
-        )
-
-    # Prefer exact diacritics matches when the user types diacritics.
+    # Diacritics-aware matching when the user types diacritics.
     if has_diacritics:
-        if search_title:
-            should.append(
-                {
-                    "match_phrase": {
-                        "title.with_diacritics": {
-                            "query": query,
-                            "slop": 1,
-                            "boost": 60,
-                        }
-                    }
-                }
-            )
-        if search_content:
-            should.append(
-                {
-                    "match_phrase": {
-                        "content.with_diacritics": {
-                            "query": query,
-                            "slop": 2,
-                            "boost": 20,
-                        }
-                    }
-                }
-            )
-
         diacritic_fields: list[str] = []
         if search_title:
-            diacritic_fields.append("title.with_diacritics^60")
+            diacritic_fields.append(
+                "title.with_diacritics^30" if (search_title and search_content) else "title.with_diacritics^60"
+            )
         if search_content:
-            diacritic_fields.append("content.with_diacritics^30")
+            diacritic_fields.append(
+                "content.with_diacritics^30" if (search_title and search_content) else "content.with_diacritics^60"
+            )
         if diacritic_fields:
             should.append(
                 {
@@ -173,10 +138,14 @@ async def search(request: Request, query: str, page: int = 1, scope: str = "all"
     # Accent-insensitive relevance for general queries.
     # Keep phrase matching, but don't rely on it exclusively (word order can vary).
     phrase_fields: list[str] = []
-    if search_title:
-        phrase_fields.append("title^10")
-    if search_content:
-        phrase_fields.append("content^5")
+    if search_title and search_content:
+        # Neutral weighting when searching across fields.
+        phrase_fields.extend(["title^6", "content^6"])
+    else:
+        if search_title:
+            phrase_fields.append("title^10")
+        if search_content:
+            phrase_fields.append("content^10")
     if phrase_fields:
         should.append(
             {
@@ -194,10 +163,13 @@ async def search(request: Request, query: str, page: int = 1, scope: str = "all"
     # preferring results that match most terms.
     if not has_diacritics:
         best_fields: list[str] = []
-        if search_title:
-            best_fields.append("title^12")
-        if search_content:
-            best_fields.append("content^2")
+        if search_title and search_content:
+            best_fields.extend(["title^6", "content^6"])
+        else:
+            if search_title:
+                best_fields.append("title^10")
+            if search_content:
+                best_fields.append("content^10")
         if best_fields:
             should.append(
                 {
@@ -213,16 +185,15 @@ async def search(request: Request, query: str, page: int = 1, scope: str = "all"
                 }
             )
 
-        # Use the ngram-backed title autocomplete field to help with missing accents
-        # and prefix-like queries on story names.
-        if search_title:
+        # Only use autocomplete matching when explicitly searching titles.
+        if scope_norm == "title":
             should.append(
                 {
                     "match": {
                         "title.autocomplete": {
                             "query": query,
                             "operator": "and",
-                            "boost": 6,
+                            "boost": 2.5,
                         }
                     }
                 }
@@ -276,7 +247,7 @@ async def search(request: Request, query: str, page: int = 1, scope: str = "all"
                 "multi_match": {
                     "query": query,
                     "fields": [
-                        "title^4",
+                        "title^2",
                         "content^2",
                     ],
                     "type": "cross_fields",
@@ -329,19 +300,6 @@ async def search(request: Request, query: str, page: int = 1, scope: str = "all"
         doc_type_weights = {"story": 6.0, "chapter": 0.2}
 
     functions: list[dict] = []
-    if search_title:
-        functions.extend(
-            [
-                {
-                    "filter": {"match_phrase": {"title": {"query": query, "slop": 1}}},
-                    "weight": 80,
-                },
-                {
-                    "filter": {"match": {"title.autocomplete": {"query": query, "operator": "and"}}},
-                    "weight": 40,
-                },
-            ]
-        )
 
     functions.extend(
         [

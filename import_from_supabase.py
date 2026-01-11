@@ -5,8 +5,10 @@ from typing import Any, Dict, Iterable, List
 import os
 import requests
 
-from elastic import bulk_insert, ensure_index
-from settings import INDEX_NAME
+import json
+
+from elastic import bulk_insert, ensure_index, wait_for_elasticsearch
+from settings import INDEX_NAME, INDEX_CONFIG_JSON
 
 
 def fetch_stories(limit: int | None = None) -> List[dict]:
@@ -163,7 +165,17 @@ def batch_iter(items: Iterable, batch_size: int):
 
 def import_all(story_limit: int | None = None, chapter_limit: int | None = None, batch_size: int = 500,
                dry_run: bool = False):
-    ensure_index(INDEX_NAME)
+    # IMPORTANT: ensure the index is created with the intended analyzers/mappings
+    # BEFORE inserting any docs. Otherwise Elasticsearch will auto-create the index
+    # with default mappings and accent-insensitive search will not work.
+    wait_for_elasticsearch()
+    try:
+        with open(INDEX_CONFIG_JSON, "r", encoding="utf-8") as f:
+            index_settings = json.load(f)
+    except Exception as e:
+        raise RuntimeError(f"Failed to load INDEX_CONFIG_JSON='{INDEX_CONFIG_JSON}': {e}")
+
+    ensure_index(INDEX_NAME, index_settings)
 
     stories = fetch_stories(limit=story_limit)
     print(f"Fetched {len(stories)} stories from Supabase")
