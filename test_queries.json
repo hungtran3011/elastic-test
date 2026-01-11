@@ -1,0 +1,422 @@
+[
+  {
+    "query": "sư phụ mang thai con của ai",
+    "relevant_docs": ["su-phu-mang-thai-con-cua-ai"],
+    "description": "Easy title: exact with diacritics",
+    "scope": "title"
+  },
+  {
+    "query": "su phu mang thai con cua ai",
+    "relevant_docs": ["su-phu-mang-thai-con-cua-ai"],
+    "description": "Easy title: exact without diacritics",
+    "scope": "title"
+  },
+  {
+    "query": "vo toi ngay nao cung phai gia ngheo",
+    "relevant_docs": ["vo-toi-ngay-nao-cung-phai-gia-ngheo"],
+    "description": "Easy title: near-exact without diacritics",
+    "scope": "title"
+  },
+  {
+    "query": "xuyên nhanh kỳ chủ",
+    "relevant_docs": ["xuyen-nhanh-ky-chu-that-khong-don-gian"],
+    "description": "Medium title: distinctive phrase",
+    "scope": "title"
+  },
+  {
+    "query": "remain hoa ky uc",
+    "relevant_docs": ["remain-hoa-ky-uc"],
+    "description": "Easy title: unique English token",
+    "scope": "title"
+  },
+  {
+    "query": "bình tĩnh báo thù hot search",
+    "relevant_docs": ["binh-tinh-bao-thu-vui-ve-len-hot-search"],
+    "description": "Medium title: mixed Vietnamese + English",
+    "scope": "title"
+  },
+  {
+    "query": "thập niên 70 cố niệm",
+    "relevant_docs": ["thap-nien-70-co-niem"],
+    "description": "Medium title: era keyword + name",
+    "scope": "title"
+  },
+  {
+    "query": "sắc hôn trêu người",
+    "relevant_docs": ["sac-hon-treu-nguoi-quan-lai"],
+    "description": "Medium title: phrase match",
+    "scope": "title"
+  },
+
+  {
+    "query": "bach nguyet quang",
+    "relevant_docs": [
+      "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+      "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau"
+    ],
+    "description": "Ambiguous: phrase appears in 2 titles",
+    "scope": "all"
+  },
+  {
+    "query": "alpha",
+    "relevant_docs": [
+      "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+      "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi"
+    ],
+    "description": "Ambiguous: keyword appears in 2 titles",
+    "scope": "all"
+  },
+  {
+    "query": "du lam",
+    "relevant_docs": ["hoang-hon-cuong-nhiet-du-lam", "diu-dang-trien-mien-du-lam"],
+    "description": "Ambiguous: author token in 2 titles",
+    "scope": "all"
+  },
+  {
+    "query": "me nhao nhao",
+    "relevant_docs": ["tuy-y-lam-bay-me-nhao-nhao", "nhan-co-hoi-me-nhao-nhao"],
+    "description": "Ambiguous: phrase in 2 titles",
+    "scope": "all"
+  },
+  {
+    "query": "trang sang",
+    "relevant_docs": ["nam-ay-phong-toi-gap-trang-sang", "trang-sang-ngan-van-dam-tung-ho-khuu-hoa"],
+    "description": "Ambiguous: overlap on 'trăng sáng'",
+    "scope": "all"
+  },
+  {
+    "query": "xuan",
+    "relevant_docs": ["dem-xuan-den-muon-thao-tuu-dich-khieu-hoa-tu", "xuan-hoa-canh-minh", "bai-tho-mua-xuan-gau-nho-cua-l"],
+    "description": "Ambiguous: very generic token",
+    "scope": "all"
+  },
+
+  {
+    "query": "giang ho dai hiep",
+    "relevant_docs": ["giang-ho-dai-hiep-va-mat-manh-y-gia-su"],
+    "description": "Medium: partial title tokens",
+    "scope": "all"
+  },
+  {
+    "query": "beta quan",
+    "relevant_docs": ["khieu-chien-khong-rung-dong-beta-quan"],
+    "description": "Medium: keyword + suffix",
+    "scope": "all"
+  },
+  {
+    "query": "nguoi ruc ro anh duong",
+    "relevant_docs": ["nguoi-ruc-ro-tua-anh-duong"],
+    "description": "Medium: partial title, missing connector",
+    "scope": "all"
+  },
+  {
+    "query": "loi to tinh dau dong",
+    "relevant_docs": ["loi-to-tinh-dau-dong-cua-em"],
+    "description": "Medium: partial title",
+    "scope": "all"
+  },
+  {
+    "query": "tro thanh vo doan menh",
+    "relevant_docs": ["tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu"],
+    "description": "Medium: shortened long title",
+    "scope": "all"
+  },
+  {
+    "query": "rot cuoc gap duoc em van viet",
+    "relevant_docs": ["rot-cuoc-gap-duoc-em-van-viet"],
+    "description": "Medium: full phrase without punctuation",
+    "scope": "all"
+  },
+  {
+    "query": "hai thon quang",
+    "relevant_docs": ["mot-anh-nhin-van-nam-co-hai-thon-quang"],
+    "description": "Medium: end phrase of title",
+    "scope": "all"
+  },
+  {
+    "query": "vo cu phat dien",
+    "relevant_docs": ["sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi"],
+    "description": "Medium: key phrase from title",
+    "scope": "all"
+  },
+  {
+    "query": "hong ngu",
+    "relevant_docs": ["su-ton-moi-dem-deu-muon-ta-hong-ngu"],
+    "description": "Medium: key phrase from title",
+    "scope": "all"
+  },
+  {
+    "query": "phao hoa ngay dong",
+    "relevant_docs": ["phao-hoa-ngay-dong-man-nhien"],
+    "description": "Medium: partial title",
+    "scope": "all"
+  },
+  {
+    "query": "tinh nhan cuoi tuan",
+    "relevant_docs": ["tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii"],
+    "description": "Medium: shortened title",
+    "scope": "all"
+  },
+  {
+    "query": "tho ren my kieu",
+    "relevant_docs": ["tho-ren-my-kieu-the-di-tieu-hoa"],
+    "description": "Medium: shortened title",
+    "scope": "all"
+  },
+  {
+    "query": "dung cui dau",
+    "relevant_docs": ["dung-cui-dau-truoc-anh-ta"],
+    "description": "Medium: prefix tokens",
+    "scope": "all"
+  },
+  {
+    "query": "nam thang thong dong",
+    "relevant_docs": ["nam-thang-thong-dong-nhi-dong-tho-tu"],
+    "description": "Medium: shortened title",
+    "scope": "all"
+  },
+  {
+    "query": "oanh dao luu hoa",
+    "relevant_docs": ["oanh-dao-luu-hoa-duc-nhien"],
+    "description": "Medium: shortened title",
+    "scope": "all"
+  },
+  {
+    "query": "ba muoi moi cuoi",
+    "relevant_docs": ["ba-muoi-moi-cuoi-kien-kinh-lac"],
+    "description": "Medium: partial title",
+    "scope": "all"
+  },
+
+  {
+    "query": "kunlun no ninh dem mau tuoi",
+    "relevant_docs": ["su-phu-mang-thai-con-cua-ai"],
+    "description": "Content/entity: unique proper noun + scene words",
+    "scope": "content"
+  },
+  {
+    "query": "xuyen vao nguoi so kho phong toi nguc",
+    "relevant_docs": ["nam-ay-phong-toi-gap-trang-sang"],
+    "description": "Content: synopsis keywords",
+    "scope": "content"
+  },
+  {
+    "query": "dan tam con chuot tham tai",
+    "relevant_docs": ["xong-vao-kinh-do-cung-chuot"],
+    "description": "Content/entity: character + motif",
+    "scope": "content"
+  },
+  {
+    "query": "chua hop dam cao troc dau",
+    "relevant_docs": ["tri-dong-ngai-ngu"],
+    "description": "Content: setting + visual detail",
+    "scope": "content"
+  },
+  {
+    "query": "cuon lich vong tron do co niem",
+    "relevant_docs": ["thap-nien-70-co-niem"],
+    "description": "Content: concrete detail (calendar mark) + name",
+    "scope": "content"
+  },
+  {
+    "query": "thua ke nha ho tham lanh lung cam duc",
+    "relevant_docs": ["sac-hon-treu-nguoi-quan-lai"],
+    "description": "Content: character archetype",
+    "scope": "content"
+  },
+  {
+    "query": "bach hop linh di than quai",
+    "relevant_docs": ["xin-khuoc-tu-chuyen-nhan-gian"],
+    "description": "Content: genre tags commonly present in synopsis",
+    "scope": "content"
+  },
+  {
+    "query": "dan quoc bao thu pha an khong cp",
+    "relevant_docs": ["vinh-quang-trong-thu-han-ly-cuu-tuan"],
+    "description": "Content: genre keywords",
+    "scope": "content"
+  },
+  {
+    "query": "dai hoc moi tinh ha truc hua mac",
+    "relevant_docs": ["hy-su-cua-anh-tong-chieu"],
+    "description": "Content/entity: character names + setting",
+    "scope": "content"
+  },
+  {
+    "query": "du tiec tat nien dai than lanh lung",
+    "relevant_docs": ["diu-dang-trien-mien-du-lam"],
+    "description": "Content: event + archetype",
+    "scope": "content"
+  },
+
+  {
+    "query": "vo toi ngay nao cung phai gia ngeo",
+    "relevant_docs": ["vo-toi-ngay-nao-cung-phai-gia-ngheo"],
+    "description": "Typo: ngheo -> ngeo",
+    "scope": "title"
+  },
+  {
+    "query": "binh tinh bao thu vui ve len hotserch",
+    "relevant_docs": ["binh-tinh-bao-thu-vui-ve-len-hot-search"],
+    "description": "Typo: hot search misspelling",
+    "scope": "title"
+  },
+  {
+    "query": "xong vao kinh do cung chout",
+    "relevant_docs": ["xong-vao-kinh-do-cung-chuot"],
+    "description": "Typo: chuot -> chout",
+    "scope": "title"
+  },
+  {
+    "query": "trang sang ngan van dam tung ho khu hoa",
+    "relevant_docs": ["trang-sang-ngan-van-dam-tung-ho-khuu-hoa"],
+    "description": "Typo: khứu -> khu",
+    "scope": "title"
+  },
+  {
+    "query": "nguoi ruc ro tua anh duongg",
+    "relevant_docs": ["nguoi-ruc-ro-tua-anh-duong"],
+    "description": "Typo: extra character",
+    "scope": "title"
+  },
+
+  {
+    "query": "xuyen khong tu tien",
+    "relevant_docs": [],
+    "description": "Negative: common keyword not present in this 50-story set",
+    "scope": "all"
+  },
+  {
+    "query": "cong chua hoang tu",
+    "relevant_docs": [],
+    "description": "Negative: generic fairy-tale keyword",
+    "scope": "all"
+  },
+  {
+    "query": "khoa hoc vi tuong AI robot",
+    "relevant_docs": [],
+    "description": "Negative: sci-fi keywords not expected here",
+    "scope": "content"
+  },
+  {
+    "query": "trinh sat pha an sat nhan serial killer",
+    "relevant_docs": [],
+    "description": "Negative: out-of-domain query for this sample",
+    "scope": "all"
+  },
+  {
+    "query": "xay dung kinh doanh startup goi von",
+    "relevant_docs": [],
+    "description": "Negative: business keywords not expected here",
+    "scope": "content"
+  },
+
+  {
+    "query": "bach hop",
+    "relevant_docs": [
+      "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+      "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau",
+      "hy-vong-em-that-su-hanh-phuc",
+      "khieu-chien-khong-rung-dong-beta-quan",
+      "lang-man-nghich-bien-van-doc",
+      "nhan-co-hoi-me-nhao-nhao",
+      "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi",
+      "phu-nhan-xung-hi-cuu-vo-benh-tat",
+      "tho-ren-my-kieu-the-di-tieu-hoa",
+      "trang-non-nhan-tu",
+      "tuy-y-lam-bay-me-nhao-nhao",
+      "xin-khuoc-tu-chuyen-nhan-gian"
+    ],
+    "description": "Category/content: docs containing phrase 'bách hợp' (auto ground truth)",
+    "scope": "content"
+  },
+  {
+    "query": "gioi giai tri",
+    "relevant_docs": [
+      "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+      "khieu-chien-khong-rung-dong-beta-quan",
+      "lang-man-nghich-bien-van-doc",
+      "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi",
+      "phu-nhan-xung-hi-cuu-vo-benh-tat",
+      "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+      "trang-non-nhan-tu"
+    ],
+    "description": "Category/content: docs containing phrase 'giới giải trí' (auto ground truth)",
+    "scope": "content"
+  },
+  {
+    "query": "ngot sung",
+    "relevant_docs": [
+      "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+      "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau",
+      "hy-vong-em-that-su-hanh-phuc",
+      "khieu-chien-khong-rung-dong-beta-quan",
+      "nhan-co-hoi-me-nhao-nhao",
+      "tuy-y-lam-bay-me-nhao-nhao",
+      "vo-toi-ngay-nao-cung-phai-gia-ngheo",
+      "xuan-hoa-canh-minh"
+    ],
+    "description": "Category/content: docs containing phrase 'ngọt sủng' (auto ground truth)",
+    "scope": "content"
+  },
+  {
+    "query": "bao thu",
+    "relevant_docs": [
+      "binh-tinh-bao-thu-vui-ve-len-hot-search",
+      "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta",
+      "vinh-quang-trong-thu-han-ly-cuu-tuan"
+    ],
+    "description": "Category/content: docs containing phrase 'báo thù' (auto ground truth)",
+    "scope": "content"
+  },
+  {
+    "query": "pha an",
+    "relevant_docs": [
+      "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta",
+      "vinh-quang-trong-thu-han-ly-cuu-tuan",
+      "xong-vao-kinh-do-cung-chuot",
+      "xuan-hoa-canh-minh"
+    ],
+    "description": "Category/content: docs containing phrase 'phá án' (auto ground truth)",
+    "scope": "content"
+  },
+  {
+    "query": "xuyen",
+    "relevant_docs": [
+      "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+      "nam-ay-phong-toi-gap-trang-sang",
+      "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi",
+      "oanh-dao-luu-hoa-duc-nhien",
+      "phu-nhan-xung-hi-cuu-vo-benh-tat",
+      "su-ton-moi-dem-deu-muon-ta-hong-ngu",
+      "tho-ren-my-kieu-the-di-tieu-hoa",
+      "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu",
+      "xuan-hoa-canh-minh",
+      "xuyen-nhanh-ky-chu-that-khong-don-gian"
+    ],
+    "description": "Category/content: docs containing phrase 'xuyên' (auto ground truth)",
+    "scope": "content"
+  },
+  {
+    "query": "chua lanh",
+    "relevant_docs": [
+      "lang-man-nghich-bien-van-doc",
+      "phu-nhan-xung-hi-cuu-vo-benh-tat",
+      "trang-sang-ngan-van-dam-tung-ho-khuu-hoa",
+      "vinh-quang-trong-thu-han-ly-cuu-tuan"
+    ],
+    "description": "Category/content: docs containing phrase 'chữa lành' (auto ground truth)",
+    "scope": "content"
+  },
+  {
+    "query": "do thi",
+    "relevant_docs": [
+      "lang-man-nghich-bien-van-doc",
+      "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+      "that-thu-thanh-thang-xuyen-huong-thai",
+      "tuy-y-lam-bay-me-nhao-nhao"
+    ],
+    "description": "Category/content: docs containing phrase 'đô thị' (auto ground truth)",
+    "scope": "content"
+  }
+]

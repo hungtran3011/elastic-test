@@ -3,17 +3,10 @@
 
 import argparse
 import json
-import os
 from pathlib import Path
 
-try:
-    from supabase import Client, create_client
-    from dotenv import load_dotenv
-
-    load_dotenv()
-except ImportError:
-    print("❌ Missing dependencies: pip install supabase python-dotenv")
-    exit(1)
+from supabase_helper import supabase
+from supabase import Client
 
 # SQL Schema
 SCHEMA_SQL = """
@@ -52,15 +45,8 @@ CREATE INDEX IF NOT EXISTS idx_chapters_number ON chapters(story_id, chapter_num
 
 
 def get_client() -> Client | None:
-    """Initialize Supabase client."""
-    url = os.getenv("SUPABASE_URL")
-    key = os.getenv("SUPABASE_KEY")
-
-    if not url or not key:
-        print("❌ Missing SUPABASE_URL or SUPABASE_KEY in .env")
-        return None
-
-    return create_client(url, key)
+    """Get Supabase client from supabase_helper."""
+    return supabase
 
 
 def import_story(client: Client, json_file: Path) -> None:

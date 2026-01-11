@@ -30,6 +30,10 @@ def getenv_bool(name: str, default: bool) -> bool:
 
 ELASTICSEARCH_URL = os.getenv("ELASTICSEARCH_URL", "http://localhost:9201")
 
+# Cốc Cốc Tokenizer microservice URL (Docker Compose runs at tokenizer:1880)
+TOKENIZER_URL = os.getenv("TOKENIZER_URL", "http://localhost:1880")
+USE_COCCOC_TOKENIZER = getenv_bool("USE_COCCOC_TOKENIZER", True)  # Enable for better Vietnamese search
+
 # Single source of truth for the index used by both scraper + web app.
 INDEX_NAME = os.getenv("INDEX_NAME", "demonstration-2")
 INDEX_CONFIG_JSON = os.getenv("INDEX_CONFIG_JSON", "index-config.json")

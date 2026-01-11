@@ -1,0 +1,2492 @@
+{
+  "map": 0.8764367816091955,
+  "num_queries": 58,
+  "scope": "all",
+  "top_k": 20,
+  "per_query_results": [
+    {
+      "query": "sư phụ mang thai con của ai",
+      "description": "Easy title: exact with diacritics",
+      "scope": "title",
+      "ap": 1.0,
+      "relevant_docs": [
+        "su-phu-mang-thai-con-cua-ai"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 15,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "su-phu-mang-thai-con-cua-ai"
+        ]
+      ],
+      "top_5_docs": [
+        "su-phu-mang-thai-con-cua-ai",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+        "that-thu-thanh-thang-xuyen-huong-thai",
+        "bai-tho-mua-xuan-gau-nho-cua-l",
+        "hy-su-cua-anh-tong-chieu"
+      ],
+      "all_docs": [
+        "su-phu-mang-thai-con-cua-ai",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+        "that-thu-thanh-thang-xuyen-huong-thai",
+        "bai-tho-mua-xuan-gau-nho-cua-l",
+        "hy-su-cua-anh-tong-chieu",
+        "loi-to-tinh-dau-dong-cua-em",
+        "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi",
+        "remain-hoa-ky-uc",
+        "tri-dong-ngai-ngu",
+        "sac-hon-treu-nguoi-quan-lai",
+        "giang-ho-dai-hiep-va-mat-manh-y-gia-su",
+        "vo-toi-ngay-nao-cung-phai-gia-ngheo",
+        "mot-anh-nhin-van-nam-co-hai-thon-quang"
+      ]
+    },
+    {
+      "query": "su phu mang thai con cua ai",
+      "description": "Easy title: exact without diacritics",
+      "scope": "title",
+      "ap": 1.0,
+      "relevant_docs": [
+        "su-phu-mang-thai-con-cua-ai"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 3,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "su-phu-mang-thai-con-cua-ai"
+        ]
+      ],
+      "top_5_docs": [
+        "su-phu-mang-thai-con-cua-ai",
+        "that-thu-thanh-thang-xuyen-huong-thai",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong"
+      ],
+      "all_docs": [
+        "su-phu-mang-thai-con-cua-ai",
+        "that-thu-thanh-thang-xuyen-huong-thai",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong"
+      ]
+    },
+    {
+      "query": "vo toi ngay nao cung phai gia ngheo",
+      "description": "Easy title: near-exact without diacritics",
+      "scope": "title",
+      "ap": 1.0,
+      "relevant_docs": [
+        "vo-toi-ngay-nao-cung-phai-gia-ngheo"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 9,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "vo-toi-ngay-nao-cung-phai-gia-ngheo"
+        ]
+      ],
+      "top_5_docs": [
+        "vo-toi-ngay-nao-cung-phai-gia-ngheo",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi",
+        "phao-hoa-ngay-dong-man-nhien",
+        "xong-vao-kinh-do-cung-chuot",
+        "giang-ho-dai-hiep-va-mat-manh-y-gia-su"
+      ],
+      "all_docs": [
+        "vo-toi-ngay-nao-cung-phai-gia-ngheo",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi",
+        "phao-hoa-ngay-dong-man-nhien",
+        "xong-vao-kinh-do-cung-chuot",
+        "giang-ho-dai-hiep-va-mat-manh-y-gia-su",
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau",
+        "xin-khuoc-tu-chuyen-nhan-gian",
+        "xuyen-nhanh-ky-chu-that-khong-don-gian"
+      ]
+    },
+    {
+      "query": "xuyên nhanh kỳ chủ",
+      "description": "Medium title: distinctive phrase",
+      "scope": "title",
+      "ap": 1.0,
+      "relevant_docs": [
+        "xuyen-nhanh-ky-chu-that-khong-don-gian"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 7,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "xuyen-nhanh-ky-chu-that-khong-don-gian"
+        ]
+      ],
+      "top_5_docs": [
+        "xuyen-nhanh-ky-chu-that-khong-don-gian",
+        "that-thu-thanh-thang-xuyen-huong-thai",
+        "remain-hoa-ky-uc",
+        "xin-khuoc-tu-chuyen-nhan-gian",
+        "xong-vao-kinh-do-cung-chuot"
+      ],
+      "all_docs": [
+        "xuyen-nhanh-ky-chu-that-khong-don-gian",
+        "that-thu-thanh-thang-xuyen-huong-thai",
+        "remain-hoa-ky-uc",
+        "xin-khuoc-tu-chuyen-nhan-gian",
+        "xong-vao-kinh-do-cung-chuot",
+        "co-ay-van-chua-biet-ban-dong",
+        "yeu-yeu-chung-thanh-van-moc-di-vi-xuan"
+      ]
+    },
+    {
+      "query": "remain hoa ky uc",
+      "description": "Easy title: unique English token",
+      "scope": "title",
+      "ap": 1.0,
+      "relevant_docs": [
+        "remain-hoa-ky-uc"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 10,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "remain-hoa-ky-uc"
+        ]
+      ],
+      "top_5_docs": [
+        "remain-hoa-ky-uc",
+        "xuan-hoa-canh-minh",
+        "oanh-dao-luu-hoa-duc-nhien",
+        "tho-ren-my-kieu-the-di-tieu-hoa",
+        "trang-sang-ngan-van-dam-tung-ho-khuu-hoa"
+      ],
+      "all_docs": [
+        "remain-hoa-ky-uc",
+        "xuan-hoa-canh-minh",
+        "oanh-dao-luu-hoa-duc-nhien",
+        "tho-ren-my-kieu-the-di-tieu-hoa",
+        "trang-sang-ngan-van-dam-tung-ho-khuu-hoa",
+        "dem-xuan-den-muon-thao-tuu-dich-khieu-hoa-tu",
+        "hoang-hon-cuong-nhiet-du-lam",
+        "phao-hoa-ngay-dong-man-nhien",
+        "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi"
+      ]
+    },
+    {
+      "query": "bình tĩnh báo thù hot search",
+      "description": "Medium title: mixed Vietnamese + English",
+      "scope": "title",
+      "ap": 1.0,
+      "relevant_docs": [
+        "binh-tinh-bao-thu-vui-ve-len-hot-search"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 1,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "binh-tinh-bao-thu-vui-ve-len-hot-search"
+        ]
+      ],
+      "top_5_docs": [
+        "binh-tinh-bao-thu-vui-ve-len-hot-search"
+      ],
+      "all_docs": [
+        "binh-tinh-bao-thu-vui-ve-len-hot-search"
+      ]
+    },
+    {
+      "query": "thập niên 70 cố niệm",
+      "description": "Medium title: era keyword + name",
+      "scope": "title",
+      "ap": 1.0,
+      "relevant_docs": [
+        "thap-nien-70-co-niem"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 7,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "thap-nien-70-co-niem"
+        ]
+      ],
+      "top_5_docs": [
+        "thap-nien-70-co-niem",
+        "co-ay-van-chua-biet-ban-dong",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+        "mot-anh-nhin-van-nam-co-hai-thon-quang",
+        "nhan-co-hoi-me-nhao-nhao"
+      ],
+      "all_docs": [
+        "thap-nien-70-co-niem",
+        "co-ay-van-chua-biet-ban-dong",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+        "mot-anh-nhin-van-nam-co-hai-thon-quang",
+        "nhan-co-hoi-me-nhao-nhao",
+        "su-phu-mang-thai-con-cua-ai",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong"
+      ]
+    },
+    {
+      "query": "sắc hôn trêu người",
+      "description": "Medium title: phrase match",
+      "scope": "title",
+      "ap": 1.0,
+      "relevant_docs": [
+        "sac-hon-treu-nguoi-quan-lai"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 11,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "sac-hon-treu-nguoi-quan-lai"
+        ]
+      ],
+      "top_5_docs": [
+        "sac-hon-treu-nguoi-quan-lai",
+        "nguoi-ruc-ro-tua-anh-duong",
+        "nhan-luc-say-hon-em-tam-nguyet-do-dang",
+        "hoang-hon-cuong-nhiet-du-lam",
+        "khieu-chien-khong-rung-dong-beta-quan"
+      ],
+      "all_docs": [
+        "sac-hon-treu-nguoi-quan-lai",
+        "nguoi-ruc-ro-tua-anh-duong",
+        "nhan-luc-say-hon-em-tam-nguyet-do-dang",
+        "hoang-hon-cuong-nhiet-du-lam",
+        "khieu-chien-khong-rung-dong-beta-quan",
+        "xuyen-nhanh-ky-chu-that-khong-don-gian",
+        "nam-ay-phong-toi-gap-trang-sang",
+        "nam-thang-thong-dong-nhi-dong-tho-tu",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+        "mot-anh-nhin-van-nam-co-hai-thon-quang",
+        "su-ton-moi-dem-deu-muon-ta-hong-ngu"
+      ]
+    },
+    {
+      "query": "bach nguyet quang",
+      "description": "Ambiguous: phrase appears in 2 titles",
+      "scope": "all",
+      "ap": 1.0,
+      "relevant_docs": [
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+        "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau"
+      ],
+      "relevant_count": 2,
+      "retrieved_count": 13,
+      "found_count": 2,
+      "relevant_positions": [
+        [
+          1,
+          "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau"
+        ],
+        [
+          2,
+          "bi-bach-nguyet-quang-cua-nam-chinh-be-cong"
+        ]
+      ],
+      "top_5_docs": [
+        "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+        "vo-toi-ngay-nao-cung-phai-gia-ngheo",
+        "co-ay-van-chua-biet-ban-dong"
+      ],
+      "all_docs": [
+        "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+        "vo-toi-ngay-nao-cung-phai-gia-ngheo",
+        "co-ay-van-chua-biet-ban-dong",
+        "su-ton-moi-dem-deu-muon-ta-hong-ngu",
+        "trang-non-nhan-tu",
+        "nhan-luc-say-hon-em-tam-nguyet-do-dang",
+        "mot-anh-nhin-van-nam-co-hai-thon-quang",
+        "nguoi-ruc-ro-tua-anh-duong",
+        "trang-sang-ngan-van-dam-tung-ho-khuu-hoa",
+        "vinh-quang-trong-thu-han-ly-cuu-tuan",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi"
+      ]
+    },
+    {
+      "query": "alpha",
+      "description": "Ambiguous: keyword appears in 2 titles",
+      "scope": "all",
+      "ap": 1.0,
+      "relevant_docs": [
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng"
+      ],
+      "relevant_count": 2,
+      "retrieved_count": 2,
+      "found_count": 2,
+      "relevant_positions": [
+        [
+          1,
+          "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi"
+        ],
+        [
+          2,
+          "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng"
+        ]
+      ],
+      "top_5_docs": [
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng"
+      ],
+      "all_docs": [
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng"
+      ]
+    },
+    {
+      "query": "du lam",
+      "description": "Ambiguous: author token in 2 titles",
+      "scope": "all",
+      "ap": 1.0,
+      "relevant_docs": [
+        "diu-dang-trien-mien-du-lam",
+        "hoang-hon-cuong-nhiet-du-lam"
+      ],
+      "relevant_count": 2,
+      "retrieved_count": 2,
+      "found_count": 2,
+      "relevant_positions": [
+        [
+          1,
+          "hoang-hon-cuong-nhiet-du-lam"
+        ],
+        [
+          2,
+          "diu-dang-trien-mien-du-lam"
+        ]
+      ],
+      "top_5_docs": [
+        "hoang-hon-cuong-nhiet-du-lam",
+        "diu-dang-trien-mien-du-lam"
+      ],
+      "all_docs": [
+        "hoang-hon-cuong-nhiet-du-lam",
+        "diu-dang-trien-mien-du-lam"
+      ]
+    },
+    {
+      "query": "me nhao nhao",
+      "description": "Ambiguous: phrase in 2 titles",
+      "scope": "all",
+      "ap": 1.0,
+      "relevant_docs": [
+        "tuy-y-lam-bay-me-nhao-nhao",
+        "nhan-co-hoi-me-nhao-nhao"
+      ],
+      "relevant_count": 2,
+      "retrieved_count": 13,
+      "found_count": 2,
+      "relevant_positions": [
+        [
+          1,
+          "nhan-co-hoi-me-nhao-nhao"
+        ],
+        [
+          2,
+          "tuy-y-lam-bay-me-nhao-nhao"
+        ]
+      ],
+      "top_5_docs": [
+        "nhan-co-hoi-me-nhao-nhao",
+        "tuy-y-lam-bay-me-nhao-nhao",
+        "loi-to-tinh-dau-dong-cua-em",
+        "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu",
+        "trang-non-nhan-tu"
+      ],
+      "all_docs": [
+        "nhan-co-hoi-me-nhao-nhao",
+        "tuy-y-lam-bay-me-nhao-nhao",
+        "loi-to-tinh-dau-dong-cua-em",
+        "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu",
+        "trang-non-nhan-tu",
+        "trang-sang-ngan-van-dam-tung-ho-khuu-hoa",
+        "khieu-chien-khong-rung-dong-beta-quan",
+        "that-thu-thanh-thang-xuyen-huong-thai",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+        "tho-ren-my-kieu-the-di-tieu-hoa",
+        "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat"
+      ]
+    },
+    {
+      "query": "trang sang",
+      "description": "Ambiguous: overlap on 'trăng sáng'",
+      "scope": "all",
+      "ap": 1.0,
+      "relevant_docs": [
+        "nam-ay-phong-toi-gap-trang-sang",
+        "trang-sang-ngan-van-dam-tung-ho-khuu-hoa"
+      ],
+      "relevant_count": 2,
+      "retrieved_count": 20,
+      "found_count": 2,
+      "relevant_positions": [
+        [
+          1,
+          "nam-ay-phong-toi-gap-trang-sang"
+        ],
+        [
+          2,
+          "trang-sang-ngan-van-dam-tung-ho-khuu-hoa"
+        ]
+      ],
+      "top_5_docs": [
+        "nam-ay-phong-toi-gap-trang-sang",
+        "trang-sang-ngan-van-dam-tung-ho-khuu-hoa",
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "trang-non-nhan-tu",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng"
+      ],
+      "all_docs": [
+        "nam-ay-phong-toi-gap-trang-sang",
+        "trang-sang-ngan-van-dam-tung-ho-khuu-hoa",
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "trang-non-nhan-tu",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+        "giang-ho-dai-hiep-va-mat-manh-y-gia-su",
+        "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta",
+        "nhan-co-hoi-me-nhao-nhao",
+        "diu-dang-trien-mien-du-lam",
+        "tuy-y-lam-bay-me-nhao-nhao",
+        "xin-khuoc-tu-chuyen-nhan-gian",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "su-ton-moi-dem-deu-muon-ta-hong-ngu",
+        "binh-tinh-bao-thu-vui-ve-len-hot-search",
+        "lang-man-nghich-bien-van-doc",
+        "hy-su-cua-anh-tong-chieu",
+        "vo-toi-ngay-nao-cung-phai-gia-ngheo",
+        "khieu-chien-khong-rung-dong-beta-quan",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat",
+        "nguoi-ruc-ro-tua-anh-duong"
+      ]
+    },
+    {
+      "query": "xuan",
+      "description": "Ambiguous: very generic token",
+      "scope": "all",
+      "ap": 0.8666666666666667,
+      "relevant_docs": [
+        "dem-xuan-den-muon-thao-tuu-dich-khieu-hoa-tu",
+        "bai-tho-mua-xuan-gau-nho-cua-l",
+        "xuan-hoa-canh-minh"
+      ],
+      "relevant_count": 3,
+      "retrieved_count": 5,
+      "found_count": 3,
+      "relevant_positions": [
+        [
+          1,
+          "dem-xuan-den-muon-thao-tuu-dich-khieu-hoa-tu"
+        ],
+        [
+          2,
+          "xuan-hoa-canh-minh"
+        ],
+        [
+          5,
+          "bai-tho-mua-xuan-gau-nho-cua-l"
+        ]
+      ],
+      "top_5_docs": [
+        "dem-xuan-den-muon-thao-tuu-dich-khieu-hoa-tu",
+        "xuan-hoa-canh-minh",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "yeu-yeu-chung-thanh-van-moc-di-vi-xuan",
+        "bai-tho-mua-xuan-gau-nho-cua-l"
+      ],
+      "all_docs": [
+        "dem-xuan-den-muon-thao-tuu-dich-khieu-hoa-tu",
+        "xuan-hoa-canh-minh",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "yeu-yeu-chung-thanh-van-moc-di-vi-xuan",
+        "bai-tho-mua-xuan-gau-nho-cua-l"
+      ]
+    },
+    {
+      "query": "giang ho dai hiep",
+      "description": "Medium: partial title tokens",
+      "scope": "all",
+      "ap": 1.0,
+      "relevant_docs": [
+        "giang-ho-dai-hiep-va-mat-manh-y-gia-su"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 2,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "giang-ho-dai-hiep-va-mat-manh-y-gia-su"
+        ]
+      ],
+      "top_5_docs": [
+        "giang-ho-dai-hiep-va-mat-manh-y-gia-su",
+        "yeu-yeu-chung-thanh-van-moc-di-vi-xuan"
+      ],
+      "all_docs": [
+        "giang-ho-dai-hiep-va-mat-manh-y-gia-su",
+        "yeu-yeu-chung-thanh-van-moc-di-vi-xuan"
+      ]
+    },
+    {
+      "query": "beta quan",
+      "description": "Medium: keyword + suffix",
+      "scope": "all",
+      "ap": 1.0,
+      "relevant_docs": [
+        "khieu-chien-khong-rung-dong-beta-quan"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 11,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "khieu-chien-khong-rung-dong-beta-quan"
+        ]
+      ],
+      "top_5_docs": [
+        "khieu-chien-khong-rung-dong-beta-quan",
+        "vinh-quang-trong-thu-han-ly-cuu-tuan",
+        "sac-hon-treu-nguoi-quan-lai",
+        "xuan-hoa-canh-minh",
+        "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta"
+      ],
+      "all_docs": [
+        "khieu-chien-khong-rung-dong-beta-quan",
+        "vinh-quang-trong-thu-han-ly-cuu-tuan",
+        "sac-hon-treu-nguoi-quan-lai",
+        "xuan-hoa-canh-minh",
+        "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta",
+        "trang-non-nhan-tu",
+        "nguoi-ruc-ro-tua-anh-duong",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+        "mot-anh-nhin-van-nam-co-hai-thon-quang",
+        "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau"
+      ]
+    },
+    {
+      "query": "nguoi ruc ro anh duong",
+      "description": "Medium: partial title, missing connector",
+      "scope": "all",
+      "ap": 1.0,
+      "relevant_docs": [
+        "nguoi-ruc-ro-tua-anh-duong"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 20,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "nguoi-ruc-ro-tua-anh-duong"
+        ]
+      ],
+      "top_5_docs": [
+        "nguoi-ruc-ro-tua-anh-duong",
+        "lang-man-nghich-bien-van-doc",
+        "that-thu-thanh-thang-xuyen-huong-thai",
+        "nam-thang-thong-dong-nhi-dong-tho-tu",
+        "hoang-hon-cuong-nhiet-du-lam"
+      ],
+      "all_docs": [
+        "nguoi-ruc-ro-tua-anh-duong",
+        "lang-man-nghich-bien-van-doc",
+        "that-thu-thanh-thang-xuyen-huong-thai",
+        "nam-thang-thong-dong-nhi-dong-tho-tu",
+        "hoang-hon-cuong-nhiet-du-lam",
+        "tri-dong-ngai-ngu",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi",
+        "sac-hon-treu-nguoi-quan-lai",
+        "dung-cui-dau-truoc-anh-ta",
+        "hy-su-cua-anh-tong-chieu",
+        "diu-dang-trien-mien-du-lam",
+        "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta",
+        "trang-non-nhan-tu",
+        "yeu-yeu-chung-thanh-van-moc-di-vi-xuan",
+        "mot-anh-nhin-van-nam-co-hai-thon-quang",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat",
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "loi-to-tinh-dau-dong-cua-em",
+        "khieu-chien-khong-rung-dong-beta-quan",
+        "xin-khuoc-tu-chuyen-nhan-gian"
+      ]
+    },
+    {
+      "query": "loi to tinh dau dong",
+      "description": "Medium: partial title",
+      "scope": "all",
+      "ap": 1.0,
+      "relevant_docs": [
+        "loi-to-tinh-dau-dong-cua-em"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 20,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "loi-to-tinh-dau-dong-cua-em"
+        ]
+      ],
+      "top_5_docs": [
+        "loi-to-tinh-dau-dong-cua-em",
+        "thap-nien-70-co-niem",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "tuy-y-lam-bay-me-nhao-nhao",
+        "hy-vong-em-that-su-hanh-phuc"
+      ],
+      "all_docs": [
+        "loi-to-tinh-dau-dong-cua-em",
+        "thap-nien-70-co-niem",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "tuy-y-lam-bay-me-nhao-nhao",
+        "hy-vong-em-that-su-hanh-phuc",
+        "trang-sang-ngan-van-dam-tung-ho-khuu-hoa",
+        "vinh-quang-trong-thu-han-ly-cuu-tuan",
+        "tri-dong-ngai-ngu",
+        "lang-man-nghich-bien-van-doc",
+        "co-ay-van-chua-biet-ban-dong",
+        "phao-hoa-ngay-dong-man-nhien",
+        "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau",
+        "dem-xuan-den-muon-thao-tuu-dich-khieu-hoa-tu",
+        "nam-thang-thong-dong-nhi-dong-tho-tu",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+        "nhan-co-hoi-me-nhao-nhao",
+        "hy-su-cua-anh-tong-chieu",
+        "khieu-chien-khong-rung-dong-beta-quan",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+        "nhan-luc-say-hon-em-tam-nguyet-do-dang"
+      ]
+    },
+    {
+      "query": "tro thanh vo doan menh",
+      "description": "Medium: shortened long title",
+      "scope": "all",
+      "ap": 1.0,
+      "relevant_docs": [
+        "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 20,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu"
+        ]
+      ],
+      "top_5_docs": [
+        "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "tho-ren-my-kieu-the-di-tieu-hoa",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong"
+      ],
+      "all_docs": [
+        "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "tho-ren-my-kieu-the-di-tieu-hoa",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+        "vo-toi-ngay-nao-cung-phai-gia-ngheo",
+        "dem-xuan-den-muon-thao-tuu-dich-khieu-hoa-tu",
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "giang-ho-dai-hiep-va-mat-manh-y-gia-su",
+        "trang-sang-ngan-van-dam-tung-ho-khuu-hoa",
+        "khieu-chien-khong-rung-dong-beta-quan",
+        "hy-vong-em-that-su-hanh-phuc",
+        "dung-cui-dau-truoc-anh-ta",
+        "hoang-hon-cuong-nhiet-du-lam",
+        "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau",
+        "thap-nien-70-co-niem",
+        "hy-su-cua-anh-tong-chieu",
+        "diu-dang-trien-mien-du-lam",
+        "sac-hon-treu-nguoi-quan-lai",
+        "mot-anh-nhin-van-nam-co-hai-thon-quang"
+      ]
+    },
+    {
+      "query": "rot cuoc gap duoc em van viet",
+      "description": "Medium: full phrase without punctuation",
+      "scope": "all",
+      "ap": 1.0,
+      "relevant_docs": [
+        "rot-cuoc-gap-duoc-em-van-viet"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 20,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "rot-cuoc-gap-duoc-em-van-viet"
+        ]
+      ],
+      "top_5_docs": [
+        "rot-cuoc-gap-duoc-em-van-viet",
+        "that-thu-thanh-thang-xuyen-huong-thai",
+        "trang-non-nhan-tu",
+        "hoang-hon-cuong-nhiet-du-lam",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat"
+      ],
+      "all_docs": [
+        "rot-cuoc-gap-duoc-em-van-viet",
+        "that-thu-thanh-thang-xuyen-huong-thai",
+        "trang-non-nhan-tu",
+        "hoang-hon-cuong-nhiet-du-lam",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "tri-dong-ngai-ngu",
+        "hy-su-cua-anh-tong-chieu",
+        "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau",
+        "trang-sang-ngan-van-dam-tung-ho-khuu-hoa",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi",
+        "loi-to-tinh-dau-dong-cua-em",
+        "nam-ay-phong-toi-gap-trang-sang",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+        "phao-hoa-ngay-dong-man-nhien",
+        "remain-hoa-ky-uc",
+        "hy-vong-em-that-su-hanh-phuc",
+        "diu-dang-trien-mien-du-lam",
+        "nguoi-ruc-ro-tua-anh-duong"
+      ]
+    },
+    {
+      "query": "hai thon quang",
+      "description": "Medium: end phrase of title",
+      "scope": "all",
+      "ap": 1.0,
+      "relevant_docs": [
+        "mot-anh-nhin-van-nam-co-hai-thon-quang"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 20,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "mot-anh-nhin-van-nam-co-hai-thon-quang"
+        ]
+      ],
+      "top_5_docs": [
+        "mot-anh-nhin-van-nam-co-hai-thon-quang",
+        "nguoi-ruc-ro-tua-anh-duong",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+        "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong"
+      ],
+      "all_docs": [
+        "mot-anh-nhin-van-nam-co-hai-thon-quang",
+        "nguoi-ruc-ro-tua-anh-duong",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+        "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+        "nam-thang-thong-dong-nhi-dong-tho-tu",
+        "that-thu-thanh-thang-xuyen-huong-thai",
+        "su-phu-mang-thai-con-cua-ai",
+        "vinh-quang-trong-thu-han-ly-cuu-tuan",
+        "vo-toi-ngay-nao-cung-phai-gia-ngheo",
+        "nhan-co-hoi-me-nhao-nhao",
+        "trang-sang-ngan-van-dam-tung-ho-khuu-hoa",
+        "ba-muoi-moi-cuoi-kien-kinh-lac",
+        "dung-cui-dau-truoc-anh-ta",
+        "yeu-yeu-chung-thanh-van-moc-di-vi-xuan",
+        "hoang-hon-cuong-nhiet-du-lam",
+        "diu-dang-trien-mien-du-lam",
+        "loi-to-tinh-dau-dong-cua-em",
+        "xong-vao-kinh-do-cung-chuot",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi"
+      ]
+    },
+    {
+      "query": "vo cu phat dien",
+      "description": "Medium: key phrase from title",
+      "scope": "all",
+      "ap": 1.0,
+      "relevant_docs": [
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 14,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi"
+        ]
+      ],
+      "top_5_docs": [
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "nam-ay-phong-toi-gap-trang-sang",
+        "binh-tinh-bao-thu-vui-ve-len-hot-search",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "lang-man-nghich-bien-van-doc"
+      ],
+      "all_docs": [
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "nam-ay-phong-toi-gap-trang-sang",
+        "binh-tinh-bao-thu-vui-ve-len-hot-search",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "lang-man-nghich-bien-van-doc",
+        "bai-tho-mua-xuan-gau-nho-cua-l",
+        "xuan-hoa-canh-minh",
+        "tho-ren-my-kieu-the-di-tieu-hoa",
+        "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta",
+        "hoang-hon-cuong-nhiet-du-lam",
+        "mot-anh-nhin-van-nam-co-hai-thon-quang",
+        "su-ton-moi-dem-deu-muon-ta-hong-ngu",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+        "trang-non-nhan-tu"
+      ]
+    },
+    {
+      "query": "hong ngu",
+      "description": "Medium: key phrase from title",
+      "scope": "all",
+      "ap": 0.0,
+      "relevant_docs": [
+        "su-ton-moi-dem-deu-muon-ta-hong-ngu"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 0,
+      "found_count": 0,
+      "relevant_positions": [],
+      "top_5_docs": [],
+      "all_docs": []
+    },
+    {
+      "query": "phao hoa ngay dong",
+      "description": "Medium: partial title",
+      "scope": "all",
+      "ap": 1.0,
+      "relevant_docs": [
+        "phao-hoa-ngay-dong-man-nhien"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 20,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "phao-hoa-ngay-dong-man-nhien"
+        ]
+      ],
+      "top_5_docs": [
+        "phao-hoa-ngay-dong-man-nhien",
+        "tri-dong-ngai-ngu",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "vo-toi-ngay-nao-cung-phai-gia-ngheo",
+        "loi-to-tinh-dau-dong-cua-em"
+      ],
+      "all_docs": [
+        "phao-hoa-ngay-dong-man-nhien",
+        "tri-dong-ngai-ngu",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "vo-toi-ngay-nao-cung-phai-gia-ngheo",
+        "loi-to-tinh-dau-dong-cua-em",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+        "co-ay-van-chua-biet-ban-dong",
+        "nam-thang-thong-dong-nhi-dong-tho-tu",
+        "hy-su-cua-anh-tong-chieu",
+        "lang-man-nghich-bien-van-doc",
+        "nguoi-ruc-ro-tua-anh-duong",
+        "khieu-chien-khong-rung-dong-beta-quan",
+        "trang-sang-ngan-van-dam-tung-ho-khuu-hoa",
+        "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau",
+        "su-ton-moi-dem-deu-muon-ta-hong-ngu",
+        "oanh-dao-luu-hoa-duc-nhien",
+        "nam-ay-phong-toi-gap-trang-sang",
+        "yeu-yeu-chung-thanh-van-moc-di-vi-xuan",
+        "bai-tho-mua-xuan-gau-nho-cua-l"
+      ]
+    },
+    {
+      "query": "tinh nhan cuoi tuan",
+      "description": "Medium: shortened title",
+      "scope": "all",
+      "ap": 1.0,
+      "relevant_docs": [
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 18,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii"
+        ]
+      ],
+      "top_5_docs": [
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "thap-nien-70-co-niem",
+        "vinh-quang-trong-thu-han-ly-cuu-tuan",
+        "hoang-hon-cuong-nhiet-du-lam",
+        "ba-muoi-moi-cuoi-kien-kinh-lac"
+      ],
+      "all_docs": [
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "thap-nien-70-co-niem",
+        "vinh-quang-trong-thu-han-ly-cuu-tuan",
+        "hoang-hon-cuong-nhiet-du-lam",
+        "ba-muoi-moi-cuoi-kien-kinh-lac",
+        "that-thu-thanh-thang-xuyen-huong-thai",
+        "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau",
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "nguoi-ruc-ro-tua-anh-duong",
+        "dung-cui-dau-truoc-anh-ta",
+        "sac-hon-treu-nguoi-quan-lai",
+        "binh-tinh-bao-thu-vui-ve-len-hot-search",
+        "su-phu-mang-thai-con-cua-ai",
+        "hy-su-cua-anh-tong-chieu",
+        "nhan-luc-say-hon-em-tam-nguyet-do-dang",
+        "mot-anh-nhin-van-nam-co-hai-thon-quang",
+        "tri-dong-ngai-ngu",
+        "tho-ren-my-kieu-the-di-tieu-hoa"
+      ]
+    },
+    {
+      "query": "tho ren my kieu",
+      "description": "Medium: shortened title",
+      "scope": "all",
+      "ap": 1.0,
+      "relevant_docs": [
+        "tho-ren-my-kieu-the-di-tieu-hoa"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 13,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "tho-ren-my-kieu-the-di-tieu-hoa"
+        ]
+      ],
+      "top_5_docs": [
+        "tho-ren-my-kieu-the-di-tieu-hoa",
+        "nam-thang-thong-dong-nhi-dong-tho-tu",
+        "that-thu-thanh-thang-xuyen-huong-thai",
+        "giang-ho-dai-hiep-va-mat-manh-y-gia-su",
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi"
+      ],
+      "all_docs": [
+        "tho-ren-my-kieu-the-di-tieu-hoa",
+        "nam-thang-thong-dong-nhi-dong-tho-tu",
+        "that-thu-thanh-thang-xuyen-huong-thai",
+        "giang-ho-dai-hiep-va-mat-manh-y-gia-su",
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "khieu-chien-khong-rung-dong-beta-quan",
+        "sac-hon-treu-nguoi-quan-lai",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "bai-tho-mua-xuan-gau-nho-cua-l",
+        "mot-anh-nhin-van-nam-co-hai-thon-quang",
+        "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta",
+        "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat"
+      ]
+    },
+    {
+      "query": "dung cui dau",
+      "description": "Medium: prefix tokens",
+      "scope": "all",
+      "ap": 1.0,
+      "relevant_docs": [
+        "dung-cui-dau-truoc-anh-ta"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 20,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "dung-cui-dau-truoc-anh-ta"
+        ]
+      ],
+      "top_5_docs": [
+        "dung-cui-dau-truoc-anh-ta",
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "hoang-hon-cuong-nhiet-du-lam",
+        "dem-xuan-den-muon-thao-tuu-dich-khieu-hoa-tu",
+        "su-phu-mang-thai-con-cua-ai"
+      ],
+      "all_docs": [
+        "dung-cui-dau-truoc-anh-ta",
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "hoang-hon-cuong-nhiet-du-lam",
+        "dem-xuan-den-muon-thao-tuu-dich-khieu-hoa-tu",
+        "su-phu-mang-thai-con-cua-ai",
+        "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau",
+        "vo-toi-ngay-nao-cung-phai-gia-ngheo",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat",
+        "hy-vong-em-that-su-hanh-phuc",
+        "thap-nien-70-co-niem",
+        "mot-anh-nhin-van-nam-co-hai-thon-quang",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "hy-su-cua-anh-tong-chieu",
+        "khieu-chien-khong-rung-dong-beta-quan",
+        "nam-thang-thong-dong-nhi-dong-tho-tu",
+        "loi-to-tinh-dau-dong-cua-em",
+        "xin-khuoc-tu-chuyen-nhan-gian",
+        "sac-hon-treu-nguoi-quan-lai",
+        "that-thu-thanh-thang-xuyen-huong-thai"
+      ]
+    },
+    {
+      "query": "nam thang thong dong",
+      "description": "Medium: shortened title",
+      "scope": "all",
+      "ap": 1.0,
+      "relevant_docs": [
+        "nam-thang-thong-dong-nhi-dong-tho-tu"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 20,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "nam-thang-thong-dong-nhi-dong-tho-tu"
+        ]
+      ],
+      "top_5_docs": [
+        "nam-thang-thong-dong-nhi-dong-tho-tu",
+        "trang-non-nhan-tu",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "mot-anh-nhin-van-nam-co-hai-thon-quang",
+        "nam-ay-phong-toi-gap-trang-sang"
+      ],
+      "all_docs": [
+        "nam-thang-thong-dong-nhi-dong-tho-tu",
+        "trang-non-nhan-tu",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "mot-anh-nhin-van-nam-co-hai-thon-quang",
+        "nam-ay-phong-toi-gap-trang-sang",
+        "that-thu-thanh-thang-xuyen-huong-thai",
+        "nhan-luc-say-hon-em-tam-nguyet-do-dang",
+        "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+        "dung-cui-dau-truoc-anh-ta",
+        "su-ton-moi-dem-deu-muon-ta-hong-ngu",
+        "su-phu-mang-thai-con-cua-ai",
+        "oanh-dao-luu-hoa-duc-nhien",
+        "tri-dong-ngai-ngu",
+        "hy-su-cua-anh-tong-chieu",
+        "hoang-hon-cuong-nhiet-du-lam",
+        "diu-dang-trien-mien-du-lam",
+        "binh-tinh-bao-thu-vui-ve-len-hot-search",
+        "ba-muoi-moi-cuoi-kien-kinh-lac",
+        "trang-sang-ngan-van-dam-tung-ho-khuu-hoa"
+      ]
+    },
+    {
+      "query": "oanh dao luu hoa",
+      "description": "Medium: shortened title",
+      "scope": "all",
+      "ap": 1.0,
+      "relevant_docs": [
+        "oanh-dao-luu-hoa-duc-nhien"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 10,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "oanh-dao-luu-hoa-duc-nhien"
+        ]
+      ],
+      "top_5_docs": [
+        "oanh-dao-luu-hoa-duc-nhien",
+        "bai-tho-mua-xuan-gau-nho-cua-l",
+        "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu",
+        "xong-vao-kinh-do-cung-chuot",
+        "xuan-hoa-canh-minh"
+      ],
+      "all_docs": [
+        "oanh-dao-luu-hoa-duc-nhien",
+        "bai-tho-mua-xuan-gau-nho-cua-l",
+        "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu",
+        "xong-vao-kinh-do-cung-chuot",
+        "xuan-hoa-canh-minh",
+        "xin-khuoc-tu-chuyen-nhan-gian",
+        "giang-ho-dai-hiep-va-mat-manh-y-gia-su",
+        "su-ton-moi-dem-deu-muon-ta-hong-ngu",
+        "su-phu-mang-thai-con-cua-ai",
+        "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta"
+      ]
+    },
+    {
+      "query": "ba muoi moi cuoi",
+      "description": "Medium: partial title",
+      "scope": "all",
+      "ap": 1.0,
+      "relevant_docs": [
+        "ba-muoi-moi-cuoi-kien-kinh-lac"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 20,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "ba-muoi-moi-cuoi-kien-kinh-lac"
+        ]
+      ],
+      "top_5_docs": [
+        "ba-muoi-moi-cuoi-kien-kinh-lac",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "tho-ren-my-kieu-the-di-tieu-hoa",
+        "mot-anh-nhin-van-nam-co-hai-thon-quang",
+        "oanh-dao-luu-hoa-duc-nhien"
+      ],
+      "all_docs": [
+        "ba-muoi-moi-cuoi-kien-kinh-lac",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "tho-ren-my-kieu-the-di-tieu-hoa",
+        "mot-anh-nhin-van-nam-co-hai-thon-quang",
+        "oanh-dao-luu-hoa-duc-nhien",
+        "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta",
+        "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau",
+        "binh-tinh-bao-thu-vui-ve-len-hot-search",
+        "su-phu-mang-thai-con-cua-ai",
+        "thap-nien-70-co-niem",
+        "nhan-luc-say-hon-em-tam-nguyet-do-dang",
+        "su-ton-moi-dem-deu-muon-ta-hong-ngu",
+        "sac-hon-treu-nguoi-quan-lai",
+        "nguoi-ruc-ro-tua-anh-duong",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+        "lang-man-nghich-bien-van-doc",
+        "hoang-hon-cuong-nhiet-du-lam",
+        "hy-su-cua-anh-tong-chieu",
+        "tri-dong-ngai-ngu",
+        "nam-ay-phong-toi-gap-trang-sang"
+      ]
+    },
+    {
+      "query": "kunlun no ninh dem mau tuoi",
+      "description": "Content/entity: unique proper noun + scene words",
+      "scope": "content",
+      "ap": 1.0,
+      "relevant_docs": [
+        "su-phu-mang-thai-con-cua-ai"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 20,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "su-phu-mang-thai-con-cua-ai"
+        ]
+      ],
+      "top_5_docs": [
+        "su-phu-mang-thai-con-cua-ai",
+        "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta",
+        "dung-cui-dau-truoc-anh-ta",
+        "xin-khuoc-tu-chuyen-nhan-gian",
+        "mot-anh-nhin-van-nam-co-hai-thon-quang"
+      ],
+      "all_docs": [
+        "su-phu-mang-thai-con-cua-ai",
+        "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta",
+        "dung-cui-dau-truoc-anh-ta",
+        "xin-khuoc-tu-chuyen-nhan-gian",
+        "mot-anh-nhin-van-nam-co-hai-thon-quang",
+        "sac-hon-treu-nguoi-quan-lai",
+        "ba-muoi-moi-cuoi-kien-kinh-lac",
+        "nguoi-ruc-ro-tua-anh-duong",
+        "binh-tinh-bao-thu-vui-ve-len-hot-search",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "thap-nien-70-co-niem",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi",
+        "tho-ren-my-kieu-the-di-tieu-hoa",
+        "hoang-hon-cuong-nhiet-du-lam",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat",
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+        "nhan-luc-say-hon-em-tam-nguyet-do-dang",
+        "loi-to-tinh-dau-dong-cua-em",
+        "xong-vao-kinh-do-cung-chuot"
+      ]
+    },
+    {
+      "query": "xuyen vao nguoi so kho phong toi nguc",
+      "description": "Content: synopsis keywords",
+      "scope": "content",
+      "ap": 0.5,
+      "relevant_docs": [
+        "nam-ay-phong-toi-gap-trang-sang"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 20,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          2,
+          "nam-ay-phong-toi-gap-trang-sang"
+        ]
+      ],
+      "top_5_docs": [
+        "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu",
+        "nam-ay-phong-toi-gap-trang-sang",
+        "su-ton-moi-dem-deu-muon-ta-hong-ngu",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat",
+        "tho-ren-my-kieu-the-di-tieu-hoa"
+      ],
+      "all_docs": [
+        "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu",
+        "nam-ay-phong-toi-gap-trang-sang",
+        "su-ton-moi-dem-deu-muon-ta-hong-ngu",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat",
+        "tho-ren-my-kieu-the-di-tieu-hoa",
+        "xuan-hoa-canh-minh",
+        "loi-to-tinh-dau-dong-cua-em",
+        "oanh-dao-luu-hoa-duc-nhien",
+        "trang-non-nhan-tu",
+        "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+        "dung-cui-dau-truoc-anh-ta",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "lang-man-nghich-bien-van-doc",
+        "tri-dong-ngai-ngu",
+        "nguoi-ruc-ro-tua-anh-duong",
+        "nhan-luc-say-hon-em-tam-nguyet-do-dang",
+        "binh-tinh-bao-thu-vui-ve-len-hot-search",
+        "nhan-co-hoi-me-nhao-nhao",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng"
+      ]
+    },
+    {
+      "query": "dan tam con chuot tham tai",
+      "description": "Content/entity: character + motif",
+      "scope": "content",
+      "ap": 1.0,
+      "relevant_docs": [
+        "xong-vao-kinh-do-cung-chuot"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 20,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "xong-vao-kinh-do-cung-chuot"
+        ]
+      ],
+      "top_5_docs": [
+        "xong-vao-kinh-do-cung-chuot",
+        "nam-ay-phong-toi-gap-trang-sang",
+        "dung-cui-dau-truoc-anh-ta",
+        "hy-su-cua-anh-tong-chieu",
+        "loi-to-tinh-dau-dong-cua-em"
+      ],
+      "all_docs": [
+        "xong-vao-kinh-do-cung-chuot",
+        "nam-ay-phong-toi-gap-trang-sang",
+        "dung-cui-dau-truoc-anh-ta",
+        "hy-su-cua-anh-tong-chieu",
+        "loi-to-tinh-dau-dong-cua-em",
+        "sac-hon-treu-nguoi-quan-lai",
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "nhan-luc-say-hon-em-tam-nguyet-do-dang",
+        "tri-dong-ngai-ngu",
+        "mot-anh-nhin-van-nam-co-hai-thon-quang",
+        "thap-nien-70-co-niem",
+        "xuyen-nhanh-ky-chu-that-khong-don-gian",
+        "hoang-hon-cuong-nhiet-du-lam",
+        "phao-hoa-ngay-dong-man-nhien",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat",
+        "co-ay-van-chua-biet-ban-dong",
+        "diu-dang-trien-mien-du-lam",
+        "su-ton-moi-dem-deu-muon-ta-hong-ngu",
+        "that-thu-thanh-thang-xuyen-huong-thai"
+      ]
+    },
+    {
+      "query": "chua hop dam cao troc dau",
+      "description": "Content: setting + visual detail",
+      "scope": "content",
+      "ap": 1.0,
+      "relevant_docs": [
+        "tri-dong-ngai-ngu"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 20,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "tri-dong-ngai-ngu"
+        ]
+      ],
+      "top_5_docs": [
+        "tri-dong-ngai-ngu",
+        "loi-to-tinh-dau-dong-cua-em",
+        "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta",
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong"
+      ],
+      "all_docs": [
+        "tri-dong-ngai-ngu",
+        "loi-to-tinh-dau-dong-cua-em",
+        "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta",
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+        "hy-su-cua-anh-tong-chieu",
+        "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu",
+        "diu-dang-trien-mien-du-lam",
+        "that-thu-thanh-thang-xuyen-huong-thai",
+        "dung-cui-dau-truoc-anh-ta",
+        "nhan-luc-say-hon-em-tam-nguyet-do-dang",
+        "nhan-co-hoi-me-nhao-nhao",
+        "tuy-y-lam-bay-me-nhao-nhao",
+        "rot-cuoc-gap-duoc-em-van-viet",
+        "trang-non-nhan-tu",
+        "mot-anh-nhin-van-nam-co-hai-thon-quang",
+        "co-ay-van-chua-biet-ban-dong",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+        "binh-tinh-bao-thu-vui-ve-len-hot-search",
+        "su-phu-mang-thai-con-cua-ai"
+      ]
+    },
+    {
+      "query": "cuon lich vong tron do co niem",
+      "description": "Content: concrete detail (calendar mark) + name",
+      "scope": "content",
+      "ap": 1.0,
+      "relevant_docs": [
+        "thap-nien-70-co-niem"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 9,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "thap-nien-70-co-niem"
+        ]
+      ],
+      "top_5_docs": [
+        "thap-nien-70-co-niem",
+        "trang-sang-ngan-van-dam-tung-ho-khuu-hoa",
+        "remain-hoa-ky-uc",
+        "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta",
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi"
+      ],
+      "all_docs": [
+        "thap-nien-70-co-niem",
+        "trang-sang-ngan-van-dam-tung-ho-khuu-hoa",
+        "remain-hoa-ky-uc",
+        "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta",
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+        "lang-man-nghich-bien-van-doc",
+        "tho-ren-my-kieu-the-di-tieu-hoa",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat"
+      ]
+    },
+    {
+      "query": "thua ke nha ho tham lanh lung cam duc",
+      "description": "Content: character archetype",
+      "scope": "content",
+      "ap": 1.0,
+      "relevant_docs": [
+        "sac-hon-treu-nguoi-quan-lai"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 20,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "sac-hon-treu-nguoi-quan-lai"
+        ]
+      ],
+      "top_5_docs": [
+        "sac-hon-treu-nguoi-quan-lai",
+        "diu-dang-trien-mien-du-lam",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi",
+        "dung-cui-dau-truoc-anh-ta",
+        "hoang-hon-cuong-nhiet-du-lam"
+      ],
+      "all_docs": [
+        "sac-hon-treu-nguoi-quan-lai",
+        "diu-dang-trien-mien-du-lam",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi",
+        "dung-cui-dau-truoc-anh-ta",
+        "hoang-hon-cuong-nhiet-du-lam",
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat",
+        "mot-anh-nhin-van-nam-co-hai-thon-quang",
+        "that-thu-thanh-thang-xuyen-huong-thai",
+        "trang-non-nhan-tu",
+        "thap-nien-70-co-niem",
+        "su-phu-mang-thai-con-cua-ai",
+        "binh-tinh-bao-thu-vui-ve-len-hot-search",
+        "xuyen-nhanh-ky-chu-that-khong-don-gian",
+        "vo-toi-ngay-nao-cung-phai-gia-ngheo",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "lang-man-nghich-bien-van-doc",
+        "xong-vao-kinh-do-cung-chuot",
+        "phao-hoa-ngay-dong-man-nhien",
+        "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu"
+      ]
+    },
+    {
+      "query": "bach hop linh di than quai",
+      "description": "Content: genre tags commonly present in synopsis",
+      "scope": "content",
+      "ap": 1.0,
+      "relevant_docs": [
+        "xin-khuoc-tu-chuyen-nhan-gian"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 17,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "xin-khuoc-tu-chuyen-nhan-gian"
+        ]
+      ],
+      "top_5_docs": [
+        "xin-khuoc-tu-chuyen-nhan-gian",
+        "trang-non-nhan-tu",
+        "giang-ho-dai-hiep-va-mat-manh-y-gia-su",
+        "vo-toi-ngay-nao-cung-phai-gia-ngheo",
+        "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau"
+      ],
+      "all_docs": [
+        "xin-khuoc-tu-chuyen-nhan-gian",
+        "trang-non-nhan-tu",
+        "giang-ho-dai-hiep-va-mat-manh-y-gia-su",
+        "vo-toi-ngay-nao-cung-phai-gia-ngheo",
+        "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau",
+        "yeu-yeu-chung-thanh-van-moc-di-vi-xuan",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+        "nhan-co-hoi-me-nhao-nhao",
+        "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta",
+        "tuy-y-lam-bay-me-nhao-nhao",
+        "hy-vong-em-that-su-hanh-phuc",
+        "su-ton-moi-dem-deu-muon-ta-hong-ngu",
+        "tho-ren-my-kieu-the-di-tieu-hoa",
+        "khieu-chien-khong-rung-dong-beta-quan",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi",
+        "lang-man-nghich-bien-van-doc"
+      ]
+    },
+    {
+      "query": "dan quoc bao thu pha an khong cp",
+      "description": "Content: genre keywords",
+      "scope": "content",
+      "ap": 1.0,
+      "relevant_docs": [
+        "vinh-quang-trong-thu-han-ly-cuu-tuan"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 20,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "vinh-quang-trong-thu-han-ly-cuu-tuan"
+        ]
+      ],
+      "top_5_docs": [
+        "vinh-quang-trong-thu-han-ly-cuu-tuan",
+        "xuan-hoa-canh-minh",
+        "xong-vao-kinh-do-cung-chuot",
+        "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta",
+        "su-phu-mang-thai-con-cua-ai"
+      ],
+      "all_docs": [
+        "vinh-quang-trong-thu-han-ly-cuu-tuan",
+        "xuan-hoa-canh-minh",
+        "xong-vao-kinh-do-cung-chuot",
+        "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta",
+        "su-phu-mang-thai-con-cua-ai",
+        "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu",
+        "khieu-chien-khong-rung-dong-beta-quan",
+        "nhan-luc-say-hon-em-tam-nguyet-do-dang",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi",
+        "xin-khuoc-tu-chuyen-nhan-gian",
+        "nam-ay-phong-toi-gap-trang-sang",
+        "dem-xuan-den-muon-thao-tuu-dich-khieu-hoa-tu",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+        "binh-tinh-bao-thu-vui-ve-len-hot-search",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "trang-non-nhan-tu",
+        "xuyen-nhanh-ky-chu-that-khong-don-gian",
+        "rot-cuoc-gap-duoc-em-van-viet",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+        "dung-cui-dau-truoc-anh-ta"
+      ]
+    },
+    {
+      "query": "dai hoc moi tinh ha truc hua mac",
+      "description": "Content/entity: character names + setting",
+      "scope": "content",
+      "ap": 1.0,
+      "relevant_docs": [
+        "hy-su-cua-anh-tong-chieu"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 20,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "hy-su-cua-anh-tong-chieu"
+        ]
+      ],
+      "top_5_docs": [
+        "hy-su-cua-anh-tong-chieu",
+        "tri-dong-ngai-ngu",
+        "thap-nien-70-co-niem",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat",
+        "oanh-dao-luu-hoa-duc-nhien"
+      ],
+      "all_docs": [
+        "hy-su-cua-anh-tong-chieu",
+        "tri-dong-ngai-ngu",
+        "thap-nien-70-co-niem",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat",
+        "oanh-dao-luu-hoa-duc-nhien",
+        "co-ay-van-chua-biet-ban-dong",
+        "su-ton-moi-dem-deu-muon-ta-hong-ngu",
+        "xong-vao-kinh-do-cung-chuot",
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "giang-ho-dai-hiep-va-mat-manh-y-gia-su",
+        "khieu-chien-khong-rung-dong-beta-quan",
+        "nam-thang-thong-dong-nhi-dong-tho-tu",
+        "dung-cui-dau-truoc-anh-ta",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+        "bai-tho-mua-xuan-gau-nho-cua-l",
+        "phao-hoa-ngay-dong-man-nhien",
+        "mot-anh-nhin-van-nam-co-hai-thon-quang",
+        "that-thu-thanh-thang-xuyen-huong-thai",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+        "ba-muoi-moi-cuoi-kien-kinh-lac"
+      ]
+    },
+    {
+      "query": "du tiec tat nien dai than lanh lung",
+      "description": "Content: event + archetype",
+      "scope": "content",
+      "ap": 1.0,
+      "relevant_docs": [
+        "diu-dang-trien-mien-du-lam"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 20,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "diu-dang-trien-mien-du-lam"
+        ]
+      ],
+      "top_5_docs": [
+        "diu-dang-trien-mien-du-lam",
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "sac-hon-treu-nguoi-quan-lai",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi",
+        "dung-cui-dau-truoc-anh-ta"
+      ],
+      "all_docs": [
+        "diu-dang-trien-mien-du-lam",
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "sac-hon-treu-nguoi-quan-lai",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi",
+        "dung-cui-dau-truoc-anh-ta",
+        "binh-tinh-bao-thu-vui-ve-len-hot-search",
+        "su-phu-mang-thai-con-cua-ai",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat",
+        "nam-thang-thong-dong-nhi-dong-tho-tu",
+        "hoang-hon-cuong-nhiet-du-lam",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+        "lang-man-nghich-bien-van-doc",
+        "nhan-co-hoi-me-nhao-nhao",
+        "trang-non-nhan-tu",
+        "rot-cuoc-gap-duoc-em-van-viet",
+        "xuan-hoa-canh-minh",
+        "remain-hoa-ky-uc",
+        "giang-ho-dai-hiep-va-mat-manh-y-gia-su",
+        "mot-anh-nhin-van-nam-co-hai-thon-quang",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii"
+      ]
+    },
+    {
+      "query": "vo toi ngay nao cung phai gia ngeo",
+      "description": "Typo: ngheo -> ngeo",
+      "scope": "title",
+      "ap": 1.0,
+      "relevant_docs": [
+        "vo-toi-ngay-nao-cung-phai-gia-ngheo"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 9,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "vo-toi-ngay-nao-cung-phai-gia-ngheo"
+        ]
+      ],
+      "top_5_docs": [
+        "vo-toi-ngay-nao-cung-phai-gia-ngheo",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi",
+        "phao-hoa-ngay-dong-man-nhien",
+        "xong-vao-kinh-do-cung-chuot",
+        "giang-ho-dai-hiep-va-mat-manh-y-gia-su"
+      ],
+      "all_docs": [
+        "vo-toi-ngay-nao-cung-phai-gia-ngheo",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi",
+        "phao-hoa-ngay-dong-man-nhien",
+        "xong-vao-kinh-do-cung-chuot",
+        "giang-ho-dai-hiep-va-mat-manh-y-gia-su",
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau",
+        "xin-khuoc-tu-chuyen-nhan-gian",
+        "xuyen-nhanh-ky-chu-that-khong-don-gian"
+      ]
+    },
+    {
+      "query": "binh tinh bao thu vui ve len hotserch",
+      "description": "Typo: hot search misspelling",
+      "scope": "title",
+      "ap": 1.0,
+      "relevant_docs": [
+        "binh-tinh-bao-thu-vui-ve-len-hot-search"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 1,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "binh-tinh-bao-thu-vui-ve-len-hot-search"
+        ]
+      ],
+      "top_5_docs": [
+        "binh-tinh-bao-thu-vui-ve-len-hot-search"
+      ],
+      "all_docs": [
+        "binh-tinh-bao-thu-vui-ve-len-hot-search"
+      ]
+    },
+    {
+      "query": "xong vao kinh do cung chout",
+      "description": "Typo: chuot -> chout",
+      "scope": "title",
+      "ap": 1.0,
+      "relevant_docs": [
+        "xong-vao-kinh-do-cung-chuot"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 4,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "xong-vao-kinh-do-cung-chuot"
+        ]
+      ],
+      "top_5_docs": [
+        "xong-vao-kinh-do-cung-chuot",
+        "vo-toi-ngay-nao-cung-phai-gia-ngheo",
+        "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi"
+      ],
+      "all_docs": [
+        "xong-vao-kinh-do-cung-chuot",
+        "vo-toi-ngay-nao-cung-phai-gia-ngheo",
+        "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi"
+      ]
+    },
+    {
+      "query": "trang sang ngan van dam tung ho khu hoa",
+      "description": "Typo: khứu -> khu",
+      "scope": "title",
+      "ap": 1.0,
+      "relevant_docs": [
+        "trang-sang-ngan-van-dam-tung-ho-khuu-hoa"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 18,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "trang-sang-ngan-van-dam-tung-ho-khuu-hoa"
+        ]
+      ],
+      "top_5_docs": [
+        "trang-sang-ngan-van-dam-tung-ho-khuu-hoa",
+        "nam-ay-phong-toi-gap-trang-sang",
+        "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu",
+        "xuan-hoa-canh-minh",
+        "remain-hoa-ky-uc"
+      ],
+      "all_docs": [
+        "trang-sang-ngan-van-dam-tung-ho-khuu-hoa",
+        "nam-ay-phong-toi-gap-trang-sang",
+        "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu",
+        "xuan-hoa-canh-minh",
+        "remain-hoa-ky-uc",
+        "xin-khuoc-tu-chuyen-nhan-gian",
+        "lang-man-nghich-bien-van-doc",
+        "trang-non-nhan-tu",
+        "oanh-dao-luu-hoa-duc-nhien",
+        "co-ay-van-chua-biet-ban-dong",
+        "rot-cuoc-gap-duoc-em-van-viet",
+        "tho-ren-my-kieu-the-di-tieu-hoa",
+        "yeu-yeu-chung-thanh-van-moc-di-vi-xuan",
+        "dem-xuan-den-muon-thao-tuu-dich-khieu-hoa-tu",
+        "mot-anh-nhin-van-nam-co-hai-thon-quang",
+        "hoang-hon-cuong-nhiet-du-lam",
+        "phao-hoa-ngay-dong-man-nhien",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi"
+      ]
+    },
+    {
+      "query": "nguoi ruc ro tua anh duongg",
+      "description": "Typo: extra character",
+      "scope": "title",
+      "ap": 1.0,
+      "relevant_docs": [
+        "nguoi-ruc-ro-tua-anh-duong"
+      ],
+      "relevant_count": 1,
+      "retrieved_count": 16,
+      "found_count": 1,
+      "relevant_positions": [
+        [
+          1,
+          "nguoi-ruc-ro-tua-anh-duong"
+        ]
+      ],
+      "top_5_docs": [
+        "nguoi-ruc-ro-tua-anh-duong",
+        "sac-hon-treu-nguoi-quan-lai",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "dung-cui-dau-truoc-anh-ta",
+        "hy-su-cua-anh-tong-chieu"
+      ],
+      "all_docs": [
+        "nguoi-ruc-ro-tua-anh-duong",
+        "sac-hon-treu-nguoi-quan-lai",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "dung-cui-dau-truoc-anh-ta",
+        "hy-su-cua-anh-tong-chieu",
+        "vinh-quang-trong-thu-han-ly-cuu-tuan",
+        "mot-anh-nhin-van-nam-co-hai-thon-quang",
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "hy-vong-em-that-su-hanh-phuc",
+        "xuan-hoa-canh-minh",
+        "that-thu-thanh-thang-xuyen-huong-thai",
+        "oanh-dao-luu-hoa-duc-nhien",
+        "xuyen-nhanh-ky-chu-that-khong-don-gian",
+        "giang-ho-dai-hiep-va-mat-manh-y-gia-su",
+        "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu",
+        "yeu-yeu-chung-thanh-van-moc-di-vi-xuan"
+      ]
+    },
+    {
+      "query": "xuyen khong tu tien",
+      "description": "Negative: common keyword not present in this 50-story set",
+      "scope": "all",
+      "ap": 0.0,
+      "relevant_docs": [],
+      "relevant_count": 0,
+      "retrieved_count": 20,
+      "found_count": 0,
+      "relevant_positions": [],
+      "top_5_docs": [
+        "su-ton-moi-dem-deu-muon-ta-hong-ngu",
+        "tho-ren-my-kieu-the-di-tieu-hoa",
+        "that-thu-thanh-thang-xuyen-huong-thai",
+        "nam-ay-phong-toi-gap-trang-sang",
+        "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu"
+      ],
+      "all_docs": [
+        "su-ton-moi-dem-deu-muon-ta-hong-ngu",
+        "tho-ren-my-kieu-the-di-tieu-hoa",
+        "that-thu-thanh-thang-xuyen-huong-thai",
+        "nam-ay-phong-toi-gap-trang-sang",
+        "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat",
+        "xuyen-nhanh-ky-chu-that-khong-don-gian",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+        "xuan-hoa-canh-minh",
+        "oanh-dao-luu-hoa-duc-nhien",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+        "xong-vao-kinh-do-cung-chuot",
+        "tuy-y-lam-bay-me-nhao-nhao",
+        "nam-thang-thong-dong-nhi-dong-tho-tu",
+        "giang-ho-dai-hiep-va-mat-manh-y-gia-su",
+        "hy-su-cua-anh-tong-chieu",
+        "trang-sang-ngan-van-dam-tung-ho-khuu-hoa",
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "tri-dong-ngai-ngu",
+        "dung-cui-dau-truoc-anh-ta"
+      ]
+    },
+    {
+      "query": "cong chua hoang tu",
+      "description": "Negative: generic fairy-tale keyword",
+      "scope": "all",
+      "ap": 0.0,
+      "relevant_docs": [],
+      "relevant_count": 0,
+      "retrieved_count": 0,
+      "found_count": 0,
+      "relevant_positions": [],
+      "top_5_docs": [],
+      "all_docs": []
+    },
+    {
+      "query": "khoa hoc vi tuong AI robot",
+      "description": "Negative: sci-fi keywords not expected here",
+      "scope": "content",
+      "ap": 0.0,
+      "relevant_docs": [],
+      "relevant_count": 0,
+      "retrieved_count": 20,
+      "found_count": 0,
+      "relevant_positions": [],
+      "top_5_docs": [
+        "nhan-luc-say-hon-em-tam-nguyet-do-dang",
+        "vinh-quang-trong-thu-han-ly-cuu-tuan",
+        "thap-nien-70-co-niem",
+        "su-phu-mang-thai-con-cua-ai",
+        "xin-khuoc-tu-chuyen-nhan-gian"
+      ],
+      "all_docs": [
+        "nhan-luc-say-hon-em-tam-nguyet-do-dang",
+        "vinh-quang-trong-thu-han-ly-cuu-tuan",
+        "thap-nien-70-co-niem",
+        "su-phu-mang-thai-con-cua-ai",
+        "xin-khuoc-tu-chuyen-nhan-gian",
+        "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta",
+        "yeu-yeu-chung-thanh-van-moc-di-vi-xuan",
+        "nguoi-ruc-ro-tua-anh-duong",
+        "that-thu-thanh-thang-xuyen-huong-thai",
+        "hoang-hon-cuong-nhiet-du-lam",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "xuyen-nhanh-ky-chu-that-khong-don-gian",
+        "tho-ren-my-kieu-the-di-tieu-hoa",
+        "ba-muoi-moi-cuoi-kien-kinh-lac",
+        "lang-man-nghich-bien-van-doc",
+        "trang-non-nhan-tu",
+        "loi-to-tinh-dau-dong-cua-em",
+        "mot-anh-nhin-van-nam-co-hai-thon-quang",
+        "dung-cui-dau-truoc-anh-ta",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi"
+      ]
+    },
+    {
+      "query": "trinh sat pha an sat nhan serial killer",
+      "description": "Negative: out-of-domain query for this sample",
+      "scope": "all",
+      "ap": 0.0,
+      "relevant_docs": [],
+      "relevant_count": 0,
+      "retrieved_count": 20,
+      "found_count": 0,
+      "relevant_positions": [],
+      "top_5_docs": [
+        "xuan-hoa-canh-minh",
+        "vinh-quang-trong-thu-han-ly-cuu-tuan",
+        "xong-vao-kinh-do-cung-chuot",
+        "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta",
+        "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu"
+      ],
+      "all_docs": [
+        "xuan-hoa-canh-minh",
+        "vinh-quang-trong-thu-han-ly-cuu-tuan",
+        "xong-vao-kinh-do-cung-chuot",
+        "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta",
+        "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu",
+        "phao-hoa-ngay-dong-man-nhien",
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "xin-khuoc-tu-chuyen-nhan-gian",
+        "nam-ay-phong-toi-gap-trang-sang",
+        "vo-toi-ngay-nao-cung-phai-gia-ngheo",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi",
+        "dem-xuan-den-muon-thao-tuu-dich-khieu-hoa-tu",
+        "binh-tinh-bao-thu-vui-ve-len-hot-search",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "su-phu-mang-thai-con-cua-ai",
+        "trang-non-nhan-tu",
+        "trang-sang-ngan-van-dam-tung-ho-khuu-hoa",
+        "lang-man-nghich-bien-van-doc"
+      ]
+    },
+    {
+      "query": "xay dung kinh doanh startup goi von",
+      "description": "Negative: business keywords not expected here",
+      "scope": "content",
+      "ap": 0.0,
+      "relevant_docs": [],
+      "relevant_count": 0,
+      "retrieved_count": 20,
+      "found_count": 0,
+      "relevant_positions": [],
+      "top_5_docs": [
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "tho-ren-my-kieu-the-di-tieu-hoa",
+        "nam-thang-thong-dong-nhi-dong-tho-tu",
+        "dung-cui-dau-truoc-anh-ta",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng"
+      ],
+      "all_docs": [
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "tho-ren-my-kieu-the-di-tieu-hoa",
+        "nam-thang-thong-dong-nhi-dong-tho-tu",
+        "dung-cui-dau-truoc-anh-ta",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+        "hoang-hon-cuong-nhiet-du-lam",
+        "yeu-yeu-chung-thanh-van-moc-di-vi-xuan",
+        "nguoi-ruc-ro-tua-anh-duong",
+        "binh-tinh-bao-thu-vui-ve-len-hot-search",
+        "hy-su-cua-anh-tong-chieu",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+        "trang-sang-ngan-van-dam-tung-ho-khuu-hoa",
+        "loi-to-tinh-dau-dong-cua-em",
+        "xin-khuoc-tu-chuyen-nhan-gian",
+        "sac-hon-treu-nguoi-quan-lai",
+        "mot-anh-nhin-van-nam-co-hai-thon-quang",
+        "that-thu-thanh-thang-xuyen-huong-thai",
+        "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu",
+        "tri-dong-ngai-ngu",
+        "su-ton-moi-dem-deu-muon-ta-hong-ngu"
+      ]
+    },
+    {
+      "query": "bach hop",
+      "description": "Category/content: docs containing phrase 'bách hợp' (auto ground truth)",
+      "scope": "content",
+      "ap": 1.0,
+      "relevant_docs": [
+        "lang-man-nghich-bien-van-doc",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+        "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau",
+        "hy-vong-em-that-su-hanh-phuc",
+        "tuy-y-lam-bay-me-nhao-nhao",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi",
+        "nhan-co-hoi-me-nhao-nhao",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat",
+        "tho-ren-my-kieu-the-di-tieu-hoa",
+        "trang-non-nhan-tu",
+        "xin-khuoc-tu-chuyen-nhan-gian",
+        "khieu-chien-khong-rung-dong-beta-quan"
+      ],
+      "relevant_count": 12,
+      "retrieved_count": 12,
+      "found_count": 12,
+      "relevant_positions": [
+        [
+          1,
+          "bi-bach-nguyet-quang-cua-nam-chinh-be-cong"
+        ],
+        [
+          2,
+          "nhan-co-hoi-me-nhao-nhao"
+        ],
+        [
+          3,
+          "tuy-y-lam-bay-me-nhao-nhao"
+        ],
+        [
+          4,
+          "hy-vong-em-that-su-hanh-phuc"
+        ],
+        [
+          5,
+          "tho-ren-my-kieu-the-di-tieu-hoa"
+        ],
+        [
+          6,
+          "khieu-chien-khong-rung-dong-beta-quan"
+        ],
+        [
+          7,
+          "phu-nhan-xung-hi-cuu-vo-benh-tat"
+        ],
+        [
+          8,
+          "xin-khuoc-tu-chuyen-nhan-gian"
+        ],
+        [
+          9,
+          "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi"
+        ],
+        [
+          10,
+          "lang-man-nghich-bien-van-doc"
+        ],
+        [
+          11,
+          "trang-non-nhan-tu"
+        ],
+        [
+          12,
+          "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau"
+        ]
+      ],
+      "top_5_docs": [
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+        "nhan-co-hoi-me-nhao-nhao",
+        "tuy-y-lam-bay-me-nhao-nhao",
+        "hy-vong-em-that-su-hanh-phuc",
+        "tho-ren-my-kieu-the-di-tieu-hoa"
+      ],
+      "all_docs": [
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+        "nhan-co-hoi-me-nhao-nhao",
+        "tuy-y-lam-bay-me-nhao-nhao",
+        "hy-vong-em-that-su-hanh-phuc",
+        "tho-ren-my-kieu-the-di-tieu-hoa",
+        "khieu-chien-khong-rung-dong-beta-quan",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat",
+        "xin-khuoc-tu-chuyen-nhan-gian",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi",
+        "lang-man-nghich-bien-van-doc",
+        "trang-non-nhan-tu",
+        "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau"
+      ]
+    },
+    {
+      "query": "gioi giai tri",
+      "description": "Category/content: docs containing phrase 'giới giải trí' (auto ground truth)",
+      "scope": "content",
+      "ap": 1.0,
+      "relevant_docs": [
+        "lang-man-nghich-bien-van-doc",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat",
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "trang-non-nhan-tu",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+        "khieu-chien-khong-rung-dong-beta-quan"
+      ],
+      "relevant_count": 7,
+      "retrieved_count": 14,
+      "found_count": 7,
+      "relevant_positions": [
+        [
+          1,
+          "khieu-chien-khong-rung-dong-beta-quan"
+        ],
+        [
+          2,
+          "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi"
+        ],
+        [
+          3,
+          "lang-man-nghich-bien-van-doc"
+        ],
+        [
+          4,
+          "trang-non-nhan-tu"
+        ],
+        [
+          5,
+          "phu-nhan-xung-hi-cuu-vo-benh-tat"
+        ],
+        [
+          6,
+          "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi"
+        ],
+        [
+          7,
+          "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng"
+        ]
+      ],
+      "top_5_docs": [
+        "khieu-chien-khong-rung-dong-beta-quan",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi",
+        "lang-man-nghich-bien-van-doc",
+        "trang-non-nhan-tu",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat"
+      ],
+      "all_docs": [
+        "khieu-chien-khong-rung-dong-beta-quan",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi",
+        "lang-man-nghich-bien-van-doc",
+        "trang-non-nhan-tu",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat",
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+        "co-ay-van-chua-biet-ban-dong",
+        "that-thu-thanh-thang-xuyen-huong-thai",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+        "hoang-hon-cuong-nhiet-du-lam",
+        "dung-cui-dau-truoc-anh-ta",
+        "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu",
+        "su-ton-moi-dem-deu-muon-ta-hong-ngu"
+      ]
+    },
+    {
+      "query": "ngot sung",
+      "description": "Category/content: docs containing phrase 'ngọt sủng' (auto ground truth)",
+      "scope": "content",
+      "ap": 1.0,
+      "relevant_docs": [
+        "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau",
+        "hy-vong-em-that-su-hanh-phuc",
+        "tuy-y-lam-bay-me-nhao-nhao",
+        "vo-toi-ngay-nao-cung-phai-gia-ngheo",
+        "xuan-hoa-canh-minh",
+        "nhan-co-hoi-me-nhao-nhao",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+        "khieu-chien-khong-rung-dong-beta-quan"
+      ],
+      "relevant_count": 8,
+      "retrieved_count": 17,
+      "found_count": 8,
+      "relevant_positions": [
+        [
+          1,
+          "tuy-y-lam-bay-me-nhao-nhao"
+        ],
+        [
+          2,
+          "xuan-hoa-canh-minh"
+        ],
+        [
+          3,
+          "nhan-co-hoi-me-nhao-nhao"
+        ],
+        [
+          4,
+          "hy-vong-em-that-su-hanh-phuc"
+        ],
+        [
+          5,
+          "khieu-chien-khong-rung-dong-beta-quan"
+        ],
+        [
+          6,
+          "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau"
+        ],
+        [
+          7,
+          "vo-toi-ngay-nao-cung-phai-gia-ngheo"
+        ],
+        [
+          8,
+          "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng"
+        ]
+      ],
+      "top_5_docs": [
+        "tuy-y-lam-bay-me-nhao-nhao",
+        "xuan-hoa-canh-minh",
+        "nhan-co-hoi-me-nhao-nhao",
+        "hy-vong-em-that-su-hanh-phuc",
+        "khieu-chien-khong-rung-dong-beta-quan"
+      ],
+      "all_docs": [
+        "tuy-y-lam-bay-me-nhao-nhao",
+        "xuan-hoa-canh-minh",
+        "nhan-co-hoi-me-nhao-nhao",
+        "hy-vong-em-that-su-hanh-phuc",
+        "khieu-chien-khong-rung-dong-beta-quan",
+        "cung-bach-nguyet-quang-hay-khoc-nhe-cuoi-truoc-yeu-sau",
+        "vo-toi-ngay-nao-cung-phai-gia-ngheo",
+        "alpha-te-bac-co-ay-that-su-khong-muon-noi-tieng",
+        "xong-vao-kinh-do-cung-chuot",
+        "su-phu-mang-thai-con-cua-ai",
+        "nhan-luc-say-hon-em-tam-nguyet-do-dang",
+        "loi-to-tinh-dau-dong-cua-em",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+        "trang-non-nhan-tu",
+        "that-thu-thanh-thang-xuyen-huong-thai",
+        "mot-anh-nhin-van-nam-co-hai-thon-quang",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii"
+      ]
+    },
+    {
+      "query": "bao thu",
+      "description": "Category/content: docs containing phrase 'báo thù' (auto ground truth)",
+      "scope": "content",
+      "ap": 0.6666666666666666,
+      "relevant_docs": [
+        "vinh-quang-trong-thu-han-ly-cuu-tuan",
+        "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta",
+        "binh-tinh-bao-thu-vui-ve-len-hot-search"
+      ],
+      "relevant_count": 3,
+      "retrieved_count": 2,
+      "found_count": 2,
+      "relevant_positions": [
+        [
+          1,
+          "vinh-quang-trong-thu-han-ly-cuu-tuan"
+        ],
+        [
+          2,
+          "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta"
+        ]
+      ],
+      "top_5_docs": [
+        "vinh-quang-trong-thu-han-ly-cuu-tuan",
+        "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta"
+      ],
+      "all_docs": [
+        "vinh-quang-trong-thu-han-ly-cuu-tuan",
+        "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta"
+      ]
+    },
+    {
+      "query": "pha an",
+      "description": "Category/content: docs containing phrase 'phá án' (auto ground truth)",
+      "scope": "content",
+      "ap": 1.0,
+      "relevant_docs": [
+        "vinh-quang-trong-thu-han-ly-cuu-tuan",
+        "xong-vao-kinh-do-cung-chuot",
+        "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta",
+        "xuan-hoa-canh-minh"
+      ],
+      "relevant_count": 4,
+      "retrieved_count": 13,
+      "found_count": 4,
+      "relevant_positions": [
+        [
+          1,
+          "xuan-hoa-canh-minh"
+        ],
+        [
+          2,
+          "vinh-quang-trong-thu-han-ly-cuu-tuan"
+        ],
+        [
+          3,
+          "xong-vao-kinh-do-cung-chuot"
+        ],
+        [
+          4,
+          "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta"
+        ]
+      ],
+      "top_5_docs": [
+        "xuan-hoa-canh-minh",
+        "vinh-quang-trong-thu-han-ly-cuu-tuan",
+        "xong-vao-kinh-do-cung-chuot",
+        "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta",
+        "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu"
+      ],
+      "all_docs": [
+        "xuan-hoa-canh-minh",
+        "vinh-quang-trong-thu-han-ly-cuu-tuan",
+        "xong-vao-kinh-do-cung-chuot",
+        "sau-khi-chet-ke-thu-dot-huong-muoi-nam-cho-ta",
+        "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu",
+        "xin-khuoc-tu-chuyen-nhan-gian",
+        "nam-ay-phong-toi-gap-trang-sang",
+        "dem-xuan-den-muon-thao-tuu-dich-khieu-hoa-tu",
+        "binh-tinh-bao-thu-vui-ve-len-hot-search",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+        "tinh-nhan-cuoi-tuan-tro-thanh-lao-ban-cua-toi-iii",
+        "su-phu-mang-thai-con-cua-ai",
+        "trang-non-nhan-tu"
+      ]
+    },
+    {
+      "query": "xuyen",
+      "description": "Category/content: docs containing phrase 'xuyên' (auto ground truth)",
+      "scope": "content",
+      "ap": 0.8,
+      "relevant_docs": [
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+        "oanh-dao-luu-hoa-duc-nhien",
+        "nam-ay-phong-toi-gap-trang-sang",
+        "xuan-hoa-canh-minh",
+        "nu-minh-tinh-doat-giai-cung-la-mot-hoa-si-thien-tai-alpha-tre-tuoi",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat",
+        "su-ton-moi-dem-deu-muon-ta-hong-ngu",
+        "tho-ren-my-kieu-the-di-tieu-hoa",
+        "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu",
+        "xuyen-nhanh-ky-chu-that-khong-don-gian"
+      ],
+      "relevant_count": 10,
+      "retrieved_count": 8,
+      "found_count": 8,
+      "relevant_positions": [
+        [
+          1,
+          "nam-ay-phong-toi-gap-trang-sang"
+        ],
+        [
+          2,
+          "phu-nhan-xung-hi-cuu-vo-benh-tat"
+        ],
+        [
+          3,
+          "su-ton-moi-dem-deu-muon-ta-hong-ngu"
+        ],
+        [
+          4,
+          "tho-ren-my-kieu-the-di-tieu-hoa"
+        ],
+        [
+          5,
+          "xuan-hoa-canh-minh"
+        ],
+        [
+          6,
+          "oanh-dao-luu-hoa-duc-nhien"
+        ],
+        [
+          7,
+          "bi-bach-nguyet-quang-cua-nam-chinh-be-cong"
+        ],
+        [
+          8,
+          "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu"
+        ]
+      ],
+      "top_5_docs": [
+        "nam-ay-phong-toi-gap-trang-sang",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat",
+        "su-ton-moi-dem-deu-muon-ta-hong-ngu",
+        "tho-ren-my-kieu-the-di-tieu-hoa",
+        "xuan-hoa-canh-minh"
+      ],
+      "all_docs": [
+        "nam-ay-phong-toi-gap-trang-sang",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat",
+        "su-ton-moi-dem-deu-muon-ta-hong-ngu",
+        "tho-ren-my-kieu-the-di-tieu-hoa",
+        "xuan-hoa-canh-minh",
+        "oanh-dao-luu-hoa-duc-nhien",
+        "bi-bach-nguyet-quang-cua-nam-chinh-be-cong",
+        "tro-thanh-vo-truoc-doan-menh-cua-nu-chinh-van-khoa-cu"
+      ]
+    },
+    {
+      "query": "chua lanh",
+      "description": "Category/content: docs containing phrase 'chữa lành' (auto ground truth)",
+      "scope": "content",
+      "ap": 1.0,
+      "relevant_docs": [
+        "lang-man-nghich-bien-van-doc",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat",
+        "vinh-quang-trong-thu-han-ly-cuu-tuan",
+        "trang-sang-ngan-van-dam-tung-ho-khuu-hoa"
+      ],
+      "relevant_count": 4,
+      "retrieved_count": 4,
+      "found_count": 4,
+      "relevant_positions": [
+        [
+          1,
+          "vinh-quang-trong-thu-han-ly-cuu-tuan"
+        ],
+        [
+          2,
+          "lang-man-nghich-bien-van-doc"
+        ],
+        [
+          3,
+          "trang-sang-ngan-van-dam-tung-ho-khuu-hoa"
+        ],
+        [
+          4,
+          "phu-nhan-xung-hi-cuu-vo-benh-tat"
+        ]
+      ],
+      "top_5_docs": [
+        "vinh-quang-trong-thu-han-ly-cuu-tuan",
+        "lang-man-nghich-bien-van-doc",
+        "trang-sang-ngan-van-dam-tung-ho-khuu-hoa",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat"
+      ],
+      "all_docs": [
+        "vinh-quang-trong-thu-han-ly-cuu-tuan",
+        "lang-man-nghich-bien-van-doc",
+        "trang-sang-ngan-van-dam-tung-ho-khuu-hoa",
+        "phu-nhan-xung-hi-cuu-vo-benh-tat"
+      ]
+    },
+    {
+      "query": "do thi",
+      "description": "Category/content: docs containing phrase 'đô thị' (auto ground truth)",
+      "scope": "content",
+      "ap": 1.0,
+      "relevant_docs": [
+        "lang-man-nghich-bien-van-doc",
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "tuy-y-lam-bay-me-nhao-nhao",
+        "that-thu-thanh-thang-xuyen-huong-thai"
+      ],
+      "relevant_count": 4,
+      "retrieved_count": 4,
+      "found_count": 4,
+      "relevant_positions": [
+        [
+          1,
+          "tuy-y-lam-bay-me-nhao-nhao"
+        ],
+        [
+          2,
+          "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi"
+        ],
+        [
+          3,
+          "that-thu-thanh-thang-xuyen-huong-thai"
+        ],
+        [
+          4,
+          "lang-man-nghich-bien-van-doc"
+        ]
+      ],
+      "top_5_docs": [
+        "tuy-y-lam-bay-me-nhao-nhao",
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "that-thu-thanh-thang-xuyen-huong-thai",
+        "lang-man-nghich-bien-van-doc"
+      ],
+      "all_docs": [
+        "tuy-y-lam-bay-me-nhao-nhao",
+        "sau-khi-gia-chet-anh-hau-vo-cu-phat-dien-roi",
+        "that-thu-thanh-thang-xuyen-huong-thai",
+        "lang-man-nghich-bien-van-doc"
+      ]
+    }
+  ]
+}

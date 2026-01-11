@@ -13,8 +13,9 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from elastic import client, search_documents, wait_for_elasticsearch, ensure_index, get_document_by_id, get_chapter_count
 # from scraper import init_index, sync_from_list
 from import_from_supabase import import_all
-from settings import INDEX_NAME, SCRAPE_INTERVAL_MINUTES, INDEX_CONFIG_JSON
+from settings import INDEX_NAME, SCRAPE_INTERVAL_MINUTES, INDEX_CONFIG_JSON, USE_COCCOC_TOKENIZER
 from supabase_helper import supabase
+from tokenizer_client import tokenize
 import os
 
 app = FastAPI()
@@ -34,6 +35,20 @@ def init_index() -> None:
 def _has_diacritics(text: str) -> bool:
     normalized = unicodedata.normalize("NFD", text)
     return any(unicodedata.combining(ch) for ch in normalized)
+
+
+def _display_text(text: str | None) -> str | None:
+    """Normalize text for UI rendering.
+
+    When Cốc Cốc tokenizer is enabled, tokenized text may contain underscores
+    (e.g., "học_sinh"). We keep that in the index for better matching, but we
+    don't want to show underscores in the UI.
+    """
+    if not text:
+        return text
+    if not USE_COCCOC_TOKENIZER:
+        return text
+    return text.replace("_", " ")
 
 def sync_from_list():
     import_all()
@@ -100,16 +115,27 @@ async def search(request: Request, query: str, page: int = 1, scope: str = "all"
     page = max(1, int(page))
     offset = (page - 1) * per_page
 
+    # Keep what the user typed for UI rendering.
+    display_query = query
+
+    # Use a tokenized query only for Elasticsearch matching.
+    es_query = query
+
+    # Tokenize query if Cốc Cốc tokenizer is enabled.
+    # This ensures queries match the tokenized text stored in the index.
+    if USE_COCCOC_TOKENIZER:
+        es_query = tokenize(query, use_coccoc=True)
+
     scope_norm = (scope or "all").strip().lower()
     if scope_norm not in {"all", "title", "content"}:
         scope_norm = "all"
     search_title = scope_norm in {"all", "title"}
     search_content = scope_norm in {"all", "content"}
 
-    has_diacritics = _has_diacritics(query)
+    has_diacritics = _has_diacritics(es_query)
     should: list[dict] = []
 
-    tokens = [t for t in (query or "").strip().split() if t]
+    tokens = [t for t in (es_query or "").strip().split() if t]
     min_token_len = min((len(t) for t in tokens), default=0)
 
     # Diacritics-aware matching when the user types diacritics.
@@ -127,7 +153,7 @@ async def search(request: Request, query: str, page: int = 1, scope: str = "all"
             should.append(
                 {
                     "multi_match": {
-                        "query": query,
+                        "query": es_query,
                         "fields": diacritic_fields,
                         "type": "phrase",
                         "slop": 1,
@@ -150,7 +176,7 @@ async def search(request: Request, query: str, page: int = 1, scope: str = "all"
         should.append(
             {
                 "multi_match": {
-                    "query": query,
+                    "query": es_query,
                     "fields": phrase_fields,
                     "type": "phrase",
                     "slop": 3,
@@ -174,7 +200,7 @@ async def search(request: Request, query: str, page: int = 1, scope: str = "all"
             should.append(
                 {
                     "multi_match": {
-                        "query": query,
+                        "query": es_query,
                         "fields": best_fields,
                         "type": "best_fields",
                         "operator": "or",
@@ -191,7 +217,7 @@ async def search(request: Request, query: str, page: int = 1, scope: str = "all"
                 {
                     "match": {
                         "title.autocomplete": {
-                            "query": query,
+                            "query": es_query,
                             "operator": "and",
                             "boost": 2.5,
                         }
@@ -205,7 +231,7 @@ async def search(request: Request, query: str, page: int = 1, scope: str = "all"
             should.append(
                 {
                     "multi_match": {
-                        "query": query,
+                        "query": es_query,
                         "fields": [
                             "title.with_diacritics^12",
                             "content.with_diacritics^6",
@@ -221,7 +247,7 @@ async def search(request: Request, query: str, page: int = 1, scope: str = "all"
                 {
                     "match": {
                         "title.with_diacritics": {
-                            "query": query,
+                            "query": es_query,
                             "operator": "and",
                             "boost": 3,
                         }
@@ -233,7 +259,7 @@ async def search(request: Request, query: str, page: int = 1, scope: str = "all"
                 {
                     "match": {
                         "content.with_diacritics": {
-                            "query": query,
+                            "query": es_query,
                             "operator": "and",
                             "boost": 2,
                         }
@@ -245,7 +271,7 @@ async def search(request: Request, query: str, page: int = 1, scope: str = "all"
         should.append(
             {
                 "multi_match": {
-                    "query": query,
+                    "query": es_query,
                     "fields": [
                         "title^2",
                         "content^2",
@@ -257,9 +283,9 @@ async def search(request: Request, query: str, page: int = 1, scope: str = "all"
             }
         )
     elif search_title:
-        should.append({"match": {"title": {"query": query, "operator": "and", "boost": 2}}})
+        should.append({"match": {"title": {"query": es_query, "operator": "and", "boost": 2}}})
     elif search_content:
-        should.append({"match": {"content": {"query": query, "operator": "and", "boost": 1.5}}})
+        should.append({"match": {"content": {"query": es_query, "operator": "and", "boost": 1.5}}})
 
     # Fuzzy fallback can be very noisy for short tokens (e.g. 'tu', 'chi').
     if min_token_len >= 4:
@@ -273,7 +299,7 @@ async def search(request: Request, query: str, page: int = 1, scope: str = "all"
         should.append(
             {
                 "multi_match": {
-                    "query": query,
+                    "query": es_query,
                     "fields": fuzzy_fields,
                     "fuzziness": "AUTO",
                     "prefix_length": 1,
@@ -338,6 +364,26 @@ async def search(request: Request, query: str, page: int = 1, scope: str = "all"
         total_hits = int(total_obj or 0)
     results = hits_obj.get("hits", [])
 
+    # UI normalization: hide tokenizer underscores in rendered fields/highlights.
+    for hit in results:
+        src = hit.get("_source")
+        if isinstance(src, dict):
+            if "title" in src:
+                src["title"] = _display_text(src.get("title"))
+            if "content" in src:
+                src["content"] = _display_text(src.get("content"))
+            if "description" in src:
+                src["description"] = _display_text(src.get("description"))
+
+        if "story_title" in hit:
+            hit["story_title"] = _display_text(hit.get("story_title"))
+
+        hl = hit.get("highlight")
+        if isinstance(hl, dict):
+            for k, v in list(hl.items()):
+                if isinstance(v, list):
+                    hl[k] = [_display_text(s) for s in v]
+
     # Enrichment: Total chapters and Story Titles for UI
     story_info = {}
     for hit in results:
@@ -395,7 +441,7 @@ async def search(request: Request, query: str, page: int = 1, scope: str = "all"
         {
             "request": request,
             "results": results,
-            "query": query,
+            "query": display_query,
             "scope": scope_norm,
             "page": page,
             "total_pages": total_pages,
@@ -410,6 +456,10 @@ async def autocomplete(query: str, limit: int = 8):
     q = (query or "").strip()
     if len(q) < 2:
         return JSONResponse({"suggestions": []})
+
+    q_es = q
+    if USE_COCCOC_TOKENIZER:
+        q_es = tokenize(q, use_coccoc=True)
 
     try:
         limit_i = int(limit)
@@ -426,7 +476,7 @@ async def autocomplete(query: str, limit: int = 8):
             {
                 "match_phrase_prefix": {
                     "title.with_diacritics": {
-                        "query": q,
+                        "query": q_es,
                         "boost": 5,
                     }
                 }
@@ -438,7 +488,7 @@ async def autocomplete(query: str, limit: int = 8):
         {
             "match": {
                 "title.autocomplete": {
-                    "query": q,
+                    "query": q_es,
                     "operator": "and",
                     "boost": 3,
                 }
@@ -447,7 +497,7 @@ async def autocomplete(query: str, limit: int = 8):
     )
 
     # Fallbacks (in case the autocomplete field isn't populated for some docs).
-    should.append({"match_phrase_prefix": {"title": {"query": q, "boost": 1}}})
+    should.append({"match_phrase_prefix": {"title": {"query": q_es, "boost": 1}}})
 
     body = {
         "query": {
@@ -480,11 +530,12 @@ async def autocomplete(query: str, limit: int = 8):
         title = (hit.get("_source") or {}).get("title")
         if not title:
             continue
-        norm = title.strip().lower()
+        display_title = _display_text(title) or title
+        norm = (display_title or "").strip().lower()
         if not norm or norm in seen_titles:
             continue
         seen_titles.add(norm)
-        suggestions.append({"title": title, "id": hit.get("_id")})
+        suggestions.append({"title": display_title, "id": hit.get("_id")})
         if len(suggestions) >= limit_i:
             break
 
@@ -640,12 +691,17 @@ async def document_detail(request: Request, doc_id: str):
         "detail.html",
         {
             "request": request,
-            "doc": source,
+            "doc": {
+                **(source or {}),
+                "title": _display_text((source or {}).get("title")),
+                "content": _display_text((source or {}).get("content")),
+                "description": _display_text((source or {}).get("description")),
+            },
             "doc_id": doc_id,
             "prev_id": prev_id,
             "next_id": next_id,
             "total_chapters": total_chapters,
-            "story_title": story_title,
+            "story_title": _display_text(story_title),
             "first_id": first_chapter_id
         }
     )

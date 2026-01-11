@@ -1,7 +1,7 @@
 {
   "settings": {
     "index": {
-      "max_ngram_diff": 15
+      "max_ngram_diff": 13
     },
     "similarity": {
       "vi_bm25": {
@@ -12,46 +12,35 @@
     },
     "analysis": {
       "filter": {
-        "vietnamese_ngram": {
+        "icu_folding": {
+          "type": "icu_folding"
+        },
+        "ngram_filter": {
           "type": "ngram",
           "min_gram": 2,
           "max_gram": 15
-        },
-        "icu_folding": {
-          "type": "icu_folding"
-        }
-      },
-      "tokenizer": {
-        "edge_ngram_tokenizer": {
-          "type": "edge_ngram",
-          "min_gram": 2,
-          "max_gram": 15,
-          "token_chars": [
-            "letter",
-            "digit"
-          ]
         }
       },
       "analyzer": {
-        "vietnamese_text": {
-          "tokenizer": "icu_tokenizer",
+        "vi_pretokenized": {
+          "tokenizer": "whitespace",
           "filter": [
             "lowercase",
             "icu_folding"
           ]
         },
-        "vietnamese_text_with_diacritics": {
-          "tokenizer": "icu_tokenizer",
+        "vi_pretokenized_with_diacritics": {
+          "tokenizer": "whitespace",
           "filter": [
-            "lowercase" 
+            "lowercase"
           ]
         },
-        "vietnamese_autocomplete": {
-          "tokenizer": "icu_tokenizer",
+        "vi_autocomplete": {
+          "tokenizer": "whitespace",
           "filter": [
             "lowercase",
             "icu_folding",
-            "vietnamese_ngram"
+            "ngram_filter"
           ]
         }
       }
@@ -62,34 +51,34 @@
       "title": {
         "type": "text",
         "similarity": "vi_bm25",
-        "analyzer": "vietnamese_text",
-        "search_analyzer": "vietnamese_text",
+        "analyzer": "vi_pretokenized",
+        "search_analyzer": "vi_pretokenized",
         "fields": {
           "with_diacritics": {
             "type": "text",
             "similarity": "vi_bm25",
-            "analyzer": "vietnamese_text_with_diacritics",
-            "search_analyzer": "vietnamese_text_with_diacritics"
+            "analyzer": "vi_pretokenized_with_diacritics",
+            "search_analyzer": "vi_pretokenized_with_diacritics"
           },
           "autocomplete": {
             "type": "text",
             "similarity": "vi_bm25",
-            "analyzer": "vietnamese_autocomplete",
-            "search_analyzer": "vietnamese_text"
+            "analyzer": "vi_autocomplete",
+            "search_analyzer": "vi_pretokenized"
           }
         }
       },
       "content": {
         "type": "text",
         "similarity": "vi_bm25",
-        "analyzer": "vietnamese_text",
-        "search_analyzer": "vietnamese_text",
+        "analyzer": "vi_pretokenized",
+        "search_analyzer": "vi_pretokenized",
         "fields": {
           "with_diacritics": {
             "type": "text",
             "similarity": "vi_bm25",
-            "analyzer": "vietnamese_text_with_diacritics",
-            "search_analyzer": "vietnamese_text_with_diacritics"
+            "analyzer": "vi_pretokenized_with_diacritics",
+            "search_analyzer": "vi_pretokenized_with_diacritics"
           }
         }
       },

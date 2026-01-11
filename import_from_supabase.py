@@ -8,7 +8,8 @@ import requests
 import json
 
 from elastic import bulk_insert, ensure_index, wait_for_elasticsearch
-from settings import INDEX_NAME, INDEX_CONFIG_JSON
+from settings import INDEX_NAME, INDEX_CONFIG_JSON, USE_COCCOC_TOKENIZER
+from tokenizer_client import tokenize
 
 
 def fetch_stories(limit: int | None = None) -> List[dict]:
@@ -115,13 +116,24 @@ def transform_story(row: dict) -> Dict[str, dict]:
     source_url = row.get("source_url") or ""
     doc_id = extract_id_from_url(source_url)
     story_id = doc_id
+    
+    # Tokenize text fields if Cốc Cốc tokenizer is enabled
+    title = row.get("title")
+    content = row.get("description") or row.get("content")
+    
+    if USE_COCCOC_TOKENIZER:
+        if title:
+            title = tokenize(title, use_coccoc=True)
+        if content:
+            content = tokenize(content, use_coccoc=True)
+    
     doc = {
         "doc_type": "story",
         "story_id": story_id,
-        "title": row.get("title"),
+        "title": title,
         "author": row.get("author"),
         "description": row.get("description"),
-        "content": row.get("description") or row.get("content"),
+        "content": content,
         "tags": row.get("genres") or row.get("tags") or [],
         "popularity": row.get("popularity") or 0,
         "last_updated": row.get("last_updated"),
@@ -136,14 +148,25 @@ def transform_chapter(row: dict) -> Dict[str, dict]:
     story_id = str(row.get("story_id") or row.get("story") or row.get("parent_id") or "unknown")
     chapter_number = row.get("chapter_number") or row.get("chapter") or row.get("num")
     chapter_number = int(chapter_number) if chapter_number is not None else 0
+    
+    # Tokenize text fields if Cốc Cốc tokenizer is enabled
+    title = row.get("title") or f"Chapter {chapter_number}"
+    content = row.get("content")
+    
+    if USE_COCCOC_TOKENIZER:
+        if title:
+            title = tokenize(title, use_coccoc=True)
+        if content:
+            content = tokenize(content, use_coccoc=True)
+    
     doc = {
         "doc_type": "chapter",
         "story_id": story_id,
         "chapter_number": chapter_number,
-        "title": row.get("title") or f"Chapter {chapter_number}",
+        "title": title,
         "author": row.get("author") or f"Chapter {chapter_number} of {story_id}",
         "description": row.get("description"),
-        "content": row.get("content"),
+        "content": content,
         "tags": row.get("tags") or ["chapter"],
         "popularity": row.get("popularity") or chapter_number,
         "last_updated": row.get("last_updated"),
